@@ -57,7 +57,7 @@ public class greenfield {
 		weightCrit =90;
 		
 		//check threshold value
-		Functions.checkThresholdRandom(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit);
+		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit);
 
 		//set endLocations
 		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
