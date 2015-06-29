@@ -30,9 +30,7 @@ public class greenfield {
 		int numberpolygons=Functions.getNrOrSum(true, PLZ5, microm);
 		
 		//set startLocations
-		//Functions.calculateStartLocationsGreenfield(numberpolygons, numberlocations, PLZ5);
 		Functions.initLocationContainer();
-//		Functions.setLocations(numberlocations, microm);
 		
 		//init polys: get id, geometry, criteria
 		Functions.initPolygones(numberpolygons, numberlocations, PLZ5, microm);
@@ -58,11 +56,10 @@ public class greenfield {
 		weightCom = 10;
 		weightCrit =90;
 		
-//		//check threshold value
+		//check threshold value
 		Functions.checkThresholdRandom(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit);
-////		Functions.checkthresholdCombi(numberpolygons, numberlocations);
-//		
-//		//set endLocations
+
+		//set endLocations
 		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
 		//writeLocations
@@ -71,15 +68,14 @@ public class greenfield {
 		//write Polygons
 		Functions.writePolygon(output, numberpolygons);
 		
+		//show Result
 		Functions.showCritResult(numberlocations);
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+
 		output.flush();
 		output.close();
 	    
 	    System.out.println("successfully ended");
-		//welche Funktionen in functionsnew überhaupt noch notwendig? welche variablen?
-		
 	}
 }

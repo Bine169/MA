@@ -27,7 +27,6 @@ public class Functions {
 	static List<Integer> nofoundlocations = new ArrayList<Integer>(); 
 	
 
-	
 	private static class polyDistances{
 		static List<Integer> ids = new ArrayList<Integer>();
 		static ArrayList<Double>[] distances;
@@ -2182,6 +2181,7 @@ public static void checkthresholdCombi(int numberpolygons,int numberlocations) t
 		List<Integer> allocatedPolyIds = new ArrayList<Integer>();
 		double critAverage=-1;
 		
+		//get sum of Polygons to calculate a critAverage value to stop allocation of polys for one location
 		double sumCriteria = getNrOrSum(false, PLZ5, false);
 		if (PLZ5){
 			critAverage = sumCriteria / (numberlocations+2);
@@ -2192,8 +2192,7 @@ public static void checkthresholdCombi(int numberpolygons,int numberlocations) t
 		int sumOfPolygons=0;
 		double oldCrit=0;
 		
-		Thread.sleep(5000);
-		
+		//create locations and allocate Polygons to it
 		for (int i=0;i<numberlocations;i++){
 			
 			Location old=null;
@@ -2322,75 +2321,7 @@ public static void checkthresholdCombi(int numberpolygons,int numberlocations) t
 			boolean takeNextLoc=false;
 			int runs =0;
 			
-			while(actcrit<critThreshold && sumOfPolygons!=(numberpolygons-(numberlocations-i)) && !takeNextLoc && runs!=numberpolygons){
-				
-				boolean oldAlg= false;
-				
-				if(oldAlg){
-				List<Polygon> neighbours =null;
-				double minweight=-1;
-				boolean first=true;
-				Polygon bestNeighbour=null;
-				
-				
-				for (int k=0;k<nrAllocatedPolygons;k++){
-					Polygon actPoly = polygonContainer.getPolygonById(numberpolygons, buffAllocatedPolyIds.get(k));
-					neighbours = actPoly.getNeighbours();
-				
-					for (int j=0;j<neighbours.size();j++){	
-						
-						
-						if (!loc.getAllocatedPolygon().contains(neighbours.get(j)) && !allocatedPolyIds.contains(neighbours.get(j).getId())){
-							Polygon actNeighbourPoly = neighbours.get(j);
-							
-							//simulate change
-							loc.setAllocatedPolygon(actNeighbourPoly);
-							actNeighbourPoly.setAllocatedLocation(loc);
-							
-							//calculate change
-							double weight = calculateWeightValue(loc.getId(), loc, numberpolygons, microm, PLZ5, critAverage, weightCom, weightCrit);
-							
-							if (first){
-								minweight=weight;
-								bestNeighbour=actNeighbourPoly;
-								first=false;
-							}
-							else{
-								if (weight<minweight){
-									minweight=weight;
-									bestNeighbour=actNeighbourPoly;
-								}
-							}
-							
-							//reset change
-							loc.removeAllocatedPolygon(actNeighbourPoly);
-							actNeighbourPoly.removeAllocatedLocation();
-						}
-					}
-					
-				}
-				
-				//do change
-				if (bestNeighbour!=null){
-				loc.setAllocatedPolygon(bestNeighbour);
-				bestNeighbour.setAllocatedLocation(loc);
-				actcrit=actcrit+bestNeighbour.getCriteria();
-				nrAllocatedPolygons++;
-				buffAllocatedPolyIds.add(bestNeighbour.getId());
-				sumOfPolygons++;
-				}
-				
-				runs++;
-				
-				
-				if (sumOfPolygons==numberpolygons){
-					takeNextLoc=true;
-				}
-				
-				}
-				//else new
-				else{
-					
+			while(actcrit<critThreshold && sumOfPolygons!=(numberpolygons-(numberlocations-i)) && !takeNextLoc && runs!=numberpolygons){			
 					Polygon minPoly=null;
 					boolean minPolyfound=false;
 					for (int k=0;k<numberpolygons;k++){
@@ -2426,7 +2357,6 @@ public static void checkthresholdCombi(int numberpolygons,int numberlocations) t
 					else{
 						takeNextLoc=true;
 					}
-				}
 			}
 			
 			System.out.println(actcrit);
