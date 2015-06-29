@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mainClass {
+public class AreaSegmentation {
 	
 	public static void main(String[] args)
 			throws Exception {
