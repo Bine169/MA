@@ -9,7 +9,7 @@ public class AreaSegmentation {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=true;
+		boolean PLZ5=false;
 		boolean common=true;
 		boolean microm=false;
 		
@@ -54,7 +54,7 @@ public class AreaSegmentation {
 		int threshold =50;
 		
 		//check threshold value
-		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit);
+		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, false, -1, -1);
 //		Functions.checkthresholdCombi(numberpolygons, numberlocations);
 		
 		//write Polygons

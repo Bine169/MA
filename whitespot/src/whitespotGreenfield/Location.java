@@ -51,6 +51,10 @@ public class Location {
 		}
 	}
 	
+	public void resetAllocatedPolys(){
+		this.allocatedPolygon = new ArrayList<Polygon>();
+	}
+	
 	public void setAllocatedPolygon(Polygon poly){
 		this.allocatedPolygon.add(poly);
 	}

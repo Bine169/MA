@@ -15,7 +15,7 @@ public class greenfield {
 		int numberlocations=10;
 		int weightCom = 100;
 		int weightCrit =00;
-		int threshold =50;
+		int threshold =30;
 		
 		//create FileWriter
 		FileWriter output =Functions.createFileWriter();
@@ -42,7 +42,7 @@ public class greenfield {
 		Functions.initCentroids(numberpolygons);
 		
 		//allocated Polygons
-		Functions.allocatePolygonsGreenfield(numberpolygons, numberlocations, PLZ5, microm, weightCom, weightCrit );
+		Functions.allocatePolygonsGreenfield(numberpolygons, numberlocations, PLZ5);
 		
 		//check whether all polygons are allocated
 		Functions.checkAllocationGreenfield(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
@@ -53,11 +53,11 @@ public class greenfield {
 		//init homePolys
 		Functions.determineHomePoly(PLZ5, numberlocations, microm);
 		
-		weightCom = 10;
-		weightCrit =90;
+		weightCom = 30;
+		weightCrit =70;
 		
 		//check threshold value
-		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit);
+		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, false, -1, -1);
 
 		//set endLocations
 		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);

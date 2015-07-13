@@ -7,12 +7,14 @@ public class Whitespot {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=true;
+		boolean PLZ5=false;
 		boolean microm=false;
 		
 		long time = System.currentTimeMillis();
 		
-		int numberlocations=10;
+		int numberGivenLocations = 5;
+		int numberNewLocations = 5;
+		int numberlocations=numberGivenLocations+numberNewLocations;
 		int weightCom = 100;
 		int weightCrit =00;
 		int threshold =50;
@@ -31,6 +33,10 @@ public class Whitespot {
 		
 		//set startLocations
 		Functions.initLocationContainer();
+		Functions.initStartLocations(numberGivenLocations, microm); 
+		
+		//determine HomePoly of given Locations
+		Functions.determineHomePoly(PLZ5, numberGivenLocations, microm);
 		
 		//init polys: get id, geometry, criteria
 		Functions.initPolygones(numberpolygons, numberlocations, PLZ5, microm);
@@ -42,25 +48,40 @@ public class Whitespot {
 		Functions.initCentroids(numberpolygons);
 		
 		//allocated Polygons
-		Functions.allocatePolygonsGreenfield(numberpolygons, numberlocations, PLZ5, microm, weightCom, weightCrit );
+		Functions.allocatePolygonsWhitespot(numberpolygons, numberGivenLocations, numberNewLocations, PLZ5);
 		
 		//check whether all polygons are allocated
 		Functions.checkAllocationGreenfield(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
 		
-		//set Locations
-		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
+		//set Locations from new created ones
+		Functions.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
 		
-		//init homePolys
+		//init homePolys of all Locations
 		Functions.determineHomePoly(PLZ5, numberlocations, microm);
 		
-		weightCom = 10;
-		weightCrit =90;
+		//init variables
+		criteria = new double[numberlocations];
+		for (int i=0; i<numberlocations;i++){
+			criteria[i]=0;
+		}
+		
+		//reset Allocation
+		Functions.resetAllocations(numberpolygons, numberlocations);
+		
+		//determine distances between poly and locations
+		Functions.initDistances(numberpolygons, numberlocations, microm);
+		
+		//allocate geometries to locations dependent on distance
+		Functions.allocatePolygonsByDistance(numberpolygons, numberlocations);
+		
+		weightCom = 100;
+		weightCrit =0;
 		
 		//check threshold value
-		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit);
+		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, true, numberGivenLocations, numberNewLocations);
 
 		//set endLocations
-		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
+		Functions.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
 		
 		//writeLocations
 		Functions.createFileWriterLocs(numberlocations);

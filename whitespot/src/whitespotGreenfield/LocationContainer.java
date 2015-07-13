@@ -60,6 +60,11 @@ public class LocationContainer {
 		return loc;
 	}
 	
+	public void resetAllocatedPolys(int id){
+		Location loc = getLocationByID(id);
+		loc.resetAllocatedPolys();
+	}
+	
 	public void setAllocatedPolygon(Polygon poly, int idLocation){
 		Location loc = getLocation(idLocation);
 		loc.setAllocatedPolygon(poly);
