@@ -56,6 +56,10 @@ public class Whitespot {
 		//set Locations from new created ones
 		Functions.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
 		
+		 FileWriter output2 =Functions.createFileWriter();
+		 Functions.writePolygon(output2, numberpolygons);
+		 output2.close();
+		 
 		//init homePolys of all Locations
 		Functions.determineHomePoly(PLZ5, numberlocations, microm);
 		
@@ -64,6 +68,9 @@ public class Whitespot {
 		for (int i=0; i<numberlocations;i++){
 			criteria[i]=0;
 		}
+		
+		//writeLocations
+		Functions.createFileWriterLocs(numberlocations);
 		
 		//reset Allocation
 		Functions.resetAllocations(numberpolygons, numberlocations);
@@ -74,8 +81,14 @@ public class Whitespot {
 		//allocate geometries to locations dependent on distance
 		Functions.allocatePolygonsByDistance(numberpolygons, numberlocations);
 		
-		weightCom = 100;
-		weightCrit =0;
+		//sum criterias of allocated geometries
+		Functions.initCriteria(numberpolygons, numberlocations);
+		
+		//check Unity
+		Functions.checkUnityAfterAllocByDist(numberpolygons, numberlocations);
+		 
+		weightCom = 50;
+		weightCrit =50;
 		
 		//check threshold value
 		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, true, numberGivenLocations, numberNewLocations);

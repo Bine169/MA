@@ -514,9 +514,9 @@ public class Functions {
 									numberGivenLocations, numberNewLocations, (location + 1), critAverage,
 									microm, PLZ5, weightCom, weightCrit);
 						}
-						// FileWriter output =createFileWriter();
-						// writePolygon(output, numberpolygons);
-						// output.close();
+//						 FileWriter output =createFileWriter();
+//						 writePolygon(output, numberpolygons);
+//						 output.close();
 					}
 
 					location++;
@@ -724,14 +724,16 @@ public class Functions {
 			// take all neighbours of poly
 			for (int j = 0; j < poly.getNeighbours().size(); j++) {
 				// take all polys of location
-				for (int k = 0; k < numberpolygons; k++) {
-					Polygon actPoly = polygonContainer.getPolygon(k);
-					if (actPoly.getFlagAllocatedLocation()) {
-						if (actPoly.getAllocatedLocation().getId() == loc) {
-							if (poly.getNeighbours().get(j).getId() == actPoly
-									.getId()) {
-								unit = true;
-								foundNeighbour = true;
+				if (poly.getNeighbours().get(j).getId()!=poly.getId()){
+					for (int k = 0; k < numberpolygons; k++) {
+						Polygon actPoly = polygonContainer.getPolygon(k);
+						if (actPoly.getFlagAllocatedLocation()) {
+							if (actPoly.getAllocatedLocation().getId() == loc) {
+								if (poly.getNeighbours().get(j).getId() == actPoly
+										.getId()) {
+									unit = true;
+									foundNeighbour = true;
+								}
 							}
 						}
 					}
@@ -761,6 +763,211 @@ public class Functions {
 		}
 
 		return unit;
+	}
+	
+	public static void checkUnityAfterAllocByDist(int numberpolygons, int numberlocations) throws Exception{
+		//check unity for every location
+		for (int j=0;j<numberlocations;j++){
+			
+			Location loc = locationContainer.getLocation(j);
+			
+			boolean unit;
+			boolean first=true;
+			int pos = 0;
+			boolean graphEnds = false;
+			List<Integer> neighbours = new ArrayList<Integer>();
+			List<Polygon> polysTaken = new ArrayList<Polygon>();
+			List<Polygon> polysNotTaken = new ArrayList<Polygon>();
+			List<Polygon> buffAllocPolysLoc = new ArrayList<Polygon>();
+			for (int i = 0; i < numberpolygons; i++) {
+				Polygon poly = polygonContainer.getPolygon(i);
+				if (poly.getAllocatedLocation().getId() == loc.getId()) {
+					buffAllocPolysLoc.add(poly);
+				}
+			}
+
+			while (!graphEnds) {
+				Polygon actPoly=null;
+				if (first){
+					for (int i=0;i<buffAllocPolysLoc.size();i++){
+						if (buffAllocPolysLoc.get(i).getId()==loc.getHomePolyId()){
+							actPoly=buffAllocPolysLoc.get(i);
+							first=false;
+						}
+					}
+				}
+				else{
+					actPoly = polygonContainer.getPolygon(pos);
+				}
+
+				if (actPoly.getAllocatedLocation().getId() == loc.getId()) {
+
+					boolean takeNextNeighbour = false;
+					if (neighbours.size() > 0) {
+						if (actPoly.getId() == neighbours.get(0)) {
+							takeNextNeighbour = true;
+
+						}
+					} else {
+						takeNextNeighbour = true;
+					}
+
+					if (takeNextNeighbour) {
+						boolean allreadyTaken = false;
+						for (int i = 0; i < polysTaken.size(); i++) {
+							if (actPoly.getId() == polysTaken.get(i).getId()) {
+								allreadyTaken = true;
+							}
+						}
+
+						if (!allreadyTaken) {
+							polysTaken.add(actPoly);
+
+							for (int l = 0; l < actPoly.getNeighbours().size(); l++) {
+								for (int k = 0; k < buffAllocPolysLoc.size(); k++) {
+									if (buffAllocPolysLoc.get(k).getId() == actPoly
+											.getNeighbours().get(l).getId()) {
+
+										if (!neighbours
+												.contains(buffAllocPolysLoc
+														.get(k).getId())) {
+											neighbours.add(buffAllocPolysLoc
+													.get(k).getId());
+
+										}
+									}
+								}
+							}
+						}
+
+						if (neighbours.size() > 0) {
+							pos = 0;
+							neighbours.remove(0);
+						} else {
+							graphEnds = true;
+						}
+
+					} else {
+						pos++;
+					}
+				} else {
+					pos++;
+				}
+			}
+
+			int countPolysTaken = 0;
+
+			for (int l = 0; l < polysTaken.size(); l++) {
+				for (int k = 0; k < buffAllocPolysLoc.size(); k++) {
+					if (buffAllocPolysLoc.get(k).equals(polysTaken.get(l))) {
+						countPolysTaken++;
+					}
+				}
+			}
+
+			if (buffAllocPolysLoc.size() == countPolysTaken) {
+				unit = true;
+			} else {
+				unit = false;
+			}
+
+			//if area has more than one part
+			if (!unit){
+				for (int i=0;i<buffAllocPolysLoc.size();i++){
+					if (!polysTaken.contains(buffAllocPolysLoc.get(i))){
+						polysNotTaken.add(buffAllocPolysLoc.get(i));
+					}
+				}
+				
+				//take every poly which is aside and rearrange it to another area
+				int posPoly=0;
+				while(polysNotTaken.size()>0){
+					if (posPoly>=polysNotTaken.size()){
+						posPoly=0;
+					}
+					
+					Polygon actPoly=polysNotTaken.get(posPoly);
+					
+					boolean rearranged=false;
+					List <Integer> notUseableLocs = new ArrayList<Integer>();
+					notUseableLocs.add(loc.getId());
+					
+					while(!rearranged){
+						double minDist =-1;
+						Location locMinDist = null;
+						
+						int posActPoly = -1;
+						for (int k=0;k<numberpolygons;k++){
+							if (polyDistances.ids.get(k)==actPoly.getId()){
+								posActPoly=k;
+							}
+						}
+						
+						boolean firstLoc=true;
+						//determine Location with next smallest Dist
+						for (int k=0;k<numberlocations;k++){
+							Location actLoc = locationContainer.getLocation(k);
+							if (firstLoc && !notUseableLocs.contains(actLoc.getId())){
+								minDist=polyDistances.distances[posActPoly].get(k);
+								locMinDist=locationContainer.getLocation(k);
+								firstLoc=false;
+							}
+							else{
+								if (polyDistances.distances[posActPoly].get(k)<minDist && !notUseableLocs.contains(actLoc.getId())){
+									minDist=polyDistances.distances[posActPoly].get(k);
+									locMinDist=locationContainer.getLocation(k);
+								}
+							}
+						}
+						
+						
+						//simulate Change
+						locMinDist.getAllocatedPolygon().add(actPoly);
+						actPoly.setAllocatedLocation(locMinDist);
+						loc.removeAllocatedPolygon(actPoly);
+	
+						//check unity of area that gets the polygon
+						boolean unity = checkUnitCalculationGets(actPoly.getId(), locMinDist.getId(), numberpolygons);
+						
+						
+						//do or abort change
+						if (unity){
+							System.out.println("set "+actPoly.getId()+" from "+loc.getId()+" to "+locMinDist.getId());
+							System.out.println("old: "+loc.getCriteria()+","+locMinDist.getCriteria());
+							
+							double critPoly = actPoly.getCriteria();
+							double critOld = loc.getCriteria();
+							double critNew = critOld-critPoly;
+							loc.setCriteria(critNew);
+							
+							critOld = locMinDist.getCriteria();
+							critNew = critOld+critPoly;
+							locMinDist.setCriteria(critNew);
+							rearranged=true;
+							polysNotTaken.remove(posPoly);
+							
+							System.out.println("new: "+loc.getCriteria()+","+locMinDist.getCriteria());
+						}
+						else{
+							locMinDist.removeAllocatedPolygon(actPoly);
+							actPoly.setAllocatedLocation(loc);
+							loc.getAllocatedPolygon().add(actPoly);
+							notUseableLocs.add(locMinDist.getId());
+						}
+						
+						if (notUseableLocs.size()==numberlocations){
+							posPoly++;
+							rearranged=true;
+						}
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < numberlocations; i++) {
+			System.out.println(locationContainer.getLocation(i)
+					.getCriteria());
+		}
 	}
 
 	public static FileWriter createFileWriter() throws IOException {
@@ -1004,6 +1211,11 @@ public class Functions {
 
 	public static void initCriteria(int numberpolygons, int numberlocations) {
 
+		//reset criteria to 0 (necessary for whitespot)
+		for (int i = 0; i < numberlocations; i++) {
+			locationContainer.setCriteria(i, 0);
+		}
+		
 		for (int i = 0; i < numberpolygons; i++) {
 			double crit = polygonContainer.getPolygon(i).getCriteria();
 			Location loc = polygonContainer.getAllocatedLocation(i);
@@ -2660,7 +2872,17 @@ public class Functions {
 			
 			if (i<numberGivenlocations){
 				Location loc = locationContainer.getLocation(i);
+				
+				//take border Polygon as startPoly
 				startPoly = polygonContainer.getPolygonById(numberpolygons, loc.getHomePolyId());
+//				
+				//take next polygon in list which is not allocated yet
+//				for (int j=0;j<numberpolygons;j++){
+//					if (!polygonContainer.getPolygon(j).getFlagAllocatedLocation()){
+//						startPoly=polygonContainer.getPolygon(j);
+//					}
+//				}
+				
 				startPoly.setAllocatedLocation(loc);
 				loc.setAllocatedPolygon(startPoly);
 				actcrit = startPoly.getCriteria();
@@ -2740,23 +2962,31 @@ public class Functions {
 				startPoly = null;
 
 				// detect startPoly, startpoly is a boundary poly 
-				int j = 0;
-				boolean found = false;
-
-				while (j < numberpolygons && !found) {
-					if (!allocatedPolyIds.contains(boundaryPolyIds.get(j))){
-						startPoly = polygonContainer.getPolygonById(numberpolygons, boundaryPolyIds.get(j));
-						found=true;
-					}
-					else{
-						j++;
+//				int j = 0;
+//				boolean found = false;
+//
+//				//take next border polygone as startPoly
+//				while (j < numberpolygons && !found) {
+//					if (!allocatedPolyIds.contains(boundaryPolyIds.get(j))){
+//						startPoly = polygonContainer.getPolygonById(numberpolygons, boundaryPolyIds.get(j));
+//						found=true;
+//					}
+//					else{
+//						j++;
+//					}
+//				}
+				
+				for (int j=0;j<numberpolygons;j++){
+					if (!polygonContainer.getPolygon(j).getFlagAllocatedLocation()){
+						startPoly=polygonContainer.getPolygon(j);
 					}
 				}
+				
 				// if no boundaryPoly is available anymore; a polygon within the
 				// whole area will be taken
 				if (startPoly == null) {
-					j = 0;
-					found = false;
+					int j = 0;
+					boolean found = false;
 
 					while (j < numberpolygons && !found) {
 						Polygon actPoly = polygonContainer.getPolygon(j);
