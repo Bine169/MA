@@ -9,17 +9,17 @@ public class AreaSegmentation {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=false;
+		boolean PLZ5=true;
 		boolean common=true;
 		boolean microm=false;
 		
 		long time = System.currentTimeMillis();
 		int numberlocations=10;
-		Functions.setLocations(numberlocations, microm);
+		FunctionsCommon.setLocations(numberlocations, microm);
 		
 		//create FileWriter
-		FileWriter output =Functions.createFileWriter();
-		Functions.createFileWriterLocs(numberlocations);
+		FileWriter output =FunctionsCommon.createFileWriter();
+		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
 		//init variables
 		double[] criteria = new double[numberlocations];
@@ -28,39 +28,16 @@ public class AreaSegmentation {
 		}
 		
 		//calculate number of Polygons in that region
-		int numberpolygons=Functions.getNrOrSum(true, PLZ5, microm);
-		
-		//init polys: get id, geometry, criteria
-		Functions.initPolygones(numberpolygons, numberlocations, PLZ5, microm);
-		
-		//init neighbours
-		Functions.initNeighbours(numberpolygons, PLZ5, microm);
-		
-		//init homePolys
-		Functions.determineHomePoly(PLZ5, numberlocations, microm);
-		
-		//determine distances between poly and locations
-		Functions.initDistances(numberpolygons, numberlocations, microm);
-		
-		//allocate geometries to locations dependent on distance
-		Functions.allocatePolygonsByDistance(numberpolygons, numberlocations);
-		
-		//sum criterias of allocated geometries
-		Functions.initCriteria(numberpolygons, numberlocations);
+		int numberpolygons=FunctionsCommon.initialisation(numberlocations, true, PLZ5, microm);
 		
 		
-		int weightCom = 70;
-		int weightCrit =30;
+		int weightCom = 100;
+		int weightCrit =00;
 		int threshold =50;
 		
-		//check threshold value
-		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, false, -1, -1);
-//		Functions.checkthresholdCombi(numberpolygons, numberlocations);
+		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit);
 		
-		//write Polygons
-		Functions.writePolygon(output, numberpolygons);
-		
-		Functions.showCritResult(numberlocations);
+		FunctionsCommon.visualizeResults(numberpolygons, numberlocations, output);
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
 //		

@@ -59,6 +59,10 @@ public class FunctionsCommon {
 		
 		initCentroids(numberpolygons);
 		
+		initArea(numberpolygons, PLZ5, microm);
+		
+		initCircumferences(numberpolygons, PLZ5, microm);
+		
 		return numberpolygons;
 	}
 	
@@ -95,7 +99,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		checkUnityAfterAllocByDist(numberpolygons, numberlocations);
 		System.out.println("check done");
 		
-		output2 =FunctionsCommon.createFileWriter();
+		output2 =FunctionsCommon.createFileWriter("debug");
 		 FunctionsCommon.writePolygon(output2, numberpolygons);
 		 output2.close();
 		 
@@ -405,6 +409,166 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 
 		return centroid;
+	}
+	
+	private static void initArea(int numberpolygons, boolean PLZ5, boolean microm) throws SQLException{
+		//init variables
+				Connection jdbc = null;
+				Statement stmt = null;
+
+				//init connection
+				if (!microm) {
+					jdbc = getConnection();
+					stmt = jdbc.createStatement();
+				}
+
+				//set table and columns
+				String tablegeom = null;
+
+				// PLZ5
+				if (PLZ5) {
+					tablegeom = "geometriesplz51";
+				} else {
+					// PLZ8
+					tablegeom = "geometriesplz81";
+				}
+
+				for (int i=0;i<numberpolygons;i++){
+					Polygon actPoly = polygonContainer.getPolygon(i);
+					
+					StringBuffer sb = new StringBuffer();
+					List<Integer> geomIDs = new ArrayList<Integer>();
+					geomIDs.add(actPoly.getId());
+
+					//formate String for SQL statement
+					StringBuilder idsBuffer = new StringBuilder(geomIDs.toString());
+					idsBuffer.deleteCharAt(0);
+					idsBuffer.deleteCharAt(idsBuffer.length() - 1);
+
+					//create SQL statement
+					sb = calculateArea(tablegeom, idsBuffer);
+
+					//execute query and store result
+					ResultSet d = null;
+					if (!microm) {
+						d = stmt.executeQuery(sb.toString());
+					}
+
+					d.next();
+
+					double result = d.getDouble(1);
+					
+					actPoly.setArea(result);
+				}
+				
+
+				if (jdbc != null) {
+					jdbc.close();
+				}
+	}
+	
+	private static void initCircumferences(int numberpolygons, boolean PLZ5, boolean microm) throws SQLException{
+		//init variables
+		Connection jdbc = null;
+		Statement stmt = null;
+
+		//init connection
+		if (!microm) {
+			jdbc = getConnection();
+			stmt = jdbc.createStatement();
+		}
+
+		//set table and columns
+		String tablegeom = null;
+
+		// PLZ5
+		if (PLZ5) {
+			tablegeom = "geometriesplz51";
+		} else {
+			// PLZ8
+			tablegeom = "geometriesplz81";
+		}
+
+		//calculate circumference for each geometry
+		for (int i=0;i<numberpolygons;i++){
+			Polygon actPoly = polygonContainer.getPolygon(i);
+			
+			StringBuffer sb = new StringBuffer();
+			List<Integer> geomIDs = new ArrayList<Integer>();
+			geomIDs.add(actPoly.getId());
+
+			//formate String for SQL statement
+			StringBuilder idsBuffer = new StringBuilder(geomIDs.toString());
+			idsBuffer.deleteCharAt(0);
+			idsBuffer.deleteCharAt(idsBuffer.length() - 1);
+
+			//create SQL statement
+			sb = calculateCircumference(tablegeom, idsBuffer);
+//			sb.append("SELECT ST_Length(ST_CollectionExtract(ST_Intersection(a_geom, b_geom), 2)) ");
+//			sb.append("FROM (SELECT (SELECT the_geom from "+tablegeom+" where id="+geomIDs.get(0)+") AS a_geom,");
+//			sb.append("(SELECT the_geom from "+tablegeom+" where id="+geomIDs.get(1)+") AS b_geom) f;");
+
+			//execute query and store result
+			ResultSet d = null;
+			if (!microm) {
+				d = stmt.executeQuery(sb.toString());
+			}
+
+			d.next();
+
+			double result = d.getDouble(1);
+			
+			actPoly.setCircumference(result);
+		}
+		
+		//calculate shared edge with neighboured polygones
+		for (int i=0;i<numberpolygons;i++){
+			Polygon actPoly=polygonContainer.getPolygon(i);
+			
+			for (int j=0;j<actPoly.getNeighbours().size();j++){
+				Polygon neighbourPoly=actPoly.getNeighbours().get(j);
+				
+				StringBuffer sb = new StringBuffer();
+				List<Integer> geomIDs = new ArrayList<Integer>();
+				geomIDs.add(actPoly.getId());
+				geomIDs.add(neighbourPoly.getId());
+
+				//formate String for SQL statement
+				StringBuilder idsBuffer = new StringBuilder(geomIDs.toString());
+				idsBuffer.deleteCharAt(0);
+				idsBuffer.deleteCharAt(idsBuffer.length() - 1);
+
+				//create SQL statement
+//				sb = calculateCircumference(tablegeom, idsBuffer);
+				sb.append("SELECT ST_Length(ST_CollectionExtract(ST_Intersection(a_geom, b_geom), 2)) ");
+				sb.append("FROM (SELECT (SELECT the_geom from "+tablegeom+" where id="+geomIDs.get(0)+") AS a_geom,");
+				sb.append("(SELECT the_geom from "+tablegeom+" where id="+geomIDs.get(1)+") AS b_geom) f;");
+				
+				System.out.println(sb);
+				ResultSet d = null;
+				if (!microm) {
+					d = stmt.executeQuery(sb.toString());
+				}
+
+				d.next();
+
+//				double circumBoth = d.getDouble(1);
+				
+//				double sharedCircumference = actPoly.getCircumference() + neighbourPoly.getCircumference() - circumBoth;
+				double sharedCircumference=d.getDouble(1);
+				
+//				System.out.println("circumference actPoly: "+actPoly.getCircumference());
+//				System.out.println("circumference NeighPoly: "+neighbourPoly.getCircumference());
+//				System.out.println("circumference shared: "+sharedCircumference);
+				
+				actPoly.setCircumferenceshared(sharedCircumference);
+			}
+		}
+		
+
+		if (jdbc != null) {
+			jdbc.close();
+		}
 	}
 	
 	//----------------Area Segmentation------------------------
@@ -995,8 +1159,15 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			throws SQLException {
 		
 		//calculate Area and circumference
-		double A_area = calculateAreaOrCircumference(actLoc.getId(), numberpolygons, microm, PLZ5, true);
-		double U_area = calculateAreaOrCircumference(actLoc.getId(), numberpolygons, microm, PLZ5, false);
+		double A_area = calculateAreaForWeight(numberpolygons, actLoc.getId());	
+//		System.out.println("Area function: "+A_area);
+//		double A_area = calculateAreaOrCircumference(actLoc.getId(), numberpolygons, microm, PLZ5, true);
+//		System.out.println("Area database: "+A_area);
+		
+		double U_area = calculateCircumferenceForWeight(numberpolygons, actLoc.getId());
+//		System.out.println("circumference function: "+U_area);
+//		double U_area = calculateAreaOrCircumference(actLoc.getId(), numberpolygons, microm, PLZ5, false);
+//		System.out.println("circumference function: "+U_area);
 
 		// circumference circle r=U/(2*pi) --> A = pi*r^2 = pi*(U/2*pi)^2
 		double A_circle = Math.PI * Math.pow((U_area / (2 * Math.PI)), 2);
@@ -1012,6 +1183,44 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		double weight = compactness * weightCom + criteria * weightCrit;
 
 		return weight;
+	}
+	
+	private static double calculateAreaForWeight(int numberpolygons, int loc){
+		double area=0;
+		
+		for (int i=0;i<numberpolygons;i++){
+			if (polygonContainer.getPolygon(i).getFlagAllocatedLocation()) {
+				if (polygonContainer.getPolygon(i).getAllocatedLocation()
+						.getId() == loc) {
+					area=area+polygonContainer.getPolygon(i).getArea();
+				}
+			}
+		}
+		
+		return area;
+	}
+	
+	private static double calculateCircumferenceForWeight(int numberpolygons, int loc){
+		double circum=0;
+		
+		for (int i=0;i<numberpolygons;i++){
+			Polygon actPoly = polygonContainer.getPolygon(i);
+			if (actPoly.getFlagAllocatedLocation()){
+				if (actPoly.getAllocatedLocation().getId()==loc){
+					circum=circum+actPoly.getCircumference();
+					for (int j=0;j<actPoly.getNeighbours().size();j++){
+						Polygon neighb = actPoly.getNeighbours().get(j);
+						if (neighb.getFlagAllocatedLocation()){
+							if (neighb.getAllocatedLocation().getId()==loc && actPoly.getId()!=neighb.getId()){
+								circum=circum-actPoly.getCircumferenceShared(j);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return circum;
 	}
 	
 	/**calculates area or circumference of whole area for the location
@@ -1111,9 +1320,15 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	private static StringBuffer calculateCircumference(String tablegeom,StringBuilder idsBuffer) throws SQLException {
 		StringBuffer sb = new StringBuffer();
 		
+		//SELECT ST_Length(ST_CollectionExtract(ST_Intersection(a_geom, b_geom), 2))
+//		FROM (
+//				  SELECT (SELECT the_geom from geometriesplz51 where id=8) AS a_geom,
+//				  (SELECT the_geom from geometriesplz51 where id=29) AS b_geom
+//				) f;
+		
 		sb.append("SELECT ST_PERIMETER(ST_UNION(the_geom)) FROM " + tablegeom
 				+ " WHERE id IN (" + idsBuffer.toString() + ");");
-
+		
 		return sb;
 	}
 	
@@ -1898,12 +2113,18 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 		
 	//----------------common functions------------------------
+		public static FileWriter createFileWriter() throws IOException{
+			FileWriter output = createFileWriter("polygones");
+			
+			return output;
+		}
 		
 	/**Creates FileWriter for saving the results
 	 * @return FileWriter
 	 * @throws IOException
 	 */
-	public static FileWriter createFileWriter() throws IOException { String filename = "polygones" + System.currentTimeMillis() + ".csv";
+	public static FileWriter createFileWriter(String name) throws IOException { 
+		String filename = name + System.currentTimeMillis() + ".csv";
 		FileWriter output = new FileWriter(filename);
 		output.append(new String("ID,Location"));
 		output.append("\n");

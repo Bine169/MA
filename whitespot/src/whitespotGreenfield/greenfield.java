@@ -14,11 +14,11 @@ public class greenfield {
 		
 		int numberlocations=10;
 		int weightCom = 100;
-		int weightCrit =00;
+		int weightCrit =0;
 		int threshold =30;
 		
 		//create FileWriter
-		FileWriter output =Functions.createFileWriter();
+		FileWriter output =FunctionsCommon.createFileWriter();
 		
 		//init variables
 		double[] criteria = new double[numberlocations];
@@ -26,50 +26,35 @@ public class greenfield {
 			criteria[i]=0;
 		}
 		
-		//calculate number of Polygons in that region
-		int numberpolygons=Functions.getNrOrSum(true, PLZ5, microm);
-		
 		//set startLocations
-		Functions.initLocationContainer();
+		FunctionsCommon.initLocationContainer();
 		
-		//init polys: get id, geometry, criteria
-		Functions.initPolygones(numberpolygons, numberlocations, PLZ5, microm);
-		
-		//init neighbours
-		Functions.initNeighbours(numberpolygons, PLZ5, microm);
-		
-		//init Centroids
-		Functions.initCentroids(numberpolygons);
+		int numberpolygons = FunctionsCommon.initialisation(numberlocations, true, PLZ5, microm);
 		
 		//allocated Polygons
-		Functions.allocatePolygonsGreenfield(numberpolygons, numberlocations, PLZ5);
+		FunctionsGreenfield.allocatePolygonsGreenfield(numberpolygons, numberlocations, PLZ5);
 		
 		//check whether all polygons are allocated
-		Functions.checkAllocationGreenfield(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
+		FunctionsGreenfieldWhitespot.checkAllocation(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
 		
 		//set Locations
-		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
+		FunctionsGreenfield.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
-		//init homePolys
-		Functions.determineHomePoly(PLZ5, numberlocations, microm);
+		weightCom = 100;
+		weightCrit =0;
 		
-		weightCom = 30;
-		weightCrit =70;
+//		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
 		
-		//check threshold value
-		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, false, -1, -1);
-
+//		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, 0);
+	
+		FunctionsCommon.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, true, 0);
 		//set endLocations
-		Functions.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
+		FunctionsGreenfield.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
 		//writeLocations
-		Functions.createFileWriterLocs(numberlocations);
+		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
-		//write Polygons
-		Functions.writePolygon(output, numberpolygons);
-		
-		//show Result
-		Functions.showCritResult(numberlocations);
+		FunctionsCommon.visualizeResults(numberpolygons, numberlocations, output);
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
 

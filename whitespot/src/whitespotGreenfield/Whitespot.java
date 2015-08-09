@@ -7,62 +7,54 @@ public class Whitespot {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=false;
+		boolean PLZ5=true;
 		boolean microm=false;
 		
 		long time = System.currentTimeMillis();
 		
-		int numberGivenLocations = 5;
-		int numberNewLocations = 5;
+		int numberGivenLocations = 10;
+		int numberNewLocations = 1;
 		int numberlocations=numberGivenLocations+numberNewLocations;
 		int weightCom = 100;
-		int weightCrit =00;
+		int weightCrit =0;
 		int threshold =50;
 		
 		//create FileWriter
-		FileWriter output =Functions.createFileWriter();
+		FileWriter output =FunctionsCommon.createFileWriter();
 		
 		//init variables
 		double[] criteria = new double[numberlocations];
 		for (int i=0; i<numberlocations;i++){
 			criteria[i]=0;
 		}
-		
-		//calculate number of Polygons in that region
-		int numberpolygons=Functions.getNrOrSum(true, PLZ5, microm);
+
 		
 		//set startLocations
-		Functions.initLocationContainer();
-		Functions.initStartLocations(numberGivenLocations, microm); 
+		FunctionsCommon.initLocationContainer();
+		FunctionsCommon.setLocations(numberlocations, microm);
 		
 		//determine HomePoly of given Locations
-		Functions.determineHomePoly(PLZ5, numberGivenLocations, microm);
+		FunctionsCommon.determineHomePoly(PLZ5, numberGivenLocations, microm);
 		
-		//init polys: get id, geometry, criteria
-		Functions.initPolygones(numberpolygons, numberlocations, PLZ5, microm);
-		
-		//init neighbours
-		Functions.initNeighbours(numberpolygons, PLZ5, microm);
-		
-		//init Centroids
-		Functions.initCentroids(numberpolygons);
+		int numberpolygons=FunctionsCommon.initialisation(numberlocations, true, PLZ5, microm);
 		
 		//allocated Polygons
-		Functions.allocatePolygonsWhitespot(numberpolygons, numberGivenLocations, numberNewLocations, PLZ5);
+		FunctionsWhitespot.allocatePolygonsWhitespot(numberpolygons, numberGivenLocations, numberNewLocations, PLZ5);
 		
-		//check whether all polygons are allocated
-		Functions.checkAllocationGreenfield(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
-		
-		//set Locations from new created ones
-		Functions.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
-		
-		 FileWriter output2 =Functions.createFileWriter();
-		 Functions.writePolygon(output2, numberpolygons);
+		FileWriter output2 =FunctionsCommon.createFileWriter();
+		 FunctionsCommon.writePolygon(output2, numberpolygons);
 		 output2.close();
 		 
-		//init homePolys of all Locations
-		Functions.determineHomePoly(PLZ5, numberlocations, microm);
+		//check whether all polygons are allocated
+		 FunctionsGreenfieldWhitespot.checkAllocation(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
 		
+		//set Locations from new created ones
+		FunctionsWhitespot.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
+		
+		 output2 =FunctionsCommon.createFileWriter();
+		 FunctionsCommon.writePolygon(output2, numberpolygons);
+		 output2.close();
+		 
 		//init variables
 		criteria = new double[numberlocations];
 		for (int i=0; i<numberlocations;i++){
@@ -70,40 +62,23 @@ public class Whitespot {
 		}
 		
 		//writeLocations
-		Functions.createFileWriterLocs(numberlocations);
+		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
 		//reset Allocation
-		Functions.resetAllocations(numberpolygons, numberlocations);
+		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
 		
-		//determine distances between poly and locations
-		Functions.initDistances(numberpolygons, numberlocations, microm);
+		weightCom = 100;
+		weightCrit =0;
 		
-		//allocate geometries to locations dependent on distance
-		Functions.allocatePolygonsByDistance(numberpolygons, numberlocations);
+		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, numberGivenLocations);
 		
-		//sum criterias of allocated geometries
-		Functions.initCriteria(numberpolygons, numberlocations);
-		
-		//check Unity
-		Functions.checkUnityAfterAllocByDist(numberpolygons, numberlocations);
-		 
-		weightCom = 50;
-		weightCrit =50;
-		
-		//check threshold value
-		Functions.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, true, numberGivenLocations, numberNewLocations);
-
 		//set endLocations
-		Functions.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
+		FunctionsWhitespot.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
 		
 		//writeLocations
-		Functions.createFileWriterLocs(numberlocations);
+		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
-		//write Polygons
-		Functions.writePolygon(output, numberpolygons);
-		
-		//show Result
-		Functions.showCritResult(numberlocations);
+		FunctionsCommon.visualizeResults(numberpolygons, numberlocations, output);
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
 

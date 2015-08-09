@@ -22,6 +22,11 @@ public class PolygonContainer {
 		polygons.add(poly);
 	}
 	
+	public double getArea(int id){
+		Polygon poly = polygons.get(id);
+		return poly.getArea();
+	}
+	
 	public Location getAllocatedLocation(int id){
 		Polygon poly = polygons.get(id);
 		return poly.getAllocatedLocation();
@@ -30,6 +35,23 @@ public class PolygonContainer {
 	public Double[] getCentroid(int id){
 		Polygon poly = polygons.get(id);
 		return poly.getCentroid();
+	}
+	
+	public double getCircumference(int id){
+		Polygon poly = polygons.get(id);
+		return poly.getCircumference();
+	}
+	
+	public double getCircumferenceShared(int id, int idNeigh){
+		Polygon poly = polygons.get(id);
+		int pos=-1;
+		for (int i=0;i<poly.getNeighbours().size();i++){
+			if (poly.getNeighbours().get(i).getId()==idNeigh){
+				pos=i;
+			}
+		}
+		
+		return poly.getCircumferenceShared(pos);
 	}
 	
 	public Double setDistance(int idPoly){
@@ -72,9 +94,24 @@ public class PolygonContainer {
 		setFlagAllocatedLocation(idPoly, true);
 	}
 	
+	public void setArea(int id, double area){
+		Polygon poly = polygons.get(id);
+		poly.setArea(area);
+	}
+	
 	public void setCentroid(int idPoly, double lon, double lat){
 		Polygon poly=getPolygon(idPoly);
 		poly.setCentroid(lon, lat);
+	}
+	
+	public void setCircumference(int id, double circum){
+		Polygon poly = polygons.get(id);
+		poly.setCircumference(circum);
+	}
+	
+	public void setCircumferenceShared(int id, double circum){
+		Polygon poly = polygons.get(id);
+		poly.setCircumferenceshared(circum);
 	}
 	
 	public void setDistance(int idPoly, double dist){

@@ -1,5 +1,6 @@
 package whitespotGreenfield;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Polygon {
@@ -7,7 +8,10 @@ public class Polygon {
 	private Integer id;
 	private String geometry;
 	private Double criteria;
+	private Double area;
+	private Double circumference;
 	private List<Polygon> neighbour;
+	private List<Double>sharedCircumferences = new ArrayList<Double>();
 	private Location allocatedLocation;
 	private Boolean haveAllocatedLocation;
 	private Double[] centroidPoint= new Double[2];
@@ -17,8 +21,20 @@ public class Polygon {
 		return this.allocatedLocation;
 	}
 	
+	public double getArea(){
+		return this.area;
+	}
+	
 	public Double[] getCentroid(){
 		return this.centroidPoint;
+	}
+	
+	public Double getCircumference(){
+		return this.circumference;
+	}
+	
+	public Double getCircumferenceShared(int i){
+		return this.sharedCircumferences.get(i);
 	}
 	
 	public Double getCriteria(){
@@ -60,9 +76,21 @@ public class Polygon {
 		setFlagAllocatedLocation(true);
 	}
 	
+	public void setArea(double area){
+		this.area=area;
+	}
+	
 	public void setCentroid(double lon, double lat){
 		this.centroidPoint[0]=lon;
 		this.centroidPoint[1]=lat;
+	}
+	
+	public void setCircumference(double circum){
+		this.circumference=circum;
+	}
+	
+	public void setCircumferenceshared(double circum){
+		this.sharedCircumferences.add(circum);
 	}
 	
 	public void setCriteria(double crit){
