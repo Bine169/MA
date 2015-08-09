@@ -31,7 +31,7 @@ public class Whitespot {
 		
 		//set startLocations
 		FunctionsCommon.initLocationContainer();
-		FunctionsCommon.setLocations(numberlocations, microm);
+		FunctionsCommon.setLocations(numberGivenLocations, microm);
 		
 		//determine HomePoly of given Locations
 		FunctionsCommon.determineHomePoly(PLZ5, numberGivenLocations, microm);
@@ -67,8 +67,8 @@ public class Whitespot {
 		//reset Allocation
 		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
 		
-		weightCom = 100;
-		weightCrit =0;
+		weightCom = 50;
+		weightCrit =50;
 		
 		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, numberGivenLocations);
 		
