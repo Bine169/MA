@@ -96,12 +96,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		 FunctionsCommon.writePolygon(output2, numberpolygons);
 		 output2.close();
 		 
-		checkUnityAfterAllocByDist(numberpolygons, numberlocations);
+//		checkUnityAfterAllocByDist(numberpolygons, numberlocations);
 		System.out.println("check done");
 		
-		output2 =FunctionsCommon.createFileWriter("debug");
-		 FunctionsCommon.writePolygon(output2, numberpolygons);
-		 output2.close();
+//		output2 =FunctionsCommon.createFileWriter("debug");
+//		 FunctionsCommon.writePolygon(output2, numberpolygons);
+//		 output2.close();
 		 
 		 System.out.println("starting rearrangement");
 		checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, whitespot, numberGivenLocations);
@@ -1500,69 +1500,85 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			neighPolygonsUnit.add(neighPolygonsNotHome.get(i));
 		}
 
-		for (int i = 0; i < neighbourLocations.size(); i++) {
-			givesPoly = false;
-
-			// determine whether area gives or gets an geometry
-			if (locBasis.getCriteria() > neighbourLocations.get(i)
-					.getCriteria()) {
-				givesPoly = true;
-			}
-
-			if (!givesPoly) {
-				for (int j = 0; j < neighPolygonsNotHome.size(); j++) {
-					boolean unit = false;
-
-					if (neighPolygonsNotHome.get(j).getAllocatedLocation()
-							.getId() == neighbourLocations.get(i).getId()) {
-						unit = FunctionsCommon.checkUnit(neighPolygonsNotHome.get(j).getId(),
-								neighPolygonsNotHome.get(j)
-										.getAllocatedLocation().getId(),
-								location, numberpolygons);
-
-						if (!unit) {
-							for (int k = 0; k < neighPolygonsUnit.size(); k++) {
-								if (neighPolygonsNotHome.get(j).getId() == neighPolygonsUnit
-										.get(k).getId()) {
-									neighPolygonsUnit.remove(k);
-								}
-							}
-
-						}
-					}
-
-				}
-			} else {
-				// remove all neighbours which belong to the location that gets
-				// a new geometry
-				for (int k = 0; k < neighPolygonsUnit.size(); k++) {
-					if (neighPolygonsUnit.get(k).getAllocatedLocation().getId() == neighbourLocations
-							.get(i).getId()) {
-						neighPolygonsUnit.remove(k);
-						k--;
-					}
-				}
-
-				// check all geometries of locBasis to determine all that can be
-				// given
-				for (int j = 0; j < rearrangePoly.size(); j++) {
-					boolean unit = false;
-
-					unit = FunctionsCommon.checkUnit(rearrangePoly.get(j).getId(), location,
-							neighbourLocations.get(i).getId(), numberpolygons);
-
-					// add all geometries that can be given
-					if (unit) {
-						if (!neighPolygonsUnit.contains(rearrangePoly.get(j))
-								&& rearrangePoly.get(j).getId() != locBasis
-										.getHomePolyId()) {
-							neighPolygonsUnit.add(rearrangePoly.get(j));
-						}
-					}
-				}
-			}
-
-		}
+//		for (int i = 0; i < neighbourLocations.size(); i++) {
+//			givesPoly = false;
+//
+//			// determine whether area gives or gets an geometry
+//			if (locBasis.getCriteria() > neighbourLocations.get(i)
+//					.getCriteria()) {
+//				givesPoly = true;
+//			}
+//
+//			if (!givesPoly) {
+//				for (int j = 0; j < neighPolygonsNotHome.size(); j++) {
+//					boolean unit = false;
+//
+//					if (neighPolygonsNotHome.get(j).getAllocatedLocation()
+//							.getId() == neighbourLocations.get(i).getId()) {
+//						unit = FunctionsCommon.checkUnit(neighPolygonsNotHome.get(j).getId(),
+//								neighPolygonsNotHome.get(j)
+//										.getAllocatedLocation().getId(),
+//								location, numberpolygons);
+//
+//						if (!unit) {
+//							for (int k = 0; k < neighPolygonsUnit.size(); k++) {
+//								if (neighPolygonsNotHome.get(j).getId() == neighPolygonsUnit
+//										.get(k).getId()) {
+//									neighPolygonsUnit.remove(k);
+//								}
+//							}
+//
+//						}
+//					}
+//
+//				}
+//			} else {
+//				// remove all neighbours which belong to the location that gets
+//				// a new geometry
+//				for (int k = 0; k < neighPolygonsUnit.size(); k++) {
+//					if (neighPolygonsUnit.get(k).getAllocatedLocation().getId() == neighbourLocations
+//							.get(i).getId()) {
+//						neighPolygonsUnit.remove(k);
+//						k--;
+//					}
+//				}
+//
+//				// check all geometries of locBasis to determine all that can be
+//				// given
+//				for (int j = 0; j < rearrangePoly.size(); j++) {
+//					boolean unit = false;
+//
+//					unit = FunctionsCommon.checkUnit(rearrangePoly.get(j).getId(), location,
+//							neighbourLocations.get(i).getId(), numberpolygons);
+//
+//					// add all geometries that can be given
+//					if (unit) {
+//						if (!whitespot){
+//							if (!neighPolygonsUnit.contains(rearrangePoly.get(j))
+//									&& rearrangePoly.get(j).getId() != locBasis
+//											.getHomePolyId()) {
+//								neighPolygonsUnit.add(rearrangePoly.get(j));
+//							}
+//						}
+//						else{
+//							if (locBasis.getId()<numberGivenLocations){
+//								if (!neighPolygonsUnit.contains(rearrangePoly.get(j))
+//										&& rearrangePoly.get(j).getId() != locBasis
+//												.getHomePolyId()) {
+//									neighPolygonsUnit.add(rearrangePoly.get(j));
+//								}
+//							}
+//							else{
+//								if (!neighPolygonsUnit.contains(rearrangePoly.get(j))) {
+//									neighPolygonsUnit.add(rearrangePoly.get(j));
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//
+//		}
 
 		System.out.println("unitsize after:" + neighPolygonsUnit.size());
 		sb = new StringBuffer();

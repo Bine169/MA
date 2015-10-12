@@ -182,45 +182,7 @@ public class FunctionsWhitespot {
 //				}
 
 				// getStartPoly
-				startPoly = null;
-
-//				// detect startPoly, startpoly is a boundary poly 
-//				int j = 0;
-//				boolean found = false;
-//
-////				//take next border polygone as startPoly
-//				while (j < numberpolygons && !found) {
-//					if (!allocatedPolyIds.contains(boundaryPolyIds.get(j))){
-//						startPoly = polygonContainer.getPolygonById(numberpolygons, boundaryPolyIds.get(j));
-//						found=true;
-//					}
-//					else{
-//						j++;
-//					}
-//				}
-				
-//				//take polygon with highest crit as StartPoly
-//				double maxCrit = -1;
-//				for (j=0;j<numberpolygons;j++){
-//					if (!polygonContainer.getPolygon(j).getFlagAllocatedLocation()){
-//						if (maxCrit==-1){
-//							startPoly=polygonContainer.getPolygon(j);
-//							maxCrit=startPoly.getCriteria();
-//						}
-//						else{
-//							if (polygonContainer.getPolygon(j).getCriteria()>maxCrit){
-//								startPoly=polygonContainer.getPolygon(j);
-//								maxCrit=startPoly.getCriteria();
-//							}
-//						}
-//					}
-//				}
-				
-				for (int j=0;j<numberpolygons;j++){
-					if (!polygonContainer.getPolygon(j).getFlagAllocatedLocation()){
-						startPoly=polygonContainer.getPolygon(j);
-					}
-				}
+				startPoly = determineStartPoly(numberpolygons);
 				
 				// if no boundaryPoly is available anymore; a polygon within the
 				// whole area will be taken
@@ -349,5 +311,145 @@ public class FunctionsWhitespot {
 					coordinates[1], i);
 		}
 		Setters();
+	}
+	
+	private static Polygon determineStartPoly(int numberpolygons){
+		Polygon startPoly=null;
+		
+//		// detect startPoly, startpoly is a boundary poly 
+//		int j = 0;
+//		boolean found = false;
+//
+////		//take next border polygone as startPoly
+//		while (j < numberpolygons && !found) {
+//			if (!allocatedPolyIds.contains(boundaryPolyIds.get(j))){
+//				startPoly = polygonContainer.getPolygonById(numberpolygons, boundaryPolyIds.get(j));
+//				found=true;
+//			}
+//			else{
+//				j++;
+//			}
+//		}
+		
+//		//take polygon with highest crit as StartPoly
+		List<Polygon> notAllocatedPolys = new ArrayList<Polygon>();
+		
+		for (int i=0;i<numberpolygons;i++){
+			if (!polygonContainer.getPolygon(i).getFlagAllocatedLocation()){
+				notAllocatedPolys.add(polygonContainer.getPolygon(i));
+			}
+		}
+		
+		double maxCrit =-1;
+		int pos=0;
+		
+		List<Polygon> polygonsTaken = new ArrayList<Polygon>();
+		List<Polygon> polygonsBuff = new ArrayList<Polygon>();
+		
+		for (int i=0;i<notAllocatedPolys.size();i++){
+			Polygon actPoly = notAllocatedPolys.get(i);
+			double actCrit = 0;
+			
+			if (!polygonsTaken.contains(actPoly)){
+				
+			boolean graphEnds=false;
+			List<Polygon> neighbours = new ArrayList<Polygon>();
+			List<Polygon> polysTaken = new ArrayList<Polygon>();
+			neighbours.add(actPoly);
+			
+			//while no end of graph is found
+			while (!graphEnds) {
+				//take polygon
+					boolean takeNextNeighbour = false;
+					
+					if (neighbours.size() > 0) {
+						actPoly = neighbours.get(pos);
+						if (actPoly == neighbours.get(0)) {
+							takeNextNeighbour = true;
+						}
+					} else {
+						takeNextNeighbour = true;
+					}
+
+					if (takeNextNeighbour) {
+						boolean allreadyTaken = false;
+						for (int j = 0; j < polysTaken.size(); j++) {
+							if (actPoly== polysTaken.get(j)) {
+								allreadyTaken = true;
+							}
+						}
+
+						if (!allreadyTaken) {
+							polysTaken.add(actPoly);
+							polygonsTaken.add(actPoly);
+							actCrit=actCrit+actPoly.getCriteria();
+
+							for (int j = 0; j < actPoly.getNeighbours().size(); j++) {
+								for (int k = 0; k < notAllocatedPolys.size(); k++) {
+									if (notAllocatedPolys.get(k).getId() == actPoly
+											.getNeighbours().get(j).getId()) {
+
+										if (!neighbours
+												.contains(notAllocatedPolys
+														.get(k))) {
+											neighbours.add(notAllocatedPolys
+													.get(k));
+
+										}
+									}
+								}
+							}
+						}
+
+						if (neighbours.size() > 0) {
+							if (neighbours.get(0)==actPoly){
+								neighbours.remove(0);
+							}
+							pos = 0;
+						} else {
+							graphEnds = true;
+						}
+
+					} else {
+						pos++;
+					}
+			}
+			
+			if (maxCrit==-1){
+				maxCrit=actCrit;
+				polygonsBuff=polysTaken;
+			}
+			else{
+				if (actCrit>maxCrit){
+					maxCrit=actCrit;
+					polygonsBuff=polysTaken;
+				}
+			}
+		}
+		}
+		
+		
+		maxCrit = -1;
+		for (int j=0;j<polygonsBuff.size();j++){
+				if (maxCrit==-1){
+					startPoly=polygonsBuff.get(j);
+					maxCrit=startPoly.getCriteria();
+				}
+				else{
+					if (polygonsBuff.get(j).getCriteria()>maxCrit){
+						startPoly=polygonsBuff.get(j);
+						maxCrit=startPoly.getCriteria();
+					}
+				}
+		}
+		
+		
+//		for (int j=0;j<numberpolygons;j++){
+//			if (!polygonContainer.getPolygon(j).getFlagAllocatedLocation()){
+//				startPoly=polygonContainer.getPolygon(j);
+//			}
+//		}
+		
+		return startPoly;
 	}
 }

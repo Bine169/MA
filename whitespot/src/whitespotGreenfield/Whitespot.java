@@ -67,8 +67,8 @@ public class Whitespot {
 		//reset Allocation
 		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
 		
-		weightCom = 50;
-		weightCrit =50;
+		weightCom = 100;
+		weightCrit =00;
 		
 		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, numberGivenLocations);
 		

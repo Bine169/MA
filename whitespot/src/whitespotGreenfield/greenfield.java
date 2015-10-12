@@ -7,7 +7,7 @@ public class greenfield {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=true;
+		boolean PLZ5=false;
 		boolean microm=false;
 		
 		long time = System.currentTimeMillis();
@@ -40,8 +40,9 @@ public class greenfield {
 		//set Locations
 		FunctionsGreenfield.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
-		weightCom = 100;
-		weightCrit =0;
+		weightCom = 10;
+		weightCrit =90;
+		threshold =50;
 		
 //		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
 		

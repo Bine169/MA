@@ -54,10 +54,11 @@ public class PolygonContainer {
 		return poly.getCircumferenceShared(pos);
 	}
 	
-	public Double setDistance(int idPoly){
-		Polygon poly=getPolygon(idPoly);
+	public double getDistance(int id){
+		Polygon poly = polygons.get(id);
 		return poly.getDistance();
 	}
+	
 	
 	public Boolean getFlagAllocatedLocation(int id){
 		Polygon poly = polygons.get(id);
