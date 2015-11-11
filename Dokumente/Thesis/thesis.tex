@@ -9,7 +9,7 @@
 	xcolor=dvipsnames
 ]{refart}%
 
-\usepackage{styles/style}
+\usepackage{styles/abschlussarbeit}
 
 % =============================
 %	Hauptdokument mit Textinhalt
@@ -48,6 +48,12 @@
 %\begin{appendix}
 %\include{chapters/appendix}
 %\end{appendix}
+
+\nocite{*}
+% legt die zu verwendete BibTeX Stildatei fest; einige Stildateien gehoeren zu Erweiterungspaketen, die ggf. zusaetzlich einzubinden sind
+\bibliographystyle{plainnat}
+% Befehl ist an der Stelle zu verwenden, an der das Literaturverzeichnis gesetzt werden soll
+\bibliography{bib/verzeichnis}
 
 
 \end{document}

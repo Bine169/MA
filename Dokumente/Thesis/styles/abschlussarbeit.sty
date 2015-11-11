@@ -38,6 +38,8 @@
 % --- Eigene flexible Gestaltung der Kopf- und Fusszeile moeglich
 \usepackage{fancyhdr}
 
+\usepackage[numbers]{natbib}
+
 % --- Programmiersprachentypische Kontrollstrukturen (logische Verzweigungen und Schleifen)
 \usepackage{ifthen}
 
@@ -52,7 +54,7 @@
 %	frenchlinks,%					use small caps instead of color for links
 	colorlinks,%					Verwendung von farbiger Links statt Links mit Rahmen
 % Farben der Linkarten (...color=...)
-	citecolor=green,%			Color for bibliographical citations in text
+	citecolor=black,%			Color for bibliographical citations in text
 	linkcolor=black,%			Color for normal internal links
 	urlcolor=magenta,%		Color for linked URLs					
 	filecolor=cyan,%			Color for URLs which open local files
@@ -64,22 +66,19 @@
 % --- !!! Bei Verwendung des Paketes 'hyperref' muss die Einbindung von 'geometry' nach 'hyperref' erfolgen !!!
 \usepackage[%
 	left=3cm,right=2.5cm,top=1.5cm,bottom=1.5cm,%		Groesse der Raender
-	headheight=7mm,headsep=1.2cm,%									Hoehe der Kopfzeile; Abstand der Grundlinie der Kopfzeile zum Haupttext
+	headheight=7mm,headsep=1.2cm,
+%									Hoehe der Kopfzeile; Abstand der Grundlinie der Kopfzeile zum Haupttext
 	footskip=1.5cm,includeheadfoot%									Abstand der Grundlinien der letzten Textzeile und der Fusszeile; Kopf- und Fusszeile werden in die Textseite gesetzt
 ]{geometry}
 
 % --- to define a own color
 \usepackage{xcolor}
 
-% --- necessary to set font family
-\usepackage{fontspec}
-
 % --- to allow custom headings
 \usepackage{titlesec}
 
 % --- to change titles font family
 \usepackage{titling}
-\usepackage{fontspec}
 
 % --- to adjust tableofcontent
 \usepackage{titletoc}
@@ -97,30 +96,12 @@
 \usepackage{float}
 
 % --- erlaubt eine Anpassung von Bild- und Tabellenbeschriftungen
-\usepackage[font=small,labelfont=it,textfont=it,labelsep=newline,singlelinecheck=false,justification=raggedleft,labelfont={color=GigaGreen}]{caption}
-
-% ===========================
-%Define GiGa Color
-% ===========================
-\definecolor{GigaGreen}{RGB}{0,152,138}
-
+\usepackage[font=small,labelfont=it,textfont=it,labelsep=newline,singlelinecheck=false,justification=raggedleft,labelfont={color=black,bf}]{caption}
 
 % ===========================
 % Style Font
 % ===========================
 
-% define necessary Font familys
-% ====================
-% --- whole document
-\newfontfamily\normalfont{Geogrotesque UltraLight}
-\ifxetex
-	\setmainfont{Geogrotesque UltraLight}
-
-% --- font in notes
-\newfontfamily\notefont[Color=white]{Geogrotesque SemiBold}
-
-% --- font for titles
-\newfontfamily\headingfont[Color=GigaGreen]{Geogrotesque SemiBold}
 
 %  define different font sizes
 % ====================
@@ -132,10 +113,10 @@
 
 % Font of Titles
 % ==========
-\defaultfontfeatures{Ligatures=TeX}
-\titleformat{\chapter}[block]{}{}{0pt}{\huge\headingfont\sizechapter\textbf}
-\titleformat*{\section}{\sizesection\headingfont}
-\titleformat*{\subsection}{\headingfont\sizesubsection}
+\titleformat{\chapter}[block]{}{}{0pt}{\huge\sizechapter\textbf}
+\titleformat*{\section}{\sizesection}
+\titleformat*{\subsection}{\sizesubsection}
+\titleformat*{\subsubsection}{\sizenote}
 
 
 % ===========================
@@ -167,66 +148,63 @@
 %  new Environments
 % ===========================
 
-%  subsubsection
-% ====================
-\newenvironment{subsubsectionGiGa}[1]{
-\marginlabel{#1}
-\addcontentsline{toc}{subsubsection}{#1}
-}
 
 %  figures
 % ====================
-\newenvironment{figureGiGa}[2]{
-\marginlabel{\captionof{figure}{#1}}
+\newenvironment{figureOwn}[2]{
+\marginlabel
+{\captionof{figure}{#1}}
 \raisebox{-\height}{\includegraphics[width=1\textwidth]{#2}}
 \vspace*{0.5cm}
 }
 
-\newenvironment{figureGiGavarSize}[3]{
-\marginlabel{\captionof{figure}{#1}}
-\raisebox{-\height}{\includegraphics[width=#3\textwidth]{#2}}
+\newenvironment{figurevarSize}[3]{
+\begin{center}\marginlabel{\captionof{figure}{#1}}
+\raisebox{-\height}{\includegraphics[width=#3\textwidth]{#2}}\end{center}
 \vspace*{0.5cm}
 }
 
-\newenvironment{figureGiGaWithoutDescript}[1]{
-\marginlabel{\captionof{figure}{}}
-\raisebox{-\height}{\includegraphics[width=1\textwidth]{#1}}
-\vspace*{0.5cm}
+% table
+%=======================
+
+\usepackage{marginnote}
+\reversemarginpar
+\let \oldtable = \table
+
+\usepackage{pgfkeys}
+\newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
+
+\newcommand{\declare}[1]{%
+ \pgfkeys{
+  /variables/#1.is family,
+  /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+ }%
 }
 
-\newenvironment{figureGiGaWithoutDescriptvarSize}[2]{
-\marginlabel{\captionof{figure}{}}
-\raisebox{-\height}{\includegraphics[width=#2\textwidth]{#1}}
-\vspace*{0.5cm}
-}
 
-\newenvironment{figureDialogs}[2]{
-\marginlabel{\captionof{figure}{#1}}
-\raisebox{-\height}{\includegraphics{#2}}
-\vspace*{0.5cm}
-}
+\declare{}
 
-\newenvironment{note2}[1]{
-\noindent\fcolorbox{GigaGreen}{white}{\parbox{\textwidth}{
-\headingfont Note: \normalfont \textit{#1}}}
-}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering}p{#1}}
 
-\newenvironment{exampleGiGa}[1]{
-\noindent\fcolorbox{GigaGreen}{white}{\parbox{\textwidth}{
-\headingfont Example: \newline \normalfont \textit{#1}}}
-}
+%\newcommand{\tableTitle}[1]{#1}
 
+%\newenvironment{setTitle}[1]{#1}
+
+
+\renewenvironment{table}[1][]{\hspace{0pt} \marginnote{\captionof{table}{\getvalue{tableTitle}}}\@float{table}[#1]}{\end@float}
 
 %  notes
 % ====================
 \newenvironment{note}[1]{
-\begin{tcolorbox}[colback=GigaGreen!5!white,colframe=GigaGreen!75!black,title=\notefont \sizenote Note]
+\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,title= \sizenote Note]
 \normalfont #1
 \end{tcolorbox}
 }
 
 \newenvironment{noteVartitle}[2]{
-\begin{tcolorbox}[colback=GigaGreen!5!white,colframe=GigaGreen!75!black,title=\notefont \sizenote #1]
+\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,title= \sizenote #1]
 \normalfont #2
 \end{tcolorbox}
 }
@@ -239,10 +217,6 @@
 %  guielement
 % ====================
 \newcommand{\guielement}[1]{\textit{''#1''}}
-
-%  emphasize
-% ====================
-\newcommand{\emphasize}[1]{\headingfont{''#1''}\normalfont}
 
 
 % =====================================
@@ -258,42 +232,26 @@
 % Header & Footer
 % =====================================
 
-%  create Box on page number
-% ====================
-\newcommand\Cshadowbox{\VerbBox\@Cshadowbox}
-	\def\@Cshadowbox#1{%
-		\setbox\@fancybox\hbox{\fbox{#1}}%
-  		\leavevmode\vbox{%
-			    \offinterlineskip
-			    \dimen@=1pt
-			    \advance\dimen@ .5\fboxrule
-			    \hbox{\copy\@fancybox\kern8\fboxrule\lower\shadowsize\hbox{%
-				      \color{GigaGreen}\vrule \@height\ht\@fancybox \@depth\dp\@fancybox \@width\dimen@}}%
-			    \vskip\dimexpr-\dimen@+0.5\fboxrule\relax
-			    \moveright\shadowsize\vbox{%
-				      \color{GigaGreen}\hrule \@width\wd\@fancybox \@height\dimen@}
-		}
-	}
-
 %  adjust Footer & Header
 % ====================
-\renewcommand{\footrule}{\hbox to\headwidth{\color{GigaGreen}\leaders\hrule height \footrulewidth\hfill}}
-\renewcommand{\headrule}{\hbox to\headwidth{\color{GigaGreen}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{black}\leaders\hrule height \footrulewidth\hfill}}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{black}\leaders\hrule height \headrulewidth\hfill}}
 \renewcommand{\headrulewidth}{0.0pt}%		Kopflinie
 \renewcommand{\footrulewidth}{0.0pt}%			Fusslinie
 \fancyhf{}%		Loeschen der Vorbelegung
 
-\fancyhead[L]{\textcolor{GigaGreen}{\normalfont\small\nouppercase{\leftmark}}}%		Ausgabe des Inhaltes von \leftmark im Kopf links in kleinen und serifenlosen Schrift, 	wobei die Grossbuchstabenschreibung unerwuenscht ist (\nouppercase{})
-\fancyfoot[R]{\color{white}{\Cshadowbox{\textcolor{GigaGreen}{\normalfont\small\bfseries\thepage}}}}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift
-\fancyfoot[L]{\color{white}{\textcolor{GigaGreen}{\small\bfseries\normalfont User Manual GST Desktop}}}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift		
+\fancyhead[L]{{\normalfont\small\nouppercase{\leftmark}}}
+\fancyfoot[R]{\normalfont\small\bfseries\thepage}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift
+\fancyfoot[L]{\small\bfseries\normalfont Area segmentation algorithms}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift		
 
 \fancypagestyle{plain}{%		zu Beginn von Kapiteln schaltet LaTeX den Seitenstil der ersten Kapitelseite automatisch auf 'plain'. Dieser Seitenstil kann durch 'fancyhdr' umdefiniert werden mit Hilfe von '\fancypagestyle{plain}{Stildefinition}'
 	\fancyhf{}%		Loeschen der Vorbelegung
-	\fancyfoot[R]{\color{white}{\Cshadowbox{\textcolor{GigaGreen}{\normalfont\small\sffamily\bfseries\thepage}}}}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift
-	\fancyfoot[L]{\color{white}{\textcolor{GigaGreen}{\small\sffamily\bfseries \normalfont User Manual GST Desktop}}}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift	
+	\fancyfoot[R]{\normalfont\small\sffamily\bfseries\thepage}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift
+	\fancyfoot[L]{\small\sffamily\bfseries \normalfont Area segmentation algorithms}%	Ausgabe der Seitenzahl im Kopf rechts in kleinen, serifenlosen und fetten Schrift	
 	\renewcommand{\headrulewidth}{0.0pt}%		Kopflinie
 	\renewcommand{\footrulewidth}{0.0pt}%			Fusslinie
 }
+
 
 
 

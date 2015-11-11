@@ -1,5 +1,58 @@
-\section{Application of area segmentation in the field of Geomarketing}
+\section{Application of area segmentation}
 
-\subsection{Optimization of Areas}
-\subsection{Greenfieldanalysis}
-\subsection{Whitespotanalysis}
+\subsection{Introduction}
+
+inklusive Basisbegriffe, wie base area,...
+centren gegeben oder nicht, hier untersuchung auf gegeben,da später anwendung auf geomarketing
+\subsection{Parameters}
+mögliche Bedingungen
+\subsection{previous researches}
+- Overview of solution techniques
+- split resolution problem: erkenntis: However we found that the running time is still too high for the solution of large-scale problems with many thousands of basic areas in an interactive environment. We can make the allocation step much faster by assigning every basic area to the nearest center. This means that we drop constraints (2). This AllocMinDist heuristic has a greatly reduced running time. However, as one would expect and as the computational results in
+Section 7 show, the balance of the territories obtained is not satisfactory. Therefore in the next section we present a new heuristic based on geometric ideas. It
+has the desirable property of being very fast (comparable to location-allocation with Alloc-
+MinDist) and producing territories that are balanced comparable to location-allocation with
+TRANSP and split resolution with AssignMAX. deswegen versucht andere algorithmen zu finden, Quelle: bericht71.pdf
+
+
+
+\subsection{Use cases}
+
+\subsubsection{Sales Districting}
+
+siehe gebietoptimalaufteilen pdf seite 29
+
+As each territory elects a single member to a parliamentary assembly, the main
+planning criteria is to have approximately the same number of voters in each territory, i.e.
+territories of similar size, in order to respect the principle of ”one man–one vote”. bericht71.pdf
+
+If unequal territories exist and if it is generaUy known by the salesmen
+that work load or territory potential is disproportionate, this can lead to low morale,
+poor performance, a high turnover rate, and an inability to assess the productivity of
+individual territories or districts. By rea%ning territories to make them more equitable
+with respect to work load or sales potential, a more optimal utilization of each individual
+salesman can be achieved.
+hessandstuart.pdf
+
+\subsubsection{Political Districting}
+The legislative
+districting problem—the "one man-one vote" problem—is to subdivide a state into a
+specific number of compact and contiguous districts of nearly equal population 
+Quelle:hess and stuart
+
+
+There are three essential characteristics of districts:
+the districts should have nearly equal populations to
+adhere to the one-person, one-vote principle; the districts
+should be contiguous; and the districts should be
+geographically compact. We
+quelle: mehrotra
+
+Within determined time intervals elections are done within a country to vote for persons who wants to be the representatives of a country, federal state etc. Therefore the area have to be divides into sub parts, so called constituencies. Every constituencies nominees one candidate who will be elected directly into the parliament.  A democratic elections is based one the same weight of every voting that is why some restrictions have to be followed during the political distraction. In Germany these conditions are set down into the Federal Electoral Law §3 Art. 1. It determines that the creation of constituencies should be done in this way that the number of constituencies within the federal state should be agree with the part of the population \cite{bund}. This means that every constituency should hold a similar number of voters compared to other constituencies. The number of inhabitants of Germany is used as stipulation to satisfied that condition. During the distraction the boundaries of townships, districts and cities should be preserved as much as possible. Before an election can be carried out the constituencies has do be proofed and adapted if it is necessary because local alteration of the population can be recognized over the time. A commission will do this in front of every voting. The figure below shows the political distraction in 2013 fr the parliamentary elections.
+
+
+\begin{figurevarSize}{Politicial Districtings in Germany for parliamentary elections in 2013 \cite{bund}}{images/wahlkreise.jpg}{0.7}\end{figurevarSize}
+
+
+\subsubsection{Greenfieldanalysis}
+\subsubsection{Whitespotanalysis}
