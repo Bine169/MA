@@ -1,19 +1,14 @@
-\section{Application of area segmentation}
+\section{Fundamentals of area segmentation}
 
-\subsection{Introduction}
+Already for several decades people had been doing researches in the field of area segmentation approaches. The first important model for area alignment was implemented by Hess et al. in 1965 whose solving a center-seeking political distrciting problem\cite{hess}. Since then a lot of additional researches are done to acquire a lot of more possible approaches and to improve existing ones. The origin which created the need for area segmentation deal especially with marketing aspects or with political distriction. Per example demographic countries need to create constituencies for every election that will be done. Therefore the state or federal state needs to be divided into smaller sub parts. Consequently an area segmentation approach is necessary. Besides that example area design approaches are often used for sales districting. Within these two special fields different researches exists. But it is recognizable that just a few approaches exist dealing with other aspects from the field of Geomarketing. Nevertheless with reference to these examples it can be deduced that area segmentation is a grouping of small geographic units into larger cluster in such a way that the latter are acceptable according to one ore more relevant planning criteria \cite{kalcsics, zoltner}. The smaller geographic areas are often called basic areas, the clustered units are mentioned as territories. Dependent on the context the relevant planning criteria may change. Per example if an economical context is used the planning criteria may be the number of costumers or the workload. In case of a demographic origin as it is necessary during elections the planning criteria may be the number of inhabitants or the voting population. During the distriction several restrictions like compactness or contiguity needs to be satisfied. Such conditions will be explained in section 3.2 in more detail. Often a centre point is set into the units in the end if no one is given in the beginning.\\
+Considering the researches which were done during the last decades it is recognizable that the most of the acquired approaches are optimization models. Three types of models can be identified: location-allocation approaches, set-partitioning approaches and heuristic methods. The location-allocation technic uses two steps to achieve a territory alignment. Therefore no centre points are given in the beginning which should be used for the creation of the clustered territories. Consequently in first step the centres of the territories need to be chosen. This stage is called location phase. Within the second step, the allocation phase, the small geographic units, called basic areas, are assigned to these centres. Both steps are iteratively performed until a satisfactory result is obtained \cite{kalcsics}. During the location-allocation stages it is tried to balance a relevant planning criteria. In some case no centres need to be determined, if there already exist ones. Per example this is the case if a sales districting should be done where already salesman exist whose homes should be the centres of the territories. In such a case just the allocation phase needs to be done.
 
-inklusive Basisbegriffe, wie base area,...
-centren gegeben oder nicht, hier untersuchung auf gegeben,da später anwendung auf geomarketing
+
+
+
+
 \subsection{Parameters}
 mögliche Bedingungen
-\subsection{previous researches}
-- Overview of solution techniques
-- split resolution problem: erkenntis: However we found that the running time is still too high for the solution of large-scale problems with many thousands of basic areas in an interactive environment. We can make the allocation step much faster by assigning every basic area to the nearest center. This means that we drop constraints (2). This AllocMinDist heuristic has a greatly reduced running time. However, as one would expect and as the computational results in
-Section 7 show, the balance of the territories obtained is not satisfactory. Therefore in the next section we present a new heuristic based on geometric ideas. It
-has the desirable property of being very fast (comparable to location-allocation with Alloc-
-MinDist) and producing territories that are balanced comparable to location-allocation with
-TRANSP and split resolution with AssignMAX. deswegen versucht andere algorithmen zu finden, Quelle: bericht71.pdf
-
 
 
 \subsection{Use cases}

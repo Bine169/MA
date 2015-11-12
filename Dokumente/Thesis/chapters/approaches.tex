@@ -1,4 +1,19 @@
-\section{Area segmentation approaches and their implementation}
+\section{Selecting approaches for implementation}
+
+\subsection{Overview about existing approaches}
+
+\subsection{Selection of approaches}
+
+
+
+A completely different allocation approach is to sequentially assign basic areas to territory
+centers based on distance, i.e. a basic area will be allocated to closest territory center. This
+minimal distance allocation yields disjoint, compact and often connected, however, usually
+not well balanced territories as the balance criterion is completely neglected when deciding
+about the allocation. The attractiveness of this method, denoted as AllocMinDist, primarily
+lies in its simplicity and computational speed. See Kalcsics et al. [KMNG02].
+
+\section{Implementation of area segmentation approaches}
 
 \subsection{Segmentations considering homogenous distribution}
 

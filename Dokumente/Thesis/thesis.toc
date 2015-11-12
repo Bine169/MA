@@ -1,68 +1,69 @@
 \select@language {english}
 \ttl@change@i {\@ne }{section}{2.2em}{\addvspace {1pc}\bfseries }{\contentslabel {2.2em}}{}{\titlerule *[0.3pc]{}\contentspage }\relax 
 \ttl@change@v {section}{}{}{}\relax 
-\contentsline {section}{Abstract}{4}{figure.caption.1}
-\contentsline {section}{Acknowledgement}{5}{figure.caption.1}
-\contentsline {section}{\numberline {1}Introduction}{6}{section.1}
-\contentsline {subsection}{\numberline {1.1}Definition and aim of Geomarketing}{6}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}microm Micromarketing-Systems and Consult GmbH}{8}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Motivation and Research Question}{10}{subsection.1.3}
-\contentsline {subsection}{\numberline {1.4}Methods}{10}{subsection.1.4}
-\contentsline {subsection}{\numberline {1.5}Outline}{10}{subsection.1.5}
+\contentsline {section}{Abstract}{5}{figure.caption.1}
+\contentsline {section}{Acknowledgement}{6}{figure.caption.1}
+\contentsline {section}{\numberline {1}Introduction}{7}{section.1}
+\contentsline {subsection}{\numberline {1.1}Definition and aim of Geomarketing}{7}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}microm Micromarketing-Systems and Consult GmbH}{9}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Motivation and Research Question}{11}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Methods}{11}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Outline}{11}{subsection.1.5}
 \ttl@change@i {\@ne }{section}{2.2em}{\addvspace {1pc}\bfseries }{\contentslabel {2.2em}}{}{\titlerule *[0.3pc]{.}\contentspage }\relax 
 \ttl@change@v {section}{}{}{}\relax 
-\contentsline {section}{\numberline {2}Related Work}{11}{section.2}
-\contentsline {subsection}{\numberline {2.1}KIT - Institute of Operations Research: discrete optimization and logistic}{11}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Easy Map District Manager}{14}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}SIM Tool}{16}{subsection.2.3}
-\contentsline {section}{\numberline {3}Application of area segmentation}{17}{section.3}
-\contentsline {subsection}{\numberline {3.1}Introduction}{17}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Parameters}{17}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}previous researches}{17}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Use cases}{17}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Sales Districting}{17}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Political Districting}{18}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}Greenfieldanalysis}{19}{subsubsection.3.4.3}
-\contentsline {subsubsection}{\numberline {3.4.4}Whitespotanalysis}{19}{subsubsection.3.4.4}
-\contentsline {section}{\numberline {4}Area segmentation approaches and their implementation}{20}{section.4}
-\contentsline {subsection}{\numberline {4.1}Segmentations considering homogenous distribution}{20}{subsection.4.1}
-\contentsline {paragraph}{\numberline {4.1.0.1}Considering just Criteria}{20}{paragraph.4.1.0.1}
-\contentsline {paragraph}{\numberline {4.1.0.2}Considering average criteria value in proportion to number of locations}{20}{paragraph.4.1.0.2}
-\contentsline {subsection}{\numberline {4.2}Segmentations considering distance}{20}{subsection.4.2}
-\contentsline {paragraph}{\numberline {4.2.0.3}Considering just Distance}{20}{paragraph.4.2.0.3}
-\contentsline {subsection}{\numberline {4.3}Segmentations considering criteria and distance}{20}{subsection.4.3}
-\contentsline {paragraph}{\numberline {4.3.0.4}Criteria and Distance: from inside to outside: SmallestCritGetsNearest}{20}{paragraph.4.3.0.4}
-\contentsline {paragraph}{\numberline {4.3.0.5}Criteria and Distance: from inside to outside: SmallestCritGetsTrueNearest}{20}{paragraph.4.3.0.5}
-\contentsline {paragraph}{\numberline {4.3.0.6}Criteria and Distance: from outside to inside + inside to outside}{20}{paragraph.4.3.0.6}
-\contentsline {paragraph}{\numberline {4.3.0.7}sum of criteria divided by number locations + Distance}{20}{paragraph.4.3.0.7}
-\contentsline {paragraph}{\numberline {4.3.0.8}Distance + criteria}{20}{paragraph.4.3.0.8}
-\contentsline {section}{\numberline {5}Problems of the implemented approaches}{21}{section.5}
-\contentsline {subsection}{\numberline {5.1}Performance}{21}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Requirements from the field of Geomarketing}{21}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}Incoherent areas}{21}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2}Inhomogeneous distribution}{21}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.3}Rearrangement / Infinite loops during rearrangement}{21}{subsubsection.5.2.3}
-\contentsline {subsubsection}{\numberline {5.2.4}Need of threshold Values}{21}{subsubsection.5.2.4}
-\contentsline {section}{\numberline {6}Comparison of implemented approaches}{22}{section.6}
+\contentsline {section}{\numberline {2}Related Work}{12}{section.2}
+\contentsline {subsection}{\numberline {2.1}KIT - Institute of Operations Research: discrete optimization and logistic}{12}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Easy Map District Manager}{15}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}SIM Tool}{17}{subsection.2.3}
+\contentsline {section}{\numberline {3}Fundamentals of area segmentation}{18}{section.3}
+\contentsline {subsection}{\numberline {3.1}Parameters}{19}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Use cases}{19}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Sales Districting}{19}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Political Districting}{19}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Greenfieldanalysis}{20}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Whitespotanalysis}{20}{subsubsection.3.2.4}
+\contentsline {section}{\numberline {4}Selecting approaches for implementation}{21}{section.4}
+\contentsline {subsection}{\numberline {4.1}Overview about existing approaches}{21}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Selection of approaches}{21}{subsection.4.2}
+\contentsline {section}{\numberline {5}Implementation of area segmentation approaches}{21}{section.5}
+\contentsline {subsection}{\numberline {5.1}Segmentations considering homogenous distribution}{21}{subsection.5.1}
+\contentsline {paragraph}{\numberline {5.1.0.1}Considering just Criteria}{21}{paragraph.5.1.0.1}
+\contentsline {paragraph}{\numberline {5.1.0.2}Considering average criteria value in proportion to number of locations}{21}{paragraph.5.1.0.2}
+\contentsline {subsection}{\numberline {5.2}Segmentations considering distance}{21}{subsection.5.2}
+\contentsline {paragraph}{\numberline {5.2.0.3}Considering just Distance}{21}{paragraph.5.2.0.3}
+\contentsline {subsection}{\numberline {5.3}Segmentations considering criteria and distance}{21}{subsection.5.3}
+\contentsline {paragraph}{\numberline {5.3.0.4}Criteria and Distance: from inside to outside: SmallestCritGetsNearest}{21}{paragraph.5.3.0.4}
+\contentsline {paragraph}{\numberline {5.3.0.5}Criteria and Distance: from inside to outside: SmallestCritGetsTrueNearest}{21}{paragraph.5.3.0.5}
+\contentsline {paragraph}{\numberline {5.3.0.6}Criteria and Distance: from outside to inside + inside to outside}{21}{paragraph.5.3.0.6}
+\contentsline {paragraph}{\numberline {5.3.0.7}sum of criteria divided by number locations + Distance}{21}{paragraph.5.3.0.7}
+\contentsline {paragraph}{\numberline {5.3.0.8}Distance + criteria}{21}{paragraph.5.3.0.8}
+\contentsline {section}{\numberline {6}Problems of the implemented approaches}{22}{section.6}
 \contentsline {subsection}{\numberline {6.1}Performance}{22}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Problems}{22}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Requirements}{22}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Conclusion}{22}{subsection.6.4}
-\contentsline {section}{\numberline {7}Application of algorithm XYZ to Geomarketing analysis}{23}{section.7}
-\contentsline {subsection}{\numberline {7.1}Optimization of Areas}{23}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}Conditions and Aims}{23}{subsubsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.2}Approach of algorithm}{23}{subsubsection.7.1.2}
-\contentsline {subsection}{\numberline {7.2}Greenfieldanalysis}{23}{subsection.7.2}
-\contentsline {subsubsection}{\numberline {7.2.1}Conditions and Aims}{23}{subsubsection.7.2.1}
-\contentsline {subsubsection}{\numberline {7.2.2}Approach of algorithm}{23}{subsubsection.7.2.2}
-\contentsline {subsection}{\numberline {7.3}Whitespotanalysis}{23}{subsection.7.3}
-\contentsline {subsubsection}{\numberline {7.3.1}Conditions and Aims}{23}{subsubsection.7.3.1}
-\contentsline {subsubsection}{\numberline {7.3.2}Approach of algorithm}{23}{subsubsection.7.3.2}
-\contentsline {section}{\numberline {8}Realworld scenario: integretaded Algorithm to the mapChart Manager}{24}{section.8}
-\contentsline {section}{\numberline {9}Evaluation}{25}{section.9}
-\contentsline {section}{\numberline {10}Discussion and Perspective}{26}{section.10}
-\contentsline {subsection}{\numberline {10.1}Summary}{26}{subsection.10.1}
-\contentsline {subsection}{\numberline {10.2}Limitations}{26}{subsection.10.2}
-\contentsline {subsection}{\numberline {10.3}Comparison to related work}{26}{subsection.10.3}
-\contentsline {subsection}{\numberline {10.4}Perspective}{26}{subsection.10.4}
+\contentsline {subsection}{\numberline {6.2}Requirements from the field of Geomarketing}{22}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Incoherent areas}{22}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Inhomogeneous distribution}{22}{subsubsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.3}Rearrangement / Infinite loops during rearrangement}{22}{subsubsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.4}Need of threshold Values}{22}{subsubsection.6.2.4}
+\contentsline {section}{\numberline {7}Comparison of implemented approaches}{23}{section.7}
+\contentsline {subsection}{\numberline {7.1}Performance}{23}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Problems}{23}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Requirements}{23}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Conclusion}{23}{subsection.7.4}
+\contentsline {section}{\numberline {8}Application of algorithm XYZ to Geomarketing analysis}{24}{section.8}
+\contentsline {subsection}{\numberline {8.1}Optimization of Areas}{24}{subsection.8.1}
+\contentsline {subsubsection}{\numberline {8.1.1}Conditions and Aims}{24}{subsubsection.8.1.1}
+\contentsline {subsubsection}{\numberline {8.1.2}Approach of algorithm}{24}{subsubsection.8.1.2}
+\contentsline {subsection}{\numberline {8.2}Greenfieldanalysis}{24}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}Conditions and Aims}{24}{subsubsection.8.2.1}
+\contentsline {subsubsection}{\numberline {8.2.2}Approach of algorithm}{24}{subsubsection.8.2.2}
+\contentsline {subsection}{\numberline {8.3}Whitespotanalysis}{24}{subsection.8.3}
+\contentsline {subsubsection}{\numberline {8.3.1}Conditions and Aims}{24}{subsubsection.8.3.1}
+\contentsline {subsubsection}{\numberline {8.3.2}Approach of algorithm}{24}{subsubsection.8.3.2}
+\contentsline {section}{\numberline {9}Realworld scenario: integretaded Algorithm to the mapChart Manager}{25}{section.9}
+\contentsline {section}{\numberline {10}Evaluation}{26}{section.10}
+\contentsline {section}{\numberline {11}Discussion and Perspective}{27}{section.11}
+\contentsline {subsection}{\numberline {11.1}Summary}{27}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Limitations}{27}{subsection.11.2}
+\contentsline {subsection}{\numberline {11.3}Comparison to related work}{27}{subsection.11.3}
+\contentsline {subsection}{\numberline {11.4}Perspective}{27}{subsection.11.4}
 \contentsfinish 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  11 NOV 2015 11:05
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  12 NOV 2015 10:09
 entering extended mode
 **thesis.tex
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.tex
@@ -897,19 +897,19 @@ Requested font "cmsy10" at 10.95pt
 Requested font "cmsy8" at 8.0pt
 Requested font "cmsy6" at 6.0pt
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 28.
+(Font)              <10.95> on input line 30.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 28.
+(Font)              <8> on input line 30.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 28.
+(Font)              <6> on input line 30.
 
-Overfull \hbox (3.62096pt too wide) in paragraph at lines 33--33
+Overfull \hbox (3.62096pt too wide) in paragraph at lines 35--35
  [][] [][][]\OT1/cmr/m/n/10.95 Criteria and Dis-tance: from in-side to out-side
 : Small- 
  []
 
 
-Overfull \hbox (3.62096pt too wide) in paragraph at lines 34--34
+Overfull \hbox (3.62096pt too wide) in paragraph at lines 36--36
  [][] [][][]\OT1/cmr/m/n/10.95 Criteria and Dis-tance: from in-side to out-side
 : Small- 
  []
@@ -925,17 +925,17 @@ Requested font "cmbx10" at 10.0pt
 
 ])
 \tf@toc=\write8
- [2]
+ [2] [3]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/declaration.tex)
-[3
+[4
 
 ] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/abstract.tex) 
-[4
+[5
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/acknowledgement.
-tex) [5
+tex) [6
 
 
 ]
@@ -952,7 +952,7 @@ See the caption package documentation for explanation.
 
 Requested font "cmti10" at 10.0pt
 File: images/geomarketing.jpg Graphic file (type QTm)
-<use  "images/geomarketing.jpg" > [6
+<use  "images/geomarketing.jpg" > [7
 
 
 ]
@@ -962,9 +962,9 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/stacks.jpg Graphic file (type QTm)
-<use  "images/stacks.jpg" > [7]
+<use  "images/stacks.jpg" > [8]
 
-Package natbib Warning: Citation `tappert' on page 8 undefined on input line 14
+Package natbib Warning: Citation `tappert' on page 9 undefined on input line 14
 .
 
 
@@ -973,14 +973,14 @@ Overfull \hbox (2.34317pt too wide) in paragraph at lines 14--15
 p-er-ties like in-come, prod-
  []
 
-[8]
+[9]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 19.
 See the caption package documentation for explanation.
 
 File: images/mapchart.png Graphic file (type QTm)
-<use  "images/mapchart.png" > [9]) [10]
+<use  "images/mapchart.png" > [10]) [11]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/relatedWork.tex
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
@@ -988,7 +988,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/kit_alg.jpg Graphic file (type QTm)
-<use  "images/kit_alg.jpg" > [11
+<use  "images/kit_alg.jpg" > [12
 
 
 ]
@@ -999,8 +999,8 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
- [12]
-Package marginnote Info: Margin note 14.1 is on absolute page 14
+ [13]
+Package marginnote Info: Margin note 15.1 is on absolute page 15
 (marginnote)              on input line 24.
 Package marginnote Info: right page because not two side mode on input line 24.
 
@@ -1025,80 +1025,84 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/kit_lizard_opt.jpg Graphic file (type QTm)
-<use  "images/kit_lizard_opt.jpg" > [13] [14]
+<use  "images/kit_lizard_opt.jpg" > [14] [15]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 46.
 See the caption package documentation for explanation.
 
 File: images/easymap.jpg Graphic file (type QTm)
-<use  "images/easymap.jpg" > [15]) [16]
+<use  "images/easymap.jpg" > [16]) [17]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/ApplicationInGeo
-marketing.tex
+marketing.tex [18
+
+
+]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 21.
+(Font)              size <12> substituted on input line 16.
 
 Missing character: There is no ” in font cmr10!
 Missing character: There is no – in font cmr10!
 Missing character: There is no ” in font cmr10!
 Missing character: There is no — in font cmr10!
 Missing character: There is no — in font cmr10!
-[17
-
-
-]
+[19]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 54.
+(caption)                particular \caption on input line 49.
 See the caption package documentation for explanation.
 
 File: images/wahlkreise.jpg Graphic file (type QTm)
-<use  "images/wahlkreise.jpg" > [18]) [19]
+<use  "images/wahlkreise.jpg" >) [20]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.tex
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 5.
-
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 11.
+Overfull \hbox (34.0864pt too wide) in paragraph at lines 9--9
+ |[]\OT1/cmr/m/n/20.74 Implementation of area seg-men-ta-tion ap-proaches| 
+ []
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 15.
+(hyperref)                than one, level fixed on input line 13.
 
-) [20
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 19.
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 23.
+
+) [21
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/problems.tex)
-[21
-
-
-]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.tex)
 [22
 
 
 ]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.tex)
+[23
+
+
+]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
-marketing.tex) [23
+marketing.tex) [24
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/realworld.tex)
-[24
-
-
-]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex)
 [25
 
 
 ]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex)
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex)
 [26
+
+
+]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex)
+[27
 
 
 ] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
@@ -1112,13 +1116,13 @@ Overfull \hbox (14.05968pt too wide) in paragraph at lines 13--13
 
 Requested font "cmti10" at 10.95pt
 Missing character: There is no – in font cmti10!
-)
+[28
+
+])
 
 Package natbib Warning: There were undefined citations.
 
-[27
-
-]
+[29]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
  (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.aux
@@ -1150,12 +1154,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 23726 strings out of 429025
- 405354 string characters out of 3166797
- 496912 words of memory out of 3000000
- 26551 multiletter control sequences out of 15000+200000
+ 23751 strings out of 429025
+ 405689 string characters out of 3166797
+ 497281 words of memory out of 3000000
+ 26576 multiletter control sequences out of 15000+200000
  9241 words of font info for 32 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
- 70i,12n,79p,3286b,463s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,12n,79p,3286b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (28 pages).
+Output written on thesis.pdf (30 pages).
