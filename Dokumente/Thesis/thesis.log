@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  13 NOV 2015 19:33
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  16 NOV 2015 22:38
 entering extended mode
 **thesis.tex
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.tex
@@ -966,13 +966,13 @@ Requested font "cmbx10" at 10.0pt
 [1
 
 ]
-Overfull \hbox (3.62096pt too wide) in paragraph at lines 40--40
+Overfull \hbox (3.62096pt too wide) in paragraph at lines 42--42
  [][] [][][]\OT1/cmr/m/n/10.95 Criteria and Dis-tance: from in-side to out-side
 : Small- 
  []
 
 
-Overfull \hbox (3.62096pt too wide) in paragraph at lines 41--41
+Overfull \hbox (3.62096pt too wide) in paragraph at lines 43--43
  [][] [][][]\OT1/cmr/m/n/10.95 Criteria and Dis-tance: from in-side to out-side
 : Small- 
  []
@@ -1017,11 +1017,6 @@ See the caption package documentation for explanation.
 
 File: images/stacks.jpg Graphic file (type QTm)
 <use  "images/stacks.jpg" > [8]
-
-Package natbib Warning: Citation `tappert' on page 9 undefined on input line 14
-.
-
-
 Overfull \hbox (2.34317pt too wide) in paragraph at lines 14--15
 \OT1/cmr/m/n/10.95 demographic, psy-choso-cial, eco-nomic and con-sump-tion pro
 p-er-ties like in-come, prod-
@@ -1106,19 +1101,75 @@ See the caption package documentation for explanation.
 
 File: images/basicAreas.jpg Graphic file (type QTm)
 <use  "images/basicAreas.jpg" > [19] [20]
-Missing character: There is no ” in font cmr10!
-Missing character: There is no – in font cmr10!
-Missing character: There is no ” in font cmr10!
-Missing character: There is no — in font cmr10!
-Missing character: There is no — in font cmr10!
- [21]
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
+[21]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 73.
+(caption)                particular \caption on input line 51.
+See the caption package documentation for explanation.
+
+File: images/balanced_notbalanced.jpg Graphic file (type QTm)
+<use  "images/balanced_notbalanced.jpg" >
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
+
+ []
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 58.
+See the caption package documentation for explanation.
+
+File: images/coherent_notcoherent.jpg Graphic file (type QTm)
+<use  "images/coherent_notcoherent.jpg" > [22]
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+
+ []
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 64.
+See the caption package documentation for explanation.
+
+File: images/compact_notcompact.jpg Graphic file (type QTm)
+<use  "images/compact_notcompact.jpg" > [23] [24]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 81.
 See the caption package documentation for explanation.
 
 File: images/wahlkreise.jpg Graphic file (type QTm)
-<use  "images/wahlkreise.jpg" >) [22]
+<use  "images/wahlkreise.jpg" >
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 87.
+See the caption package documentation for explanation.
+
+File: images/map_historic.jpg Graphic file (type QTm)
+<use  "images/map_historic.jpg" > [25]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 91.
+See the caption package documentation for explanation.
+
+File: images/salesdistriction1.jpg Graphic file (type QTm)
+<use  "images/salesdistriction1.jpg" > [26]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 95.
+See the caption package documentation for explanation.
+
+File: images/salesdistriction2.jpg Graphic file (type QTm)
+<use  "images/salesdistriction2.jpg" > [27]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 100.
+See the caption package documentation for explanation.
+
+File: images/whitespot.jpg Graphic file (type QTm)
+<use  "images/whitespot.jpg" >) [28]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.tex
 Overfull \hbox (34.0864pt too wide) in paragraph at lines 22--22
  |[]\OT1/cmr/m/n/20.74 Implementation of area seg-men-ta-tion ap-proaches| 
@@ -1126,47 +1177,47 @@ Overfull \hbox (34.0864pt too wide) in paragraph at lines 22--22
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 27.
+(hyperref)                than one, level fixed on input line 29.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 33.
+(hyperref)                than one, level fixed on input line 35.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 37.
+(hyperref)                than one, level fixed on input line 39.
 
-[23
+[29
 
 
-]) [24]
+]) [30]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/problems.tex)
-[25
+[31
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.tex)
-[26
+[32
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
-marketing.tex) [27
+marketing.tex) [33
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/realworld.tex)
-[28
+[34
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex)
-[29
+[35
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex)
-[30
+[36
 
 
 ] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
@@ -1179,13 +1230,9 @@ Overfull \hbox (14.05968pt too wide) in paragraph at lines 13--13
  []
 
 Missing character: There is no – in font cmti10!
-[31
+[37
 
-])
-
-Package natbib Warning: There were undefined citations.
-
-[32]
+]) [38]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
  (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.aux
@@ -1217,12 +1264,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 24380 strings out of 429025
- 412830 string characters out of 3166797
- 509506 words of memory out of 3000000
- 27185 multiletter control sequences out of 15000+200000
+ 24407 strings out of 429025
+ 413306 string characters out of 3166797
+ 508885 words of memory out of 3000000
+ 27205 multiletter control sequences out of 15000+200000
  10616 words of font info for 37 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
  70i,12n,79p,3286b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (33 pages).
+Output written on thesis.pdf (39 pages).

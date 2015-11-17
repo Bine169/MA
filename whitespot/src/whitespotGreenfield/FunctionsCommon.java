@@ -1092,9 +1092,6 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 								numberlocations, numberGivenLocations, (location + 1), critAverage,
 								microm, PLZ5, weightCom, weightCrit, whitespot);
 						
-						 FileWriter output =createFileWriter();
-						 writePolygon(output, numberpolygons);
-						 output.close();
 					}
 
 					location++;
@@ -1111,7 +1108,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 
 			//break if too much runs for rearranging
-			if (nofoundlocations.size() >= numberlocations || run > 500) {
+			if (nofoundlocations.size() >= numberlocations || run > 100000) {
 				satisfied = true;
 				System.out.println("Break");
 			}
@@ -2123,7 +2120,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		 */
 		public static void showCritResult(int numberlocations) {
 			for (int i = 0; i < numberlocations; i++) {
-				System.out.println("Critsize location " + i + " :"
+				System.out.println("Activity measure territory " + (i+1) + " :"
 						+ locationContainer.getCriteria(i));
 			}
 		}
