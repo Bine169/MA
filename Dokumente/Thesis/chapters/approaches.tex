@@ -1,46 +1,204 @@
-\section{Selecting approaches for implementation}
+\section{Selecting approaches for implementation}\label{Selecting}
+\subsection{Requirements of approaches considering geomarketing analyses}
 
-\subsection{Overview about existing approaches}\label{Overview about existing approaches}
-
-\subsection{Selection of approaches}
-
-split als location-allocation model like in bericht71 und gebieteoptimalaufteilen(?) fliegt, da für viele Einheiten zu komplex
-
-Compared to the location-allocation approach the set-partitioning methods own the advantage of more flexibility to achieve a satisfying result of the territory alignment. At the same time this advantage is a disadvantage too because to achieve the huge flexibility a raising combinatoric complexity is needed. Consequently the approach 
---> somit fliegt set partitioning auch
-
---> heuristische verfahren notwendig
+For the application of area segmentation approaches to geomarketing analyses some dedicated requirements are need to be kept in mind to get an useful result. Possible planning criteria where already explained in detail in section \label{criterias} hyperref[criterias]{Additonally Planning criterias}. It was mentioned that contiguity, balance and compactness may playing a huge role during the distriction. considering geomarketing aspects all three planning criteria are need to be satisfied. Taking the example of sales territories owing a certain number of sales man shows that a not balanced alignment yield to an imbalance concerning work load of the employees. This could lead to disaffection. Additionally the territories need to be compact to making the sale process more effective by minimizing travelling time. \\
+The area segmentation in this case study will be done to already existing territory centres consequently a determination of new centres in the beginning will be not necessary. \\
+All these requirements and conditions needs to be kept in mind during the comparison of model types and the selection of promising algorithm for the implementation.
 
 
-A completely different allocation approach is to sequentially assign basic areas to territory
-centers based on distance, i.e. a basic area will be allocated to closest territory center. This
-minimal distance allocation yields disjoint, compact and often connected, however, usually
-not well balanced territories as the balance criterion is completely neglected when deciding
-about the allocation. The attractiveness of this method, denoted as AllocMinDist, primarily
-lies in its simplicity and computational speed. See Kalcsics et al. [KMNG02].
+
+\subsection{Comparison of model types}
+In section \ref{Fundamentals} \hyperref[Fundamentals]{Fundamentals of area segmentation} it was mentioned that there exist three different type of models which where applied in history for distriction processes. The first model type is location-allocation approach and is the one that is mostly used. Within the location-allocation process in the location phase territory centres are chosen. In the second step the basic areas are assigned to these centres. Both steps are done iteratively until a satisfying result of the area segmentation is achieved. For selecting approaches for the implementation within that master thesis that method will be analysed in more detail to determine whether it will be used for that thesis too. The first model of the location-allocation approach was developed by \citeauthor{hess} \cite{hess} in 1965 to solve a political distriction problem. Due to application of the model to sales districting hess model was enhanced by \citeauthor{hessstuart} \cite{hessstuart} and has established known as GEOLINE model. After the implementation they admit that their GEOLINE approach ''does not provide optimal sales territories'' \cite{hessstuart}. Additionally the gained solution my be not well balanced and coherent.
+Consequently the practical use of this model is fairly limited. That is why \citeauthor{fleischmann} \cite{fleischmann} developed a modified solution of the GEOLINE model, but their approach demonstrates the same disadvantages like the one of \citeauthor{hessstuart}. The difficulty of the solution of the capacitative transportation problem is the assignment of portions of basic areas to more than one territory centre to satisfy the balancing constraint. Consequently these so called split areas require a more detailed consideration. \citeauthor{hessstuart} \cite{hessstuart} tried to achieve a well balanced solution using a so called AssignMAX approach. Within the alignment they had district the split areas to the territory centres which ''own'' the largest share of the split area \cite{hessstuart, kalcsics}. But \citeauthor{fleischmann} \cite{fleischmann} had proofed that this approach leads to very poor results for their application. Consequently they tried to implement an improved solution of the alignment of split areas but the solution could not resolve all splits automatically thus it was necessary to do some manual post processing \cite{fleischmann, kalcsics}. Due to these problem different improvements were developed to find a good split solution. \citeauthor{schroeder} \cite{schroeder} tried to find a optimal split resolution using tree decomposition. With the help of that approach the best area segmentation in the system of the equations can be determined. Contrary to solving a transportation and split problem \citeauthor{zoltner} \cite{zoltner} implemented an approach using sub gradients. The advantage of that method is the calculation of several possible area segmentation solutions. From this amount of solutions the best one can be chosen. But comparison to the approach implemented by \citeauthor{schroeder} show that the calculation time using the approach of \citeauthor{zoltner} is higher then the one using \citeauthor{schroeder} algorithm \cite{schroeder}. Additionally \citeauthor{zoltner}s approach needs territory centres which are well distributed to achieve a good solution of the calculations. Consequently the algorithms indeed provides coherent areas, but the resulting territories may not be well balanced. Considering all mentioned approaches it can be recognized that no one yields to optimal results considering the area segmentation process. Either the created territories are not coherent or they are not well balanced. Additionally due to the complexity of the split resolution the calculation time is still too high if large scale problems need to be answered \cite{kalcsics}. Furthermore the location-allocation approach is not owing to the linear terms of the equations that need to be answered. Consequently the application of measures of compactness will be constrained considerably. Considering all these problems location-allocation approaches seem to be inapplicable for the application to geomarketing analyses. Consequently such approaches will not be considered in that master thesis. \\
+The second type of model is called set-partitioning approach and was implemented \citeauthor{mehrotra}\cite{mehrotra} per example. During the set-partitioning method subdivision of all geographical units will be created. Accordingly these ones will be used to get a balanced result by a partition. Compared to location-allocation methods a major advantage of set-partitioning is the higher flexibility concerning a satisfying result of the area segmentation. In contrary to only limited use of criterion in the location-allocation methods in this approach any criterion can be applied on the generation of candidate districts \cite{kalcsics}. Nevertheless at the same time this advantage is a disadvantage too because the huge flexibility causes a raising combinatoric complexity. That is why the set-partitioning approach can be only used for smaller problems. It have not been used with more than 100 basic areas \cite{kalcsics}. Compared to the location-allocation approaches this method is more ineffective, cumbersome and computationally unattractive \cite{zoltner}. Considering that statement it is obvious that the set-partitioning approach can not be applied to geomarketing analysis to achieve satisfying results. Additionally geomarketing analysis are mostly done to huge area segmentation problems containing a lot of basic areas. Consequently the set-partitioning method can be seen as unusable for that application. \\
+The third type of models are heuristic approaches. These ones do not need any solver for linear problems like set-partitioning and location-allocation approaches use. Instead just some mathematical programming is necessary. The main advantage of heuristic methods is the huge flexibility concerning the integration and observance of one or more criterion. At the same time a forecast of the quality of the created territories may be difficulty previously. Normally the quality will be measured afterwards comparing different solutions. Consequently just a relative rating of the quality is possible \cite{schroeder}. Nevertheless compared to the disadvantages of location-allocation and set-partitioning methods heuristic approaches seems to be the most promising ones to apply for geomarketing analysis. By comparing different heuristics it will be tried to find an algorithm with a high quality of the alignment results. To making the algorithm more dependable different heuristics will be combined. Additionally some completely new heuristic approaches will be implemented. In the following table an overview of the advantages and disadvantages of all three types can be found.
+
+\newpage
+
+\setvalue{tableTitle=Comparison of different types of models}
+
+\begin{table}[H]
+	\begin{tabular}{|p{2.4cm}|>{\RaggedRight}p{3.2cm}|>{\RaggedRight}p{3.2cm}|>{\RaggedRight}p{3.2cm}|}
+		\hline
+		 & \centering{location-allocation} & \centering{set-partitioning} & \centering{heuristics} \tabularnewline
+		\hline
+		\nohyphens{short explanation} & first chose centres, Second assign basic areas to the centres & using subdivisions and partition & mathematical solution of problems \tabularnewline
+		\hline
+		
+		
+		advantages & 
+		\begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nolistsep, noitemsep,after=\strut,leftmargin=10pt,
+				before*={\mbox{}\vspace{-\baselineskip}}]
+				\item chooses best solution of several calculations
+			\end{itemize}
+		\end{minipage}
+		
+		& \begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nolistsep, noitemsep,after=\strut,leftmargin=10pt,
+				before*={\mbox{}\vspace{-\baselineskip}}]
+				\item high flexibility
+			\end{itemize}
+		\end{minipage} 
+
+		& \begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nolistsep, noitemsep,after=\strut,leftmargin=10pt,
+				before*={\mbox{}\vspace{-\baselineskip}}]
+				\item huge flexibility
+				\item do not need a solver
+				\item easy to implement
+				\item usable for one or several criterion
+			\end{itemize}
+		\end{minipage} 
+\tabularnewline
+			\hline
+		disadvantages &
+		
+		\begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nolistsep, noitemsep,after=\strut,leftmargin=10pt,
+				before*={\mbox{}\vspace{-\baselineskip}}]
+				\item territories may not well balanced or not coherent
+				\item calculation time still too high caused by split areas
+				\item just one criterion applicable
+			\end{itemize}
+		\end{minipage} 
+		
+		& \begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nolistsep, noitemsep,after=\strut,leftmargin=10pt,
+				before*={\mbox{}\vspace{-\baselineskip}}]
+				\item useable just for small problems
+			\end{itemize}
+		\end{minipage} 
+		
+		& \begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nolistsep, noitemsep,after=\strut,leftmargin=10pt,
+				before*={\mbox{}\vspace{-\baselineskip}}]
+				\item difficult to determine a forecast about the quality of the result previously
+			\end{itemize}
+		\end{minipage} 
+ \tabularnewline
+				\hline
+	\end{tabular}
+\end{table}
+ 
+\subsection{Heuristic approaches}
+During the last decades several heuristic algorithms were implemented to solve area segmentation problems. The common one will be considered in that section to chose the approaches that will be taken within this master thesis. \\
+\citeauthor{mehrotra} \cite{mehrotra} per example developed an algorithm called \textbf{Eat-up}. During the Eat-up approach one territory after the other is extended at its boundary by adding yet unassigned basic areas to the territory successively. This will be done until the territory satisfying the criteria that need to be balanced. The algorithm was implemented for political distriction with the goal ''to develop a districting method that provides population equality and contiguous and compact districts while retaining jurisdictional boundaries of counties or other political subunits insofar as possible'' \cite{mehrotra}. Within their case study of political distriction in South Carolina they conclude that their implemented algorithm is ''an effective way of generating high quality districting plans'' \cite{mehrotra}. Consequently the Eat-up approach may be one of the potential methods used in that master thesis.\\
+\citeauthor{deckro} \cite{deckro} implemented an algorithm called \textbf{Clustering}. That approach treats each basic area initially as a single district. After creating a ranking of neighboured basic areas pairs of districts are merged together iteratively so that a new bigger territory will be created. During the creation of the districts a particular criterion is considered and needs to be satisfied within a range of acceptable variation \cite{deckro}. The districts are merged together until the number of prescribed territories is reached. It was not possible to find further examinations of the usability of that approach. Although it seems to be promising it is not applicable for the area segmentation processes that needs to be done for this master thesis because the distinction will be done using existing territories centres. But the clustering algorithm do not use any centres. \\
+\textbf{The Multi-kernel growth} approach was used per example by \citeauthor{bodin}\cite{bodin} in 1977. This method is made up of two steps. In the first step a certain number of basic areas are determined as centres of the territories that should be created. After this step to each centre neighbouring areas are successively added. The neighboured areas are added in order of decreasing distance to the centre. The alignment of basic areas is done until the desired territory size is reached. The second step of this approach is similar to the \textbf{AllocMinDist} method which was implemented by \citeauthor{kalcsics2} \cite{kalcsics2} where the basic areas are allocated to the closest territory centre like it is done in the Multi-kernel growth approach. They conclude that the AllocMinDist algorithm leads to ''disjoint, compact and often connected, however, usually
+not well balanced territories as the balance criterion is completely neglected when deciding about the allocation'' \cite{kalcsics2}. Nevertheless they have mentioned that ''the attractiveness of this method [...] lies in its simplicity and computational speed \cite{kalcsics2}. Consequently these results are also adaptable to the second step of the multi-kernel algorithm. The first step can be ignored because in the application of that thesis territory centres are already given. Owing to the mentioned advantages of the allocMinDist algorithm this one may be useful during combining different heuristic approaches. That is why it will be tested during the implementation. Additionally it will be proofed whether the same results of the allocMinDist algorithm are achieved like in the application of \citeauthor{kalcsics2}. \\
+Another developed approach for optimization is the so called \textbf{local search}. Within that method the basic areas of neighbouring territories are shifted to minimizing a weighted additive function of different planning criteria \cite{kalcsics}. Consequently an area segmentation needs to be done at first so that the local search can be applied to the solution. Under this aspect local search may be a promising method for combining different heuristics. Per example at first the allocMinDist algorithm may be applied accordingly the local search approach. \\
+Another approach that needs to be mentioned is the algorithm which is implemented within the Lizard Library of KIT (see section \ref{KIT} \hyperref[KIT]{KIT - Institute of Operations Research: discrete optimization and logistic} for more information). The \textbf{Recursive Partitioning Algorithm} divides a problem into smaller sub problems until each sub problem satisfies the considered criteria. A similar approach was implemented by \citeauthor{forrest} \cite{forrest}. Problems of the Recursive Partitioning Algorithm were already mentioned in section \label{KIT} so that this approach will not be used within this thesis. Although the created territories seem to be well balanced, they not need to be coherent after the calculation. Additionally the algorithm is based on no territory centres, but the geomarketing application which will be considered first provide existing centres. \\
+Considering all mentioned approaches it is recognizable that just some methods seem to be promising while other do not. In conclusion three approaches will be used during the comparison. These approaches are Eat-up,
+AllocMinDist / Multi-kernel growth and local search. Additionally some further algorithms are developed. Related to the AllocMinDist approach the same will be done considering only the given criteria that should be balanced. This approach is called AllocCrit in the following. In addition to this several approaches are implemented combining different methods. The first one is appropriated to the AllocMinDist combining with the consideration of the activity measure of the basic areas. Therefore to every territory centre the basic areas are assigned iteratively considering the activity measure of the centre. That means that the centre with the smallest activity measure gets the nearest basic area that is not assigned yet. These steps will be done for each territory centre until all basic areas are allocated. This approach will be called SmallestCritGetsNearest. An improvement of that approach is called SmallestCritGetsTrueNearest which considers neighbouring relationships in more detail. The procedure of the algorithm is similar to SmallestCritGetsNearest but the nearest neighboured basic areas is just allocated if it is really the nearest one to this territory centre. If it is not the case another basic area will be taken. \\ Researches during the last decades show that algorithms that raise the size of the territories from centre may yield to bad results concerning the coherence of the territories. That is why algorithm were implemented where the starting point of alignment lies at the boundary of the observation area. Consequently such a heuristic is implemented within that master thesis too. But this one is combined with the SmallestCritGetsNearest algorithm to yield to better results. Because of the combination of two heuristics the algorithm contains two steps. In the first one all outer territories which lie on the border are allocated to territory centres if they are nearest to one centre. To consider also territories which may be allocated to different territory centres, similar to split areas, a coefficient is used, which should be satisfied for allocation. If the assignment of outer territory centres is done the second step will be initialized which is the SmallestCritGetsNearest approach. The whole algorithm will be called OutsideSmallestCritGetsNearest. The next chosen algorithm is a combination of the Eat-up and the AllocMinDist approaches. Within the Eat-up algorithm each territory centre gets basic areas until the termination criterion build up from the planning criteria is reached. This allocation determines no relationship which basic area will be chosen for the assignment. Within the improved algorithm just the basic areas are allocated which are nearest to the territory centre. The algorithm will be called EatUpMinDist. Furthermore to the mentioned algorithms a combination of AllocMinDist and local search will be implemented too. The algorithm contains two steps similar to the OutsideSmallestCritGetsNearest approach. At first the AllocMinDist processes will be applied. Afterwards the assigned basic areas are rearranged again using local search to create a balanced resolution. Consequently this algorithm is called AllocMinDistLocalSearch\\
+All algorithm are implemented with the aim of finding an usable calculation procedure for area segmentation processes for the implementation to geomarketing analyses. All approaches will be compared to find the most promising one. For summarizing the used algorithm they will be shown in the following table again.
+
+\newpage
+
+\setvalue{tableTitle=Overview about selected heuristic approaches for implementation}
+
+\begin{table}[H]
+	\begin{tabular}{|p{5.5cm}|>{\RaggedRight}p{7.5cm}|}
+		\hline
+		& \centering{short explanation} \tabularnewline
+		\hline
+		AllocCrit & Assigns basic areas to each territory centres dependent on the activity measure of the centre achieving by the sum of the activity measures of the assign basic areas.
+		\tabularnewline
+		\hline
+		AllocMinDist & Assigns the basic areas to the territory centre which is closest.
+		\tabularnewline
+		\hline
+		Eat-up & Extends one territory centre after the other at its boundary by adding yet unassigned basic areas to the territory successively.
+		\tabularnewline
+		\hline
+		SmallestCritGetsNearest & Combination of AllocCrit and AllocMinDist: Assigns the closest yet not assigned basic areas to each territory centres dependent on the activity measure of the centre.
+		\tabularnewline
+		\hline
+		SmallestCritGetsNearest & Improvement of SmallestCritGetsNearest: Process is similar to SmallestCritGetsNearest but the allocation of the closest basic area will be done only if it is the closest territory centre at all.
+		\tabularnewline
+		\hline
+		OutsideSmallestCritGetsNearest & Assigns first basic areas at the boundary of the area under investigation. Accordingly SmallestCritGetsNearest is applied.
+		\tabularnewline
+		\hline
+		EatupMinDist & Combination of Eat-up and AllocMinDist: During the Eat-up approach just basic areas are allocated which are close to the considered territory centre.
+		\tabularnewline
+		\hline
+		AllocMinDistLocalSearch & Combination of AllocMinDist and local search: At first the AllocMinDist will be applied. Afterwards a rearrangement is done using local search to achieve a well balanced solution.
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+\newpage
 
 \section{Implementation of area segmentation approaches}\label{Implementation}
+The comparison of different optimization models in the section before shows that heuristic approaches seems to be the most promising methods for the application of that master thesis. That is why 8 different approaches were be chosen which will be implemented. The results of all algorithm will be compared to find the most usable algorithm of that amount.  \\
+Section \ref{notions} \hyperref[notions]{Notions and criterias} shows the fundamentals and necessary notions doing an area segmentation.
+
 
 einleitung: welche daten, plz gebiete (bild welche eigenschafte, wie repräsentiert), hinterlegt mit einem attribut, nicht mehr attribute, warum wahl des testdatensatzes...
-\subsection{Segmentations considering homogenous distribution}
 
-\paragraph{Considering just Criteria}
 
-\paragraph{Considering average criteria value in proportion to number of locations}
 
-\subsection{Segmentations considering distance}
 
-\paragraph{Considering just Distance}
+\subsection{AllocCrit}
 
-\subsection{Segmentations considering criteria and distance}
+\subsection{AllocMinDist}
 
-\paragraph{Criteria and Distance: from inside to outside: SmallestCritGetsNearest}
+pdf gebietoptimalaufteilen, S 150
+Ausgehend von den Punkten lassen sich nun Entfernungen div zwischen Zentren
+und KGE berechnen. Hierfur gibt es verschiedene Vorschlage in der Literatur. Wir
+besprechen kurz die wichtigsten.
+Euklidische Distanzen. Die Entfernung zwischen Zentrum i 2 I und KGE v 2 V
+ist
+$div =(Osti  ostv)2 + (Nordi  nordv)2_1=2$
+:
+Dies entspricht der Luftlinienentfernung und stellt eine plausible Art der Entfernungsmessung
+dar (Cloonan [25]).
+Quadrierte euklidische Distanzen. Hierbei ist die Formel zur Berechnung der
+Distanz
+$div = (Osti  ostv)2 + (Nordi  nordv)2$
+Diese Art der Entfernungsmessung erscheint zunachst merkwurdig, da sie kaum als
+tatsachliche Entfernung interpretiert werden kann. Dennoch wird sie von vielen Autoren
+verwendet (Fleischmann und Paraschis [35], George et al. [42], Hess et al. [50],
+Hess und Samuels [51], Hojati [52], Marlin [68]). Nach Einschatzung des Verfassers
+gibt es dafur zwei Grunde.
+1. In locationallocationModellen ist der location Schritt besonders einfach umzusetzen,
+	wenn mit quadriert euklidischen Distanzen gearbeitet wird (vgl. 9.1.1.1).
+	Diese Begrundung wird in der Literatur haug zugunsten dieser Art der Distanzmessung
+	vorgebracht.
+	2. Ebenso wichtig erscheint aber eine Beobachtung, die in 7.3.2 herausgearbeitet
+	wird, und die auch im allocation Schritt fur die Verwendung von quadriert
+	euklidischen Distanzen spricht. In diesem Fall namlich wird die Ebene in Gebiete
+	aufgeteilt, die konvexen Polygonen entsprechen und damit eine Tendenz
+	zur Bildung von Bezirken, die der intuitiven Vorstellung von kompakter Form
+	entsprechen, geschaen.
 
-\paragraph{Criteria and Distance: from inside to outside: SmallestCritGetsTrueNearest}
+dist: He concludes that the success of squared
+Euclidean distances depends on the ability to redefine territory centers and is not appropriate
+for the case of fixed centers
 
-\paragraph{Criteria and Distance: from outside to inside + inside to outside}
+In most cases, the problem of allocating basic areas to territory centers is formulated as a
+capacitated assignment problem, see e.g. Hess et al. [HWS+65] and also Section 5. While
+the balancing requirement is generally included as a side constraint, compact and contiguous
+territories are tried to be obtained by minimizing the sum of weighted distances between basic
+areas and territory centers. For political districting problems, authors tend to use squared
+Euclidean distances (e.g. Hess et al. [HWS+65], Hojati [Hoj96]), whereas for sales territory
+design problems, largely straight line (Cloonan [Clo72], Marlin [Mar81]) or network distances
+(Segal and Weinberger [SW77], Zoltners and Sinha [ZS83]) are employed
 
-\paragraph{sum of criteria divided by number locations + Distance}
 
-\paragraph{Distance + criteria}
+\subsection{Eat-up}
+
+\subsection{SmallestCritGetsNearest}
+
+\subsection{SmallestCritGetsTrueNearest}
+
+\subsection{OutsideSmallestCritGetsNearest}
+
+\subsection{EatUpMinDist}
+
+\subsection{AllocMinDistLocalSearch}
+
+
 

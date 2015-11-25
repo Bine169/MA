@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  16 NOV 2015 22:38
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  25 NOV 2015 10:05
 entering extended mode
 **thesis.tex
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.tex
@@ -811,13 +811,46 @@ Package caption Info: listings package is loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\titlesec\block.tss"
 File: block.tss 2011/12/15
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyphenat\hyphenat.sty"
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language69
+LaTeX Info: Redefining \_ on input line 43.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip69
+\enit@outerparindent=\dimen188
+\enit@toks=\toks45
+\enit@inbox=\box51
+\enitdp@description=\count150
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\marginnote\marginnote.sty"
 Package: marginnote 2012/03/29 v1.1i non floating margin notes for LaTeX
-\c@mn@abspage=\count150
+\c@mn@abspage=\count151
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\utilities\pgfkeys.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
-)))
+)) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ms\ragged2e.sty"
+Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ms\everysel.sty"
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip70
+\RaggedLeftLeftskip=\skip71
+\RaggedRightLeftskip=\skip72
+\CenteringRightskip=\skip73
+\RaggedLeftRightskip=\skip74
+\RaggedRightRightskip=\skip75
+\CenteringParfillskip=\skip76
+\RaggedLeftParfillskip=\skip77
+\RaggedRightParfillskip=\skip78
+\JustifyingParfillskip=\skip79
+\CenteringParindent=\skip80
+\RaggedLeftParindent=\skip81
+\RaggedRightParindent=\skip82
+\JustifyingParindent=\skip83
+))
 
 LaTeX Warning: Unused global option(s):
     [toc=listof,toc=bibliography,sprache=english,xcolor=dvipsnames].
@@ -834,8 +867,14 @@ aux)
 
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/ApplicationInGeo
 marketing.aux)
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.aux)
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/problems.aux)
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.aux
+
+LaTeX Warning: Label `criterias' multiply defined.
+
+
+LaTeX Warning: Label `KIT' multiply defined.
+
+) (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/problems.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
 marketing.aux)
@@ -858,9 +897,9 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
-\c@lstlisting=\count151
+\c@lstlisting=\count152
 Package scrhack Info: undefining \float@addtolists on input line 17.
-\AtBeginShipoutBox=\box51
+\AtBeginShipoutBox=\box52
 Package backref Info: ** backref set up for natbib ** on input line 17.
 Package hyperref Info: Link coloring ON on input line 17.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
@@ -869,7 +908,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count152
+\c@section@level=\count153
 )
 LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
@@ -917,6 +956,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
 (marginnote)             Extended position detection mode activated.
+ ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 17.
 
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/titelseite.tex
 File: images/WWU_Logo1_1c.jpg Graphic file (type QTm)
@@ -937,12 +978,24 @@ File: se-ascii-print.def 2011/12/02 v1.10 stringenc: Printable ASCII characters
 
 
 ]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/declaration.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <20> not available
-(Font)              size <20.74> substituted on input line 25.
+(Font)              size <20.74> substituted on input line 1.
 
 Requested font "cmr17" at 20.74pt
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.toc
+)
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Requested font "cmbx10" at 10.0pt
+[1
+
+
+] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.toc
 Requested font "cmbx10" at 10.95pt
 Requested font "cmr8" at 8.0pt
 Requested font "cmr6" at 6.0pt
@@ -955,37 +1008,14 @@ Requested font "cmsy6" at 6.0pt
 Requested font "cmex10" at 10.95pt
 Requested font "cmex8" at 8.0pt
 Requested font "cmex7" at 6.0pt
+ [2
 
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Requested font "cmbx10" at 10.0pt
-[1
-
-]
-Overfull \hbox (3.62096pt too wide) in paragraph at lines 42--42
- [][] [][][]\OT1/cmr/m/n/10.95 Criteria and Dis-tance: from in-side to out-side
-: Small- 
- []
-
-
-Overfull \hbox (3.62096pt too wide) in paragraph at lines 43--43
- [][] [][][]\OT1/cmr/m/n/10.95 Criteria and Dis-tance: from in-side to out-side
-: Small- 
- []
-
-[2])
+])
 \tf@toc=\write8
- [3]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/declaration.tex)
-[4
 
-] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/abstract.tex) 
+[3] [4]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/abstract.tex)
 [5
-
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/acknowledgement.
@@ -1089,152 +1119,274 @@ marketing.tex [18
 ]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 12.
+(Font)              size <12> substituted on input line 13.
 
 Requested font "cmti10" at 10.95pt
 Requested font "cmti8" at 8.0pt
 Requested font "cmti7" at 6.0pt
+[19]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 19.
+(caption)                particular \caption on input line 20.
 See the caption package documentation for explanation.
 
 File: images/basicAreas.jpg Graphic file (type QTm)
-<use  "images/basicAreas.jpg" > [19] [20]
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
+<use  "images/basicAreas.jpg" > [20]
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
 [21]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 51.
+(caption)                particular \caption on input line 52.
 See the caption package documentation for explanation.
 
 File: images/balanced_notbalanced.jpg Graphic file (type QTm)
 <use  "images/balanced_notbalanced.jpg" >
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 58.
+(caption)                particular \caption on input line 59.
 See the caption package documentation for explanation.
 
 File: images/coherent_notcoherent.jpg Graphic file (type QTm)
 <use  "images/coherent_notcoherent.jpg" > [22]
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 64.
+(caption)                particular \caption on input line 65.
 See the caption package documentation for explanation.
 
 File: images/compact_notcompact.jpg Graphic file (type QTm)
 <use  "images/compact_notcompact.jpg" > [23] [24]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 81.
+(caption)                particular \caption on input line 82.
 See the caption package documentation for explanation.
 
 File: images/wahlkreise.jpg Graphic file (type QTm)
 <use  "images/wahlkreise.jpg" >
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 87.
+(caption)                particular \caption on input line 88.
 See the caption package documentation for explanation.
 
 File: images/map_historic.jpg Graphic file (type QTm)
 <use  "images/map_historic.jpg" > [25]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 91.
+(caption)                particular \caption on input line 92.
 See the caption package documentation for explanation.
 
 File: images/salesdistriction1.jpg Graphic file (type QTm)
 <use  "images/salesdistriction1.jpg" > [26]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 95.
+(caption)                particular \caption on input line 96.
 See the caption package documentation for explanation.
 
 File: images/salesdistriction2.jpg Graphic file (type QTm)
 <use  "images/salesdistriction2.jpg" > [27]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 100.
+(caption)                particular \caption on input line 101.
 See the caption package documentation for explanation.
 
 File: images/whitespot.jpg Graphic file (type QTm)
 <use  "images/whitespot.jpg" >) [28]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.tex
-Overfull \hbox (34.0864pt too wide) in paragraph at lines 22--22
- |[]\OT1/cmr/m/n/20.74 Implementation of area seg-men-ta-tion ap-proaches| 
+Overfull \hbox (0.22528pt too wide) in paragraph at lines 2--2
+ |[]\OT1/cmr/m/n/14.4 Requirements of ap-proaches con-sid-er-ing ge-o-mar-ket-i
+ng anal-
  []
-
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 29.
-
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 35.
-
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 39.
 
 [29
 
 
-]) [30]
+] [30] [31]
+Package marginnote Info: Margin note 33.1 is on absolute page 33
+(marginnote)              on input line 20.
+Package marginnote Info: right page because not two side mode on input line 20.
+
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 20.
+See the caption package documentation for explanation.
+
+Package marginnote Info: xpos seems to be 124.28957pt,
+(marginnote)             \marginnoteleftadjust ignored on input line 20.
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\OT1/cmr/m/n/10.95 short
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+[]\OT1/cmr/m/n/10.95 chooses best so-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+\OT1/cmr/m/n/10.95 lu-tion of sev-eral
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
+[]\OT1/cmr/m/n/10.95 do not need a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+[]\OT1/cmr/m/n/10.95 easy to im-ple-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+[]\OT1/cmr/m/n/10.95 usable for one or
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[]\OT1/cmr/m/n/10.95 territories may
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+\OT1/cmr/m/n/10.95 not well bal-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+\OT1/cmr/m/n/10.95 anced or not
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+[]\OT1/cmr/m/n/10.95 calculation time
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+\OT1/cmr/m/n/10.95 still too high
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+\OT1/cmr/m/n/10.95 caused by split
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
+[]\OT1/cmr/m/n/10.95 just one cri-te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
+\OT1/cmr/m/n/10.95 rion ap-pli-ca-ble
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+[]\OT1/cmr/m/n/10.95 useable just for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+[]\OT1/cmr/m/n/10.95 difficult to de-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+\OT1/cmr/m/n/10.95 ter-mine a fore-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+\OT1/cmr/m/n/10.95 cast about the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+\OT1/cmr/m/n/10.95 qual-ity of the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+\OT1/cmr/m/n/10.95 re-sult pre-vi-ously
+ []
+
+[32] [33] [34] [35]
+Package marginnote Info: Margin note 37.1 is on absolute page 37
+(marginnote)              on input line 100.
+Package marginnote Info: right page because not two side mode on input line 100
+.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 100.
+See the caption package documentation for explanation.
+
+Package marginnote Info: xpos seems to be 124.28957pt,
+(marginnote)             \marginnoteleftadjust ignored on input line 100.
+
+Overfull \hbox (2.43764pt too wide) in paragraph at lines 101--130
+[][] 
+ []
+
+[36]
+Overfull \hbox (34.0864pt too wide) in paragraph at lines 134--134
+ |[]\OT1/cmr/m/n/20.74 Implementation of area seg-men-ta-tion ap-proaches| 
+ []
+
+[37]) [38]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/problems.tex)
-[31
+[39
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.tex)
-[32
+[40
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
-marketing.tex) [33
+marketing.tex) [41
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/realworld.tex)
-[34
+[42
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex)
-[35
+[43
 
 
 ]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex)
-[36
+[44
 
 
 ] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.brf)
 \tf@brf=\write9
+ [45
 
-Overfull \hbox (14.05968pt too wide) in paragraph at lines 13--13
-\OT1/cmr/m/n/10.95 URL: http://www.bundeswahlleiter.de/de/bundestagswahlen/BTW[
-]BUND[]13/, 
- []
-
+]
 Missing character: There is no – in font cmti10!
-[37
-
-]) [38]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
+ [46])
+[47]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
  (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.aux
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/titelseite.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/declaration.aux)
@@ -1255,21 +1407,24 @@ marketing.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/realworld.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 59.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 59.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 60.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 60.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 24407 strings out of 429025
- 413306 string characters out of 3166797
- 508885 words of memory out of 3000000
- 27205 multiletter control sequences out of 15000+200000
+ 24850 strings out of 429025
+ 420837 string characters out of 3166797
+ 527348 words of memory out of 3000000
+ 27636 multiletter control sequences out of 15000+200000
  10616 words of font info for 37 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
- 70i,12n,79p,3286b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,14n,79p,3286b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (39 pages).
+Output written on thesis.pdf (48 pages).
