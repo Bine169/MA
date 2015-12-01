@@ -15,7 +15,7 @@ public class greenfield {
 		int numberlocations=10;
 		int weightCom = 100;
 		int weightCrit =0;
-		int threshold =30;
+		int threshold =100;
 		
 		//create FileWriter
 		FileWriter output =FunctionsCommon.createFileWriter();
@@ -40,13 +40,13 @@ public class greenfield {
 		//set Locations
 		FunctionsGreenfield.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
-		weightCom = 10;
-		weightCrit =90;
+		weightCom = 0;
+		weightCrit =100;
 		threshold =50;
 		
-//		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
+		FunctionsGreenfieldWhitespot.resetAllocations(numberpolygons, numberlocations);
 		
-//		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, 0);
+		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, 0);
 	
 		FunctionsCommon.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, true, 0);
 		//set endLocations

@@ -105,6 +105,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		 
 		 System.out.println("starting rearrangement");
 		checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, whitespot, numberGivenLocations);
+		
+		
 	}
 	
 	/**calls functions for visualisation of the results
@@ -116,7 +118,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		writePolygon(output, numberpolygons);
 		
 		showCritResult(numberlocations);
-	}
+		}
 
 	//----------------Initialisation------------------------
 	
@@ -1137,6 +1139,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				microm, PLZ5, critAverage, weightCom, weightCrit);
 
 		loc.setWeightValue(weight);
+		System.out.println(loc.getId()+":"+weight);
 	}
 	
 	/**calculates weight value composite by compactness ratio and abberance to average criteria value 
@@ -2286,6 +2289,77 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 		fileReader.close();
 	}
+	
+//	public static void AllocCrit(boolean plz5, int numberpolygons){
+//		//initialise variables
+//				Connection jdbc = null;
+//				Statement stmt = null;
+//
+//				//get Connection
+//					jdbc = getConnection();
+//					stmt = jdbc.createStatement();
+//
+//				//choose table
+//		String columnIDs="_g7304";
+//			
+//		//get all PolygonIDs and store it
+//		StringBuffer sb = new StringBuffer();
+//		//SELECT t2.id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM _varea_1424340553765 AS t1 INNER JOIN _vcriteria_1424340553765 As t2 ON t2._g7304=t1.id
+//		if (plz5){
+//			sb.append("SELECT t2.id AS id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM geometriesplz51 AS t1 INNER JOIN criteriasplz51 AS t2 ON t2."+columnIDs+"=t1.\"ID\"");
+//		}
+//		else{
+//			sb.append("SELECT t2.id AS id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM geometriesplz81 AS t1 INNER JOIN criteriasplz81 AS t2 ON t2."+columnIDs+"=t1.\"ID\"");
+//			
+//		}
+//		System.out.println(sb);
+//		ResultSet t=stmt.executeQuery(sb.toString());
+//			
+//		for (int i=0;i<numberpolygons;i++){
+//			t.next();
+//			
+//			polys[0].add(t.getDouble("id"));
+//			polysGeometry[0].add(t.getString("id"));
+//			polysGeometry[1].add(t.getString("the_geom"));
+//			polysGeometry[2].add(t.getString("criteria"));
+//		}
+//			
+//		System.out.println("length"+polys[0].size());
+//			
+//		
+//		while (polys[0].size()!=0){
+//			
+//			double minCriteria=criteria[0];
+//			int locationMinCriteria=1;
+//			
+//			for (int j=1;j<criteria.length;j++){
+//				if (criteria[j]<minCriteria){
+//					minCriteria=criteria[j];
+//					locationMinCriteria=j+1;
+//				}
+//			}
+//			
+//			int polyID = polys[0].get(0).intValue();
+//	
+//			double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
+//			
+////			for (int j=1;j<polys[0].size();j++){
+////				double critValueact = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polys[0].get(j).intValue()))));
+////				if (critValueact<critValue){
+////					polyID = polys[0].get(j).intValue();
+////					critValue=Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
+////				}
+////			}
+//			
+//			System.out.println("write "+polyID+" to "+(locationMinCriteria));
+//			allocPolys[locationMinCriteria-1].add(polyID);
+//			String geometry = polysGeometry[1].get(polysGeometry[0].indexOf(Integer.toString(polyID)));
+//			geomAllocPolys[locationMinCriteria-1].add(geometry);
+//			
+//			addToCriteria(polyID, locationMinCriteria, criteria);
+//			polys[0].remove(Double.valueOf(polyID));
+//		}
+//	}
 
 	// --------------------------------------------------------------------
 	// functions for Greenfield & Whitespot

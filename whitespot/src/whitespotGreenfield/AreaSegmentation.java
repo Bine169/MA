@@ -9,7 +9,7 @@ public class AreaSegmentation {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=false;
+		boolean PLZ5=true;
 		boolean common=true;
 		boolean microm=false;
 		
@@ -32,8 +32,8 @@ public class AreaSegmentation {
 		
 		
 		int weightCom = 100;
-		int weightCrit =00;
-		int threshold =100;
+		int weightCrit =0;
+		int threshold =50;
 		
 		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit);
 		

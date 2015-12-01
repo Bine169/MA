@@ -100,7 +100,7 @@ All algorithm are implemented with the aim of finding an usable calculation proc
 \begin{table}[H]
 	\begin{tabular}{|p{5.5cm}|>{\RaggedRight}p{7.5cm}|}
 		\hline
-		& \centering{short explanation} \tabularnewline
+		& \centering{Short explanation} \tabularnewline
 		\hline
 		AllocCrit & Assigns basic areas to each territory centres dependent on the activity measure of the centre achieving by the sum of the activity measures of the assign basic areas.
 		\tabularnewline
@@ -114,7 +114,7 @@ All algorithm are implemented with the aim of finding an usable calculation proc
 		SmallestCritGetsNearest & Combination of AllocCrit and AllocMinDist: Assigns the closest yet not assigned basic areas to each territory centres dependent on the activity measure of the centre.
 		\tabularnewline
 		\hline
-		SmallestCritGetsNearest & Improvement of SmallestCritGetsNearest: Process is similar to SmallestCritGetsNearest but the allocation of the closest basic area will be done only if it is the closest territory centre at all.
+		SmallestCritGetsTrueNearest & Improvement of SmallestCritGetsNearest: Process is similar to SmallestCritGetsNearest but the allocation of the closest basic area will be done only if it is the closest territory centre at all.
 		\tabularnewline
 		\hline
 		OutsideSmallestCritGetsNearest & Assigns first basic areas at the boundary of the area under investigation. Accordingly SmallestCritGetsNearest is applied.
@@ -133,72 +133,510 @@ All algorithm are implemented with the aim of finding an usable calculation proc
 
 \section{Implementation of area segmentation approaches}\label{Implementation}
 The comparison of different optimization models in the section before shows that heuristic approaches seems to be the most promising methods for the application of that master thesis. That is why 8 different approaches were be chosen which will be implemented. The results of all algorithm will be compared to find the most usable algorithm of that amount.  \\
-Section \ref{notions} \hyperref[notions]{Notions and criterias} shows the fundamentals and necessary notions doing an area segmentation.
+Section \ref{notions} \hyperref[notions]{Notions and criterias} shows the fundamentals and necessary notions doing an area segmentation. They will be taken up here again to visualize the used data of the application. \\
+Basic areas are geographical objects in plane which represent the areas that should be assigned to territory centres. In the case study basic areas are zip-code areas. There exist two different types:
+\begin{enumerate}
+	\item normal zip-code areas with 5 numbers, per example: 01159, 48143. In the following these areas are mentioned as zip-code5. The investigation area contains 37 zip-code5 areas.
+	\item subdivision of zip-code5 areas which is done by the microm to make more detailed analyses possible. These areas contain 8 numbers, per example the zip-code5 area of 01159 consists of 25 zip-code8 areas e.g. 0115903, 0115904, 0115912. In the following these areas are mentioned as zip-code8. The investigation area contains 564 zip-code8 areas.
+\end{enumerate}
+
+Each zip-code area is defined by coordinates to represent the shape and orientation in shape. Additionally each area is linked with the activity measure. The activity measure will be household numbers. During the calculation just one measurement will be balanced. The calculations are done to zip-code areas of Dresden, Saxony and surrounding regions.
+
+\begin{figureOwn}{Zip-code areas from Dresden and surrounding regions as basic areas using during the area segmentation. a): Zip-code5 areas, b): Zip-code8 areas}{images/basicAreasboth.jpg}\end{figureOwn}
+
+The territory centres are given in that case study. The centres are locations of the Sparkasse and are provided by microm. Consequently the number of territories is predefined. The locations of Sparkasse are used to make the area segmentation process more realistic so that a better analysis of the results may be possible. During the calculation 10 Sparkassen locations are used which are distributed well over the whole investigation area. Caused by the distribution it is recognizable that the comparison of the approaches is first done to an optimal starting situation. This is done to rate the quality of the algorithm first under optimal situations. Later on further researches are necessary to determine the real quality of the chosen algorithm in the end. \\
+The area segmentation should achieve a well balanced result with coherent and compact territories. To check the compactness of each territory the compactness measure of Cox will be used. The decision to take this measure is based on a research by \citeauthor{koehler} \cite{koehler}. This ones shows that the Cox compactness measure is the best choice to get an satisfying ratio of calculation duration and quality of the calculated compactness. That result was confirmed by \citeauthor{kit_com} \cite{kit_com}, too. The compactness measure of Cox is the ratio of the area of a territory compared to the area of a circle which has the same circumference. The resulting value is
+
+\[ \mathit{cp(D_{j})  \leq   1}\]
 
 
-einleitung: welche daten, plz gebiete (bild welche eigenschafte, wie repräsentiert), hinterlegt mit einem attribut, nicht mehr attribute, warum wahl des testdatensatzes...
+The nearer the value of cp to 1, the better is the compactness of the territory.
+
+\begin{figurevarSize}{Used locations of Sparkasse showing on zip-code5 areas from Dresden}{images/basicAreasLocations.jpg}{0.7}\end{figurevarSize}
+
+For doing the calculations some software package are necessary. The implementation is done in Java using Eclipse Java Mars Version 1. The basic areas and appropriate planning criteria are stored within a PostgreSQL/PostGIS database. The visualization of the areas is done using Quantum 2.10.1-Pisa. \\
+The following table summarizes the used data.
 
 
+\setvalue{tableTitle=Summary of used data within the case study}
+
+\begin{table}[H]
+	\begin{tabular}{|p{3.5cm}|>{\RaggedRight}p{9.5cm}|}
+		\hline
+		& \centering{Detailed information} \tabularnewline
+		\hline
+		Basic areas & 37 zip-code5 areas and 564 zip-code8 areas
+		\tabularnewline
+		\hline
+		Investigation area & Dresden,Saxony and surrounding regions
+		\tabularnewline
+		\hline
+		Territory centres & Locations of Sparkasse provided by microm
+		\tabularnewline
+		\hline
+		Activity Measure & Household numbers
+		\tabularnewline
+		\hline
+		Planning criteria & Balance, contiguity, compactness
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
 
 
 \subsection{AllocCrit}
+The AllocCrit algorithm assigns basic areas to each territory centre dependent on the sum of activity measure each centre contains. Remember the formulae
+
+\[ \mathit{w(T_{i}) = \sum\nolimits  _{B \in T_{i}} w_{B}}\]
+
+to achieve a balance of the territories for each one the activity measure of the contained basic areas in that territory are summed. Consequently the main focus of AllocCrit lies on a balanced resolution. Doing so the positions of the basic areas are not considered. The calculation is done to zip-code5 and zip-code8. The procedure and the results of the AllocCrit area segmentation are shown in the following figures.
+
+\begin{figurevarSize}{Workflow of AllocCrit algorithm}{images/AllocCritworkflow.jpg}{0.3}\end{figurevarSize}
+
+\begin{figureOwn}{Result of area segmentation process using AllocCrit. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/AllocCrit.jpg}\end{figureOwn}
+
+\newpage
+\setvalue{tableTitle=Results of area segmentation using AllocCrit}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 4 & 56 & 30856 & 34716 & 0.11054 & 0.01424
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  4 & 53 & 35985 & 34605 & 0.08989 & 0.01652
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  3 &  57 & 41154 & 34608 & 0.17331 & 0.01909
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 4 & 59 & 39397 & 34572 & 0.08514 & 0.01366
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 4 & 60 & 35316 & 34628 & 0.21168 & 0.01479
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  3& 54 & 33055 & 34608 & 0.13450 & 0.01724
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  5 & 55 & 30980 & 34578 & 0.06247 & 0.01654
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  3 & 57 & 36382 & 35074 & 0.24263 & 0.01345
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 4 & 56 & 31466 & 34657 & 0.11085 & 0.01490
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 3 & 57 & 32029 & 34574 & 0.13489 & 0.01308
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+
+The results of the AllocCrit algorithm shows a patchwork rug of territories. Although the activity measure of the territories is balanced they are not contiguous and compact. The reason for the result is the violation of orientation of the basic areas. They are just considered like the order in database is. If the order within the database will be change, also the result of the territories will change. But never a compact and contiguous shape of the territories will be achieved. To obtain such regions a consideration of the orientation needs to be done. Caused by the order of basic areas within the database the solution is not reproducible all the time. As soon as the order changes, the previous solution will be not get again. Consequently the approach is not usable for geomarketing analysis. Nevertheless a well balanced resolution is recognizable. Considering zip-code5 areas the difference between the sum of activities is larger than in the case of zip-code8 areas. By the finer subdivision of regions the basic areas in zip-code8 can be assigned better in such a way the balance is ideal. However, aberration are possible all the same because the balance is not linked to a threshold. Instead just a allocation is done without knowing the activity measure of the following basic area. Consequently if the activity measure of e.g. the last basic area is too huge compared to others the sum of the territory to which it will be allocated may be much larger than the sums of the activity measure within the other territories.
 
 \subsection{AllocMinDist}
 
-pdf gebietoptimalaufteilen, S 150
-Ausgehend von den Punkten lassen sich nun Entfernungen div zwischen Zentren
-und KGE berechnen. Hierfur gibt es verschiedene Vorschlage in der Literatur. Wir
-besprechen kurz die wichtigsten.
-Euklidische Distanzen. Die Entfernung zwischen Zentrum i 2 I und KGE v 2 V
-ist
-$div =(Osti  ostv)2 + (Nordi  nordv)2_1=2$
-:
-Dies entspricht der Luftlinienentfernung und stellt eine plausible Art der Entfernungsmessung
-dar (Cloonan [25]).
-Quadrierte euklidische Distanzen. Hierbei ist die Formel zur Berechnung der
-Distanz
-$div = (Osti  ostv)2 + (Nordi  nordv)2$
-Diese Art der Entfernungsmessung erscheint zunachst merkwurdig, da sie kaum als
-tatsachliche Entfernung interpretiert werden kann. Dennoch wird sie von vielen Autoren
-verwendet (Fleischmann und Paraschis [35], George et al. [42], Hess et al. [50],
-Hess und Samuels [51], Hojati [52], Marlin [68]). Nach Einschatzung des Verfassers
-gibt es dafur zwei Grunde.
-1. In locationallocationModellen ist der location Schritt besonders einfach umzusetzen,
-	wenn mit quadriert euklidischen Distanzen gearbeitet wird (vgl. 9.1.1.1).
-	Diese Begrundung wird in der Literatur haug zugunsten dieser Art der Distanzmessung
-	vorgebracht.
-	2. Ebenso wichtig erscheint aber eine Beobachtung, die in 7.3.2 herausgearbeitet
-	wird, und die auch im allocation Schritt fur die Verwendung von quadriert
-	euklidischen Distanzen spricht. In diesem Fall namlich wird die Ebene in Gebiete
-	aufgeteilt, die konvexen Polygonen entsprechen und damit eine Tendenz
-	zur Bildung von Bezirken, die der intuitiven Vorstellung von kompakter Form
-	entsprechen, geschaen.
+The AllocMinDist algorithm is based of the distances between the territory centres and the basic areas. Dependent on the distance each basic area will be assigned to that territory centre which is closest to it. Within previous researches different approaches are determinable how to calculate the distances. One possibility is to use euclidean distances, that is the distance between territory centre and basic areas in a crow line. On the other hand quadratic euclidean distances are often used in researches per example considering \citeauthor{fleischmann} \cite{fleischmann},\citeauthor{george} \cite{george} and \citeauthor{hess} \cite{hess}. Although quadratic euclidean distances are used more often than euclidean distances in this case study the second one will be used for calculations. The reason is provided by \citeauthor{marlin}: ''He concludes that the success of squared Euclidean distances depends on the ability to redefine territory centres''\cite{marlin}. But in this case study the centres are fixed, so that an application of quadratic euclidean distances is not possible. That is why quadratic euclidean distances are used mostly for political districting problems whereas euclidean distances are used for sales territory design problems. The case study of that master thesis is similar to sales territory design problems, consequently euclidean distance can be used here, too. \\
+The workflow diagram and the results of the AllocMinDist algorithm are shown in the following figures.
 
-dist: He concludes that the success of squared
-Euclidean distances depends on the ability to redefine territory centers and is not appropriate
-for the case of fixed centers
+\begin{figurevarSize}{Workflow of AllocMinDist algorithm}{images/AllocDistworkflow.jpg}{0.3}\end{figurevarSize}
 
-In most cases, the problem of allocating basic areas to territory centers is formulated as a
-capacitated assignment problem, see e.g. Hess et al. [HWS+65] and also Section 5. While
-the balancing requirement is generally included as a side constraint, compact and contiguous
-territories are tried to be obtained by minimizing the sum of weighted distances between basic
-areas and territory centers. For political districting problems, authors tend to use squared
-Euclidean distances (e.g. Hess et al. [HWS+65], Hojati [Hoj96]), whereas for sales territory
-design problems, largely straight line (Cloonan [Clo72], Marlin [Mar81]) or network distances
-(Segal and Weinberger [SW77], Zoltners and Sinha [ZS83]) are employed
 
+\begin{figureOwn}{Result of area segmentation process using AllocMinDist. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/AllocDist.jpg}\end{figureOwn}
+
+\newpage
+\setvalue{tableTitle=Results of area segmentation using AllocDist}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 3 & 53 & 29587 & 37112 & 0.30051 & 0.24085
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  5 & 33 & 23964 & 20570 & 0.27904 & 0.27857
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  4 &  49 & 33033 & 37072 & 0.12038 & 0.21838
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 2 & 43 & 23390 & 23700 & 0.27541 & 0.15193
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 5 & 86 & 51925 & 56054 & 0.30495 & 0.27057
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  4 & 48 & 37216 & 30058 & 0.29541 & 0.34401
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  6 & 123 & 56230 & 65734 & 0.20121 & 0.26552
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  3 & 75 & 49971 & 52067 & 0.45405 & 0.37194
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 3 & 38 & 33964 & 17274 & 0.21720 & 0.18477
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 2 & 16 & 7340 & 6979 & 0.29587 & 0.29500
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+
+The accomplishment of the AllocMinDist algorithm yields to contiguous and at first sight compactness territories, but they are not well balanced. By considering just the distance the probability of creating contiguous territories raises up a lot. But nevertheless the coherency is not compulsive. In some case, especially if a basic area has a unusual shape, incoherent territories may be created. The compactness for that case study is quite well although no ''round'' territories are formed. The reason for this is shape and adjustment of the basic areas. Consequently the calculated compactness value is not quite good. However, showing these results to persons how planned sale territories in the past, they confirmed a good assignment of the territories. But the sum of activity measure is not balanced because the activities were not considered during the calculation. The range of the different sums is too huge. Consequently the difference of the number of basic areas containing each territory is quite high, too. Caused by these two reasons an application of that algorithm to geomarketing analyses is not promising if no adaptation will be done.
 
 \subsection{Eat-up}
 
+The Eat-up algorithm extends one territory centre after another by adding yet unassigned basic areas to the territory successively. Consequently one territory centre is taken and basic areas are aligned to it until a threshold value is reached. The threshold value is calculated by creating the sum of all activity measures and dividing this sum by the number of territories that will be formed. Let $t$ donates the threshold and $N$ the number of territories, this calculation can be formulated as:
+
+\[ \mathit{t  = \frac{\sum\nolimits  _{B \in V} w_{B}}{N}}\]
+
+As soon as the threshold is reached, the next territory centre is taken, if not all centres were already used. \\
+The workflow of the Eat-up algorithm and the results will be shown in the following figures.
+
+\begin{figurevarSize}{Workflow of Eat-up algorithm}{images/Eatupworkflow.jpg}{0.3}\end{figurevarSize}
+
+\begin{figureOwn}{Result of area segmentation process using Eat-up. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/Eatup.jpg}\end{figureOwn}
+
+
+\setvalue{tableTitle=Results of area segmentation using Eat-up}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 4 & 51 & 41726 & 35656 & 0.12937 & 0.15024
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  4 & 46 & 39196 & 34778 & 0.12697 & 0.14228
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  4 &  53 & 40119 & 35281 & 0.22537 & 0.15231
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 3 & 61 & 37972 & 34882 & 0.18226 & 0.13125
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 3 & 51 & 34748 & 34922 & 0.11567 & 0.14501
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  5 & 58 & 43818 & 35240 & 0.14354 & 0.20280
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  4 & 53 & 35620 & 35459 & 0.16096 & 0.18325
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  4 & 56 & 35143 & 35113 & 0.11095 & 0.20593
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 6 & 59 & 38278 & 35266 & 0.08428 & 0.11736
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 0 & 76 & 0 & 30023 & null & 0.11216
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+The results of Eat-up shows two different results. Looking at the outcome of zip-code5 areas it is obvious that the algorithm leads to a bad resolution concerning balance, compactness and contiguity. While using zip-code8 areas the resolution looks much better which causes the impression of a promising approach. Looking in more detail to the results makes an exact evaluation possible. Concerning the coherence of the territories in both use cases (zip-code5 and zip-code8 areas) shows that it is not given always. Instead of this the territories may disconnected. This is caused by ignoring any neighbouring relationships and distances. The basic areas are just allocated to a territory centre depending on their order within the database. If the order will change, also the resolution changes so that the result may not be comprehensible anymore. In worst case a patchwork rug of basic areas belonging to one territory centre may be created. In the case of the case study often basic areas are neighboured in database which are neighboured in reality, too. That is why the territories are coherent partly. Besides the problem of the contiguity and consequently the compactness also the balance may be not satisfying. One problem is shown in the calculation using zip-code5 areas. Territory 10 does not have any allocated basic areas. This phenomena is caused by assigning basic areas to the previous territory centres until the threshold is reached. Doing so the threshold value will be exceeded all the time so that the termination criterion is reached. Caused by the rough classification of zip-code areas all basic areas will be already assigned to a centre although not all territory centres are considered yet. In case of zip-code8 areas this phenomena does not occur because the basic areas are classified finer. Considering the two main problems of no coherence and the dangerous of no satisfying balance the conclusion of non-applicability is obvious if no adaptations are done to the existing algorithm.
+ 
+
 \subsection{SmallestCritGetsNearest}
+
+The SmallestCritGetsNearest algorithm combines the approaches of AllocCrit and AllocMinDist. Consequently it allocates the closest basic area to the territory centre that has the smallest sum of activity measures. To do so at first all sums are compared to determine the centre with the smallest value. After this step the comparison of distances to yet not assigned basic areas are compared. The basic area which is closest will be allocated afterwards. The segmentation is done until all basic areas are allotted. By combing to heuristics it is tried to find an approach that considers balance as well as compactness and coherence.\\
+The workflow of the algorithm and the results are shown in the following figures.
+
+
+\begin{figurevarSize}{Workflow of SmallestCritGetsNearest algorithm}{images/SmallestCritGetsNearestworkflow.jpg}{0.3}\end{figurevarSize}
+
+
+\begin{figureOwn}{Result of area segmentation process using SmallestCritGetsNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/smallestcritgetsnearest.jpg}\end{figureOwn}
+
+\newpage
+\setvalue{tableTitle=Results of area segmentation using SmallestCritGetsNearest}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 3 & 51 & 29587 & 34548 & 0.30051 & 0.10532
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  7 & 50 & 33432 & 34645 & 0.15803 & 0.14166
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  4 &  48 & 35890 & 34716 & 0.15647 & 0.09506
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 3 & 59 & 33794 & 34830 & 0.21891 & 0.13064
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 3 & 59 & 45353 & 34549 & 0.14055 & 0.07482
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  4 & 55 & 40275 & 34974 & 0.17941 & 0.15727
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  3 & 56 & 31945 & 34477 & 0.28958 & 0.30115
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  2 & 51 & 32140 & 34469 & 0.61214 & 0.14139
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 3 & 71 & 33964 & 34753 & 0.21720 & 0.15885
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 5 & 64 & 30240 & 34659 & 0.23357 & 0.12474
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+The results of SmallestCritGetsNearest algorithm shows that the territories may not compulsively contiguity. In both tested cases incoherence exists. Although the closest basic area will be allocated to a territory centre the assignments that are already done are not considered. If there are basic areas of another territory in between the closest basic areas which is not assigned yet will be chosen, also if it is far away from the territory which will get it. Consequently an examination of contiguity is necessary if coherent territories need to be achieved. Thus the compactness of the territories can be neglected, too. Nevertheless the balance is quite good. But there exist restrictions, too. A huge discrepancy may occur during the last allocations because the activity measure is not considered previously. After the last assignments the sum of activity may be too huge of the territories which got the last basic areas. This danger existing as not as much in case of zip-code8 areas caused by the finer partitioning of the basic areas.
 
 \subsection{SmallestCritGetsTrueNearest}
 
+The SmallestCritGetsTrueNearest algorithm is an improvement of SmallestCritGetsNearest. The main part of the algorithm is working like SmallestCritGetsNearest. Consequently the first procedures are the same. After initializing basic areas and territory centres the basic areas will be assigned to the centres. Therefore in each step the territory centre with the smallest sum of activity measure is determined. Afterwards the not yet allocated basic area which is closest to the centre will be detected. Contrary to SmmallestCritGetsNearest this one is not allocated immediately. Instead it is checked whether the basic area is located to another territory centre more closer. If so, a basic area will chosen which is already allocated but closer to the territory centre than the not assigned one that was taken first. Consequently the basic area is removed from the territory it was allocated previous and it is added to the territory with smallest sum of activity measure. According to this the territory with smallest sum will be determined again and the processes starting afresh. These steps are done until all basic areas are allocated.\\
+The workflow of the algorithm and the results are shown in the following figures.
+
+\begin{figurevarSize}{Workflow of SmallestCritGetsTrueNearest algorithm}{images/SmallestCritGetsTrueNearestworkflow.jpg}{0.6}\end{figurevarSize}
+
+\newpage
+\begin{figureOwn}{Result of area segmentation process using SmallestCritGetsTrueNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/smallestcritgetstruenearest.jpg}\end{figureOwn}
+
+
+\setvalue{tableTitle=Results of area segmentation using SmallestCritGetsTrueNearest}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 3 & 51 & 35771 & 34712 & 0.18579 & 0.11388
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  4 & 53 & 34267 & 34954 & 0.19696 & 0.08049
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  4 &  48 & 33033 & 34508 & 0.12038 & 0.05897
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 3 & 59 & 35046 & 34771 & 0.24743 & 0.10476
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 3 & 54 & 33436 & 34552 & 0.29346 & 0.04600
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  5 & 59 & 33542 & 34584 & 0.11221 & 0.04356
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  3 & 58 & 31945 & 34638 & 0.28958 & 0.27358
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  2 & 57 & 36621 & 34719 & 0.42244 & 0.03948
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 6 & 67 & 35986 & 34314 & 0.18329 & 0.03754
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 4 & 58 & 36973 & 34868 & 0.12917 & 0.04157
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+\newpage
+The results of SmallestCritGetsTrueNearest shows that the hoped-for success of the improvement does not occur. The created territories are not coherent. Instead of this a patchwork rug of territories is recognizable. Although the sum of criteria in each territory are well balanced the algorithm is not usable caused by the not contiguous and compact territories. The balance is just given conditionally because no check of it will be done at the end. Consequently if the basic areas that are allocated last own a huge activity measure the discrepancy of the sums may be large, too. Another problem occurs by trying to allocate to the nearest territory centre. It is shown in the workflow diagram that an examination is done whether the basic area is closest to the territory centre or not. If the check ends up with the conclusion that another territory centre is the closest one, a change of the basic areas is done. But this change leads to problems. In some cases a endless change occur because in one step a basic area is taken from one territory and in the next step the same area is given back to the territory. This process goes on and on. Consequently a workaround is needed to solve that problem. In this algorithm it was declined to change the same basic area again. Other approaches were tested too, but either the contiguity or the compactness are affected negatively. Consequently this approach needs a necessary improvement so that a advisable area segmentation can be done.
+
+
 \subsection{OutsideSmallestCritGetsNearest}
 
+The OutsideSmallestCritGetsNearest algorithm is as well as SmallestCritGetsTrueNearest an extension of SmallestCritGetsNearest. The developed algorithm consists of two different steps. At first all basic areas are checked whether they are allocated within a specific distance to one territory. This means it is checked whether the distance of one territory centre and the basic area is to small so that it will be allocated clearly to that territory. During the comparison of the distances of basic area to all territory centre a threshold is used which can be adapted individually. Per example if 30\% is used as threshold all basic areas are allocated to territory centres which are 30\% closer to one centre compared as to the others. After doing the pre allocation of some basic areas the second steps start which is similar to the approach of SmallestCritGetsNearest. Consequently all basic areas that are not allocated yet will be assigned iteratively to the territory centres dependent on the sum of activity measures of the centres. This willbe done until all basic areas are distributed.\\
+The workflow of the algorithm and the results are shown in the following figures.
+
+\begin{figurevarSize}{Workflow of OutsideSmallestCritGetsNearest algorithm}{images/critdistinoutininoutworkflow.jpg}{0.6}\end{figurevarSize}
+
+
+\begin{figureOwn}{Result of area segmentation process using OutsideSmallestCritGetsNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/outsidesmallestcritgetsnearest.jpg}\end{figureOwn}
+
+
+\setvalue{tableTitle=Results of area segmentation using OutsideSmallestCritGetsNearest}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 3 & 44 & 29587 & 32979 & 0.30051 & 0.18142
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  5 & 43 & 23964 & 27017 & 0.27904 & 0.15807
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  4 &  42 & 33033 & 32103 & 0.12038 & 0.22956
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 2 & 43 & 23390 & 26360 & 0.27541 & 0.26590
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 5 & 74 & 51925 & 47419 & 0.30495 & 0.34101
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  3 & 42 & 28647 & 26189 & 0.25768 & 0.13975
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  6 & 102 & 56230 & 54735 & 0.20121 & 0.29949
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  3 & 64 & 49971 & 46342 & 0.45405 & 0.32603
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 2 & 55 & 16706 & 27160 & 0.15201 & 0.14998
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 4 & 55 & 33167 & 26316 & 0.13556 & 0.06752
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+The results of OutsideSmallestCritGetsNearest showing that the created territories are not persuasive concerning balance, contiguity and compactness. It is obvious that the territories are not coherent in all cases. Depending on the used threshold value during the allocation of the basic areas which are within a determined range of distance to one territory centre the contiguity may be better or not. But if the threshold value changes, this affects the balance to. As smaller as the threshold value is set, the worse the balance will be. The calculations were done to a threshold value of 30\%. During the assignment of basic areas in first step the sum of activity measure of each territory will be not considered. Only the second step does not ignore the activity measures. Consequently the balance is not quite well. Although the result is not completely persuasive in this case, the algorithm may have potential to be a useful heuristic. But therefore a lot of adaptations need to be done.
+
 \subsection{EatUpMinDist}
+The EatupMinDist algorithm is an improvement of Eat-up. It combines the approaches of Eat-up and AllocMinDist. The main processes are similar to Eat-up: The algorithm extends one territory centre after another by adding yet unassigned basic areas to the territory successively. But contrary to Eat-up not the next basic area in database will be chosen. Instead of this the distance of basic areas to territory centres will be considered. Consequently the order of allocated basic area depends on the sequence in database not anymore. Similar to Eat-up a termination criterion is used to stop the allocation of basic areas to one territory centre. That threshold is calculated by creating the sum of activity measures of all basic areas and dividing that sum by the number of territories that should be created.\\
+The workflow of the algorithm and the results are shown in the following figures.
+
+
+\begin{figurevarSize}{Workflow of EatUpMinDist algorithm}{images/EatupDistworkflow}{0.3}\end{figurevarSize}
+
+
+\begin{figureOwn}{Result of area segmentation process using EatUpMinDist. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/EatupDist.jpg}\end{figureOwn}
+
+\newpage
+\setvalue{tableTitle=Results of area segmentation using EatUpMinDist}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 4 & 48 & 46845 & 35216 & 0.23714 & 0.23448
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  7 & 54 & 45974 & 35839 & 0.16812 & 0.23678
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  3 &  46 & 36416 & 35666 & 0.24473 & 0.15943
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 5 & 60 & 47245 & 35085 & 0.13417 & 0.20270
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 5 & 57 & 40212 & 34841 & 0.24963 & 0.38059
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  4 & 58 & 36174 & 34784 & 0.16139 & 0.24416
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  4 & 55 & 37635 & 34796 & 0.19808 & 0.33026
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  3 & 50 & 37524 & 35716 & 0.19377 & 0.27660
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 2 & 71 & 18595 & 35199 & 0.17287 & 0.12722
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 0 & 65 & null & 29478 & null & 0.08759
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+The results of EatupMinDist shows similar problems that occur during the application of Eat-up algorithm. The created territories are not well balanced and not coherent in all cases. By considering the distances from a territory centre to basic areas the allocated areas are more closely to the centre. At the same time some territory centres lying outside of their territories because the basic areas which are closest to them were already allocated to other territories. Additionally some territories are not coherent because at the end just basic areas may exist which are located far away of the centre. Besides these problems the balance is not given. The algorithm just stops the allocation of the threshold is exceeded, consequently too much basic areas are allocated so that some territories may get no basic areas assigned, see case study of zip-code5 areas. Territory 10 does not own any basic areas because already all areas are allocated previously. Caused by a finder subdivisions of areas using zip-code8the problem does not occur in this case. Concluding it is recognizable that this approach is not usable for geomarketing analysis using fixed centres.
 
 \subsection{AllocMinDistLocalSearch}
+The AllocMinDistLocalSearch algorithm is a combination using AllocMinDist and LocalSearch approaches. Consequently the process consists of two steps. In first step basic areas are allocated by their distances to the territory centres to which they are closest. That approach is similar to AllocMinDist. Afterwards the allocated basic areas are rearranged again to get a balanced distribution. Therefore it will be checked whether the balance is satisfying. During the balance check a threshold is used. The threshold determines the range of allowed aberrancy comparing all territory activity measures. If the examination concludes that the territories are not well balanced the rearrangement starts. Doing so at first the territory with the highest sum of activity measures will be determined. Afterwards one of the containing basic areas is given to the neighboured territory that owns the smallest sum of activity measure. As soon as these steps are done the examination of the balance starts again.\\
+The workflow of the algorithm and the results are shown in the following figures.
+
+\begin{figurevarSize}{Workflow of AllocMinDistLocalSearch algorithm}{images/AllocMinDistLocalSearchworkflow.jpg}{0.8}\end{figurevarSize}
 
 
+\begin{figureOwn}{Result of area segmentation process using AllocMinDistLocalSearch. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/AllocMinDistLocalSearch.jpg}\end{figureOwn}
 
+
+\setvalue{tableTitle=Results of area segmentation using AllocMinDistLocalSearch}
+
+\begin{table}[H]
+	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		\multirow{2}*{} & \multicolumn{2}{c|}{number of basic areas} & \multicolumn{2}{c|}{sum of activity measure} & \multicolumn{2}{c|}{compactness} \tabularnewline
+		\cline{2-7}
+		\multirow{2}*{}& zip-code5 & zip-code8 & zip-code5 & zip-code8 & zip-code5 & zip-code8
+		\tabularnewline
+		\hline
+		\raggedright Territory 1 & 3 & 51 & 35771 & 35329 & 0.18579 & 0.18877
+		\tabularnewline
+		\hline
+		\raggedright Territory 2 &  6 & 44 & 34652 & 27881 & 0.26533 & 0.15301
+		\tabularnewline
+		\hline
+		\raggedright Territory 3 &  4 &  46 & 29511 & 35266 & 0.11334 & 0.14947
+		\tabularnewline
+		\hline
+		\raggedright Territory 4 & 3 & 62 & 35046 & 35299 & 0.24743 & 0.08732
+		\tabularnewline
+		\hline
+		\raggedright Territory 5 & 3 & 55 & 35068 & 35763 & 0.34382 & 0.06488
+		\tabularnewline
+		\hline
+		\raggedright Territory 6 &  4 & 56 & 37216 & 35401 & 0.29540 & 0.12332
+		\tabularnewline
+		\hline
+		\raggedright Territory 7 &  4 & 66 & 34219 & 35355 & 0.17911 & 0.06317
+		\tabularnewline
+		\hline
+		\raggedright Territory 8 &  2 & 48 & 36621 & 35467 & 0.19377 & 0.09523
+		\tabularnewline
+		\hline
+		\raggedright Territory 9 & 3 & 68 & 33964 & 35084 & 0.17287 & 0.06374
+		\tabularnewline
+		\hline
+		\raggedright Territory 10 & 5 & 68 & 34552 & 35775 & 0.26951 & 0.04481
+		\tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
+
+The results of AllocMinDistLocalSearch show well balanced territories, which are sometimes not full coherent. The not given contiguity is caused by the local search. Using AllocMinDist in first step creates mostly coherent territories, consequently at the beginning well formed areas were created. During the rearrangement to get balanced territories the coherence will not be considered thus basic areas may changed in such a way that they are not linked anymore to their territory. Consequently an improvement will be necessary to satisfy the contiguity constraint. Just the balance is considered during the local search. The admissible range of differences between the sum of activity measure of each threshold is defined by a threshold. In this case study the threshold was set to 30\%. The admissible range is just a guide value to represent the maximal difference. Anyhow the resulting differences of sums of activity measures may be smaller than the threshold value. Although the implemented algorithm contains some problems concerning contiguity and compactness at the moment, it offers a great potential to be an promising approach. Nevertheless some improvements are necessary to use it for geomarketing analyses effectively.

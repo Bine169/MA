@@ -1,4 +1,7 @@
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -20,29 +23,82 @@ public class functions {
 		return criteriaf;
 	}
 	
-	public static double[] setLocations(int numberlocations){
+	public static double[] setLocations(int numberlocations) throws IOException{
 		double lonlats[]= new double[numberlocations*2];
-//		lonlats[4]=13.475955;			//Meiﬂen
-//		lonlats[5]=51.162388; 
-//
-		lonlats[0]=13.817904;			//Dresden: Leuben
-		lonlats[1]=50.990689; 	
-		
-		lonlats[2]=13.712454;			//Dresden: Trachau
-		lonlats[3]=51.085643; 
-		
-		lonlats[4]=13.789752;			//Dresden:Klotsche
-		lonlats[5]=51.119954; 
-		
-		lonlats[6]=13.705294;			//Dresden: Plauen
-		lonlats[7]=51.036696;
+//		// Input file which needs to be parsed
+		String fileToParse = null;
+		fileToParse = "E:\\Studium\\Master\\4.Semester - MA\\OSD_Standorte_MC.csv";
+		BufferedReader fileReader = null;
 
-//		
-//		lonlats[4]=13.682163;			//Moritzburg
-//		lonlats[5]=51.155044; 
-////		
-//		lonlats[6]=13.904042;			//Kˆnigsbr¸ck
-//		lonlats[7]=51.264285;
+		// Delimiter used in CSV file
+		final String DELIMITER = ";";
+		int pos = 0;
+
+		boolean satisfied = false;
+		int i = 0;
+		List<Integer> ids = new ArrayList<Integer>();
+
+		// locations small area: 3, 5, 11, 12, 14, 21, 26, 33, 42, 53, 72
+		// locations huge area: 11, 41, 55, 68, 72, 79, 82, 90, 92, 96
+		ids.add(3); // DD Goldener Reiter
+		ids.add(5); // DD Weixdorf
+		// ids.add(10); //DD Elbcenter
+		ids.add(11); // DD Wilder Mann
+		ids.add(12); // DD Cossebaude
+		ids.add(14); // DD L√∂btau
+		ids.add(21); // DD Leubnitz
+		ids.add(26); // DD Leuben
+		// ids.add(29); //DD Seidnitz
+		ids.add(33); // DD Johannstadt
+		// ids.add(34); //DD Sparkassenhaus
+		// ids.add(39); //DD Wei√üig
+		// ids.add(41); //Radeberg Hauptstraﬂe
+		ids.add(42); // Radeberg
+		// ids.add(51); //Kesselsdorf
+		ids.add(53); // Possendorf
+		// ids.add(54); //Kreischa
+		// ids.add(55); //Rabenau
+		// ids.add(56); //Tharandt
+		// ids.add(60); //Altenberg
+		// ids.add(68); //Struppen
+		ids.add(72); // DD Heidenau West
+		// ids.add(77); //Bergie√üh√ºbel
+		// ids.add(79); //Liebstadt
+		// ids.add(82); //Neustadt
+		// ids.add(90); //Panschwitz Kuckau
+		// ids.add(92); //Schwepnitz
+		// ids.add(96); //Hoyerswerda Altstadt
+
+		String line = "";
+		// Create the file reader
+		fileReader = new BufferedReader(new FileReader(fileToParse));
+		line = fileReader.readLine();
+
+		while (!satisfied) {
+			line = fileReader.readLine();
+
+			if (line == null) {
+				satisfied = true;
+			} else {
+				// Get all tokens available in line
+				String[] tokens = line.split(DELIMITER);
+
+				if (ids.contains(Integer.valueOf(tokens[0]))) {
+					i++;
+					double lon = Double.parseDouble(tokens[7]);
+					double lat = Double.parseDouble(tokens[8]);
+					lonlats[pos]=lon;
+					lonlats[pos+1]=lat;
+					pos = pos + 2;
+				}
+
+				if (i == numberlocations) {
+					satisfied = true;
+				}
+			}
+		}
+
+		fileReader.close();
 		
 		return lonlats;
 	}
@@ -53,13 +109,23 @@ public class functions {
 //	 * @return number of polygons
 //	 * @throws SQLException
 //	 */
-	public static int getNrOrSum(boolean number) throws SQLException, ClassNotFoundException{
+	public static int getNrOrSum(boolean number, boolean plz5) throws SQLException, ClassNotFoundException{
 		Statement stmt = getConnection();
 		StringBuffer sb = new StringBuffer();
+	if (plz5){
 		if (number)
-			{ sb.append("SELECT COUNT (id) FROM criterias");}
+			{ sb.append("SELECT COUNT (id) FROM criteriasplz51");}
 		else
-			{ sb.append("SELECT SUM(_c1) FROM criterias");}
+			{ sb.append("SELECT SUM(CAST(_c1 AS int)) FROM criteriasplz51");}
+		}
+	else{
+		if (number)
+		{ sb.append("SELECT COUNT (id) FROM criteriasplz81");}
+	else
+		{ sb.append("SELECT SUM(CAST(_c1 AS int)) FROM criteriasplz81");}
+	}
+		
+	
 		ResultSet t=stmt.executeQuery(sb.toString());
 		t.next();
 		int sum=t.getInt(1);
@@ -133,7 +199,6 @@ public class functions {
 	         jdbc = DriverManager
 	            .getConnection("jdbc:postgresql://localhost:5432/MA",
 	            "postgres", "");
-	      System.out.println("Opened database successfully");
 	      stmt = jdbc.createStatement();
 		}
 	    catch ( Exception e ) {
@@ -178,7 +243,8 @@ public class functions {
 		
 		int coordpos=0;
 		for (int i=1; i<numberlocations+1;i++){
-			outputloc.append("i,");
+			outputloc.append(Objects.toString(i));
+			outputloc.append(",");
 			outputloc.append(Objects.toString(lonlats[coordpos]));
 			outputloc.append(",");
 			outputloc.append(Objects.toString(lonlats[coordpos+1]));
@@ -243,7 +309,7 @@ public class functions {
 				boolean neighbour=false;
 				int pos=0;
 				
-				System.out.println(locBiggest);
+//				System.out.println(locBiggest);
 				
 				while (pos<allocPolys[locBiggest].size() && neighbour==false){
 					//check every allocated Polygone whether it is a neighbour of one of the polys of another location
@@ -269,7 +335,7 @@ public class functions {
 			}
 		}
 		
-		System.out.println(actNeighbours);
+//		System.out.println(actNeighbours);
 		
 		//determine that area of neighbours areas with smallest critSum
 		double minsum=-1;
@@ -305,8 +371,8 @@ public class functions {
 		}
 		
 		//give locMinSum 1 polygone of locbiggest
-		System.out.println("neighbours:"+actNeighbours);
-		System.out.println("smallest "+(locMinsum+1)+","+minsum);
+//		System.out.println("neighbours:"+actNeighbours);
+//		System.out.println("smallest "+(locMinsum+1)+","+minsum);
 		
 		int polyID = allocPolys[locBiggest].get(0).intValue();
 		System.out.println(polyID);
@@ -415,7 +481,7 @@ public class functions {
 		int run=0;
 		
 		while (!satisfied){
-			int threshold = 15;
+			int threshold = 50;
 			int[] compCriterias = new int[numberlocations];
 			for (int i=0; i<numberlocations; i++) compCriterias[i]=0;
 			
@@ -467,8 +533,10 @@ public class functions {
 		
 		int lastPolyID=-1;
 		int lastArea=-1;
+		List<Integer> changedIds = new ArrayList<Integer>();
+		
 		while (!satisfied){
-			int threshold = 10;
+			int threshold = 30;
 			int[] compCriterias = new int[numberlocations];
 			for (int i=0; i<numberlocations; i++) compCriterias[i]=0;
 			
@@ -529,7 +597,6 @@ public class functions {
 							boolean neighbour=false;
 							int pos=0;
 							
-							System.out.println(locBiggest);
 							
 							while (pos<allocPolys[locBiggest].size() && neighbour==false){
 								//check every allocated Polygone whether it is a neighbour of one of the polys of another location
@@ -555,7 +622,6 @@ public class functions {
 						}
 					}
 					
-					System.out.println(actNeighbours);
 					
 					//determine that area of neighbours areas with smallest critSum
 					double minsum=-1;
@@ -591,8 +657,6 @@ public class functions {
 					}
 					
 					//give locMinSum 1 polygone of locbiggest
-					System.out.println("neighbours:"+actNeighbours);
-					System.out.println("smallest "+(locMinsum+1)+","+minsum);
 					
 					int polyID = allocPolys[locBiggest].get(0).intValue();
 					System.out.println(polyID);
@@ -600,9 +664,14 @@ public class functions {
 					
 					for (int l=1;l<allocPolys[locBiggest].size();l++){
 						double actDist = polys[locMinsum+1].get(polys[0].indexOf(Double.valueOf(allocPolys[locBiggest].get(l))));
-						if (actDist<minDist){
+						if (locBiggest==2){
+							System.out.println("here");
+							
+						}
+						if (actDist<minDist && !changedIds.contains(allocPolys[locBiggest].get(l).intValue())){
 							minDist=actDist;
 							polyID=allocPolys[locBiggest].get(l).intValue();
+							changedIds.add(polyID);
 						}
 					}
 					
