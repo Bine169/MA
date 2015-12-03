@@ -7,7 +7,7 @@ public class Whitespot {
 	public static void main(String[] args)
 			throws Exception {
 		
-		boolean PLZ5=true;
+		boolean PLZ5=false;
 		boolean microm=false;
 		
 		long time = System.currentTimeMillis();
@@ -15,8 +15,8 @@ public class Whitespot {
 		int numberGivenLocations = 10;
 		int numberNewLocations = 1;
 		int numberlocations=numberGivenLocations+numberNewLocations;
-		int weightCom = 100;
-		int weightCrit =0;
+		int weightCom = 50;
+		int weightCrit =50;
 		int threshold =50;
 		
 		//create FileWriter

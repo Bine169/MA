@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  30 NOV 2015 20:39
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  3 DEC 2015 22:43
 entering extended mode
 **thesis.tex
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.tex
@@ -2468,42 +2468,64 @@ File: images/greenfieldfirst.jpg Graphic file (type QTm)
 <use  "images/greenfieldfirst.jpg" > [78]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 54.
+(caption)                particular \caption on input line 53.
 See the caption package documentation for explanation.
 
 File: images/greenfield_workflow.jpg Graphic file (type QTm)
 <use  "images/greenfield_workflow.jpg" >
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 56.
+(caption)                particular \caption on input line 55.
 See the caption package documentation for explanation.
 
 File: images/greenfieldend.jpg Graphic file (type QTm)
-<use  "images/greenfieldend.jpg" > [79]) [80]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex)
-Overfull \hbox (9.03479pt too wide) in paragraph at lines 3--44
-\OT1/cmr/m/n/10.95 performanceverbesserung durch ver-mei-dung von daten-bankzu-
-grif-fen: nach-barschafts-
- []
+<use  "images/greenfieldend.jpg" > [79] [80]
 
-[81
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 71.
+See the caption package documentation for explanation.
+
+File: images/1_allocationToGivenLocations.png Graphic file (type QTm)
+<use  "images/1_allocationToGivenLocations.png" > [81]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 75.
+See the caption package documentation for explanation.
+
+File: images/2_allocationToGivenAndNewWithoutCheck.png Graphic file (type QTm)
+<use  "images/2_allocationToGivenAndNewWithoutCheck.png" >
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 79.
+See the caption package documentation for explanation.
+
+File: images/whitespot.jpg Graphic file (type QTm)
+<use  "images/whitespot.jpg" >) [82]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 6.
+See the caption package documentation for explanation.
+
+File: images/HH.png Graphic file (type QTm)
+<use  "images/HH.png" > [83
 
 
-]
+] [84]) [85]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex)
-[82
+[86
 
 
 ] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.brf)
 \tf@brf=\write9
- [83
+ [87
 
 ]
 Missing character: There is no – in font cmti10!
 Missing character: There is no – in font cmti10!
- [84])
-[85]
+ [88])
+[89]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
  (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.aux
@@ -2536,12 +2558,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 32497 strings out of 429025
- 572177 string characters out of 3166797
+ 32503 strings out of 429025
+ 572356 string characters out of 3166797
  652530 words of memory out of 3000000
- 35206 multiletter control sequences out of 15000+200000
+ 35209 multiletter control sequences out of 15000+200000
  11851 words of font info for 43 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
  70i,14n,79p,10428b,507s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (86 pages).
+Output written on thesis.pdf (90 pages).
