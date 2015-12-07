@@ -19,22 +19,35 @@
 \include{chapters/titelseite}
 
 \newpage
-\pagenumbering{arabic}
-\onehalfspacing
 
 \include{chapters/declaration}
 
-\tableofcontents
-%\listoftodos[Notes]
+\pagenumbering{arabic}
+\onehalfspacing
+\setcounter{page}{3}
 
 \setcounter{secnumdepth}{0}
 \titlecontents{section}[2.2em]{\addvspace{1pc}\bfseries}{\contentslabel{2.2em}}{}{\titlerule*[0.3pc]{}\contentspage}
 
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{section}{Abstract}
 \include{chapters/abstract}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{section}{Acknowledgement}
 \include{chapters/acknowledgement}
+
+\tableofcontents
+%\listoftodos[Notes]
+
 
 \titlecontents{section}[2.2em]{\addvspace{1pc}\bfseries}{\contentslabel{2.2em}}{}{\titlerule*[0.3pc]{.}\contentspage}
 \setcounter{secnumdepth}{4} 
+
+\cleardoublepage
+\phantomsection
 \include{chapters/introduction}
 \include{chapters/relatedWork}
 \include{chapters/ApplicationInGeomarketing}
@@ -48,11 +61,21 @@
 %\include{chapters/appendix}
 %\end{appendix}
 
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\newpage 
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+\newpage
+\addcontentsline{toc}{section}{References}
+
 \nocite{*}
 % legt die zu verwendete BibTeX Stildatei fest; einige Stildateien gehoeren zu Erweiterungspaketen, die ggf. zusaetzlich einzubinden sind
 \bibliographystyle{plainnat}
 % Befehl ist an der Stelle zu verwenden, an der das Literaturverzeichnis gesetzt werden soll
 \bibliography{bib/verzeichnis}
+
 
 
 \end{document}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  3 DEC 2015 22:43
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  5 DEC 2015 21:04
 entering extended mode
 **thesis.tex
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.tex
@@ -1350,10 +1350,14 @@ File: se-ascii-print.def 2011/12/02 v1.10 stringenc: Printable ASCII characters
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/declaration.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <20> not available
-(Font)              size <20.74> substituted on input line 1.
+(Font)              size <20.74> substituted on input line 2.
 
 Requested font "cmr17" at 20.74pt
-)
+) [2
+
+
+]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/abstract.tex)
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1361,7 +1365,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 Requested font "cmbx10" at 10.0pt
-[1
+[3
+
+
+
+]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/acknowledgement.
+tex) [4
+
 
 
 ] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.toc
@@ -1393,7 +1404,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Requested font "msbm10" at 10.95pt
 Requested font "msbm10" at 8.0pt
 Requested font "msbm7" at 6.0pt
- [2
+ [5
 
 ]
 Overfull \hbox (3.04161pt too wide) in paragraph at lines 47--47
@@ -1403,16 +1414,7 @@ Ge-o-mar-ket-ing anal-
 
 )
 \tf@toc=\write8
- [3]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/abstract.tex)
-[4
-
-]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/acknowledgement.
-tex) [5
-
-
-]
+ [6]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/introduction.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15> not available
@@ -1426,7 +1428,7 @@ See the caption package documentation for explanation.
 
 Requested font "cmti10" at 10.0pt
 File: images/geomarketing.jpg Graphic file (type QTm)
-<use  "images/geomarketing.jpg" > [6
+<use  "images/geomarketing.jpg" > [7
 
 
 ]
@@ -1436,20 +1438,20 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/stacks.jpg Graphic file (type QTm)
-<use  "images/stacks.jpg" > [7]
+<use  "images/stacks.jpg" > [8]
 Overfull \hbox (2.34317pt too wide) in paragraph at lines 14--15
 \OT1/cmr/m/n/10.95 demographic, psy-choso-cial, eco-nomic and con-sump-tion pro
 p-er-ties like in-come, prod-
  []
 
-[8]
+[9]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 19.
 See the caption package documentation for explanation.
 
 File: images/mapchart.png Graphic file (type QTm)
-<use  "images/mapchart.png" > [9]) [10]
+<use  "images/mapchart.png" > [10]) [11] [12]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/relatedWork.tex
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
@@ -1457,7 +1459,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/kit_alg.jpg Graphic file (type QTm)
-<use  "images/kit_alg.jpg" > [11
+<use  "images/kit_alg.jpg" > [13
 
 
 ]
@@ -1468,8 +1470,8 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
- [12]
-Package marginnote Info: Margin note 14.1 is on absolute page 14
+ [14]
+Package marginnote Info: Margin note 15.1 is on absolute page 15
 (marginnote)              on input line 24.
 Package marginnote Info: right page because not two side mode on input line 24.
 
@@ -1494,16 +1496,23 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/kit_lizard_opt.jpg Graphic file (type QTm)
-<use  "images/kit_lizard_opt.jpg" > [13] [14]
+<use  "images/kit_lizard_opt.jpg" > [15] [16]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 46.
 See the caption package documentation for explanation.
 
 File: images/easymap.jpg Graphic file (type QTm)
-<use  "images/easymap.jpg" > [15]) [16]
+<use  "images/easymap.jpg" > [17]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 56.
+See the caption package documentation for explanation.
+
+File: images/simtool.jpg Graphic file (type QTm)
+<use  "images/simtool.jpg" > [18]) [19]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/ApplicationInGeo
-marketing.tex [17
+marketing.tex [20
 
 
 ]
@@ -1514,19 +1523,19 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
 Requested font "cmti10" at 10.95pt
 Requested font "cmti8" at 8.0pt
 Requested font "cmti7" at 6.0pt
-[18]
+[21]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 20.
 See the caption package documentation for explanation.
 
 File: images/basicAreas.jpg Graphic file (type QTm)
-<use  "images/basicAreas.jpg" > [19]
+<use  "images/basicAreas.jpg" > [22]
 Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
-[20]
+[23]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 52.
@@ -1544,7 +1553,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/coherent_notcoherent.jpg Graphic file (type QTm)
-<use  "images/coherent_notcoherent.jpg" > [21]
+<use  "images/coherent_notcoherent.jpg" > [24]
 Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
@@ -1555,7 +1564,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/compact_notcompact.jpg Graphic file (type QTm)
-<use  "images/compact_notcompact.jpg" > [22] [23]
+<use  "images/compact_notcompact.jpg" > [25] [26]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 82.
@@ -1569,39 +1578,39 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/map_historic.jpg Graphic file (type QTm)
-<use  "images/map_historic.jpg" > [24]
+<use  "images/map_historic.jpg" > [27]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 92.
 See the caption package documentation for explanation.
 
 File: images/salesdistriction1.jpg Graphic file (type QTm)
-<use  "images/salesdistriction1.jpg" > [25]
+<use  "images/salesdistriction1.jpg" > [28]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 96.
 See the caption package documentation for explanation.
 
 File: images/salesdistriction2.jpg Graphic file (type QTm)
-<use  "images/salesdistriction2.jpg" > [26]
+<use  "images/salesdistriction2.jpg" > [29]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 101.
 See the caption package documentation for explanation.
 
 File: images/whitespot.jpg Graphic file (type QTm)
-<use  "images/whitespot.jpg" >) [27]
+<use  "images/whitespot.jpg" >) [30]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.tex
 Overfull \hbox (0.22528pt too wide) in paragraph at lines 2--2
  |[]\OT1/cmr/m/n/14.4 Requirements of ap-proaches con-sid-er-ing ge-o-mar-ket-i
 ng anal-
  []
 
-[28
+[31
 
 
-] [29] [30]
-Package marginnote Info: Margin note 32.1 is on absolute page 32
+] [32] [33]
+Package marginnote Info: Margin note 34.1 is on absolute page 34
 (marginnote)              on input line 20.
 Package marginnote Info: right page because not two side mode on input line 20.
 
@@ -1713,8 +1722,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--77
 \OT1/cmr/m/n/10.95 re-sult pre-vi-ously
  []
 
-[31] [32] [33] [34]
-Package marginnote Info: Margin note 36.1 is on absolute page 36
+[34] [35] [36] [37]
+Package marginnote Info: Margin note 38.1 is on absolute page 38
 (marginnote)              on input line 100.
 Package marginnote Info: right page because not two side mode on input line 100
 .
@@ -1731,7 +1740,7 @@ Overfull \hbox (2.43764pt too wide) in paragraph at lines 101--130
 [][] 
  []
 
-[35]
+[38]
 Overfull \hbox (34.0864pt too wide) in paragraph at lines 134--134
  |[]\OT1/cmr/m/n/20.74 Implementation of area seg-men-ta-tion ap-proaches| 
  []
@@ -1742,15 +1751,15 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/basicAreasboth.jpg Graphic file (type QTm)
-<use  "images/basicAreasboth.jpg" > [36]
+<use  "images/basicAreasboth.jpg" > [39]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 155.
 See the caption package documentation for explanation.
 
 File: images/basicAreasLocations.jpg Graphic file (type QTm)
-<use  "images/basicAreasLocations.jpg" > [37]
-Package marginnote Info: Margin note 39.1 is on absolute page 39
+<use  "images/basicAreasLocations.jpg" > [40]
+Package marginnote Info: Margin note 41.1 is on absolute page 41
 (marginnote)              on input line 163.
 Package marginnote Info: right page because not two side mode on input line 163
 .
@@ -1773,15 +1782,15 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/AllocCritworkflow.jpg Graphic file (type QTm)
-<use  "images/AllocCritworkflow.jpg" > [38]
+<use  "images/AllocCritworkflow.jpg" > [41]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 196.
 See the caption package documentation for explanation.
 
 File: images/AllocCrit.jpg Graphic file (type QTm)
-<use  "images/AllocCrit.jpg" > [39]
-Package marginnote Info: Margin note 41.1 is on absolute page 41
+<use  "images/AllocCrit.jpg" > [42]
+Package marginnote Info: Margin note 43.1 is on absolute page 43
 (marginnote)              on input line 201.
 Package marginnote Info: right page because not two side mode on input line 201
 .
@@ -1798,22 +1807,22 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 202--240
 [][] 
  []
 
-[40]
+[43]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 250.
 See the caption package documentation for explanation.
 
 File: images/AllocDistworkflow.jpg Graphic file (type QTm)
-<use  "images/AllocDistworkflow.jpg" > [41]
+<use  "images/AllocDistworkflow.jpg" > [44]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 253.
 See the caption package documentation for explanation.
 
 File: images/AllocDist.jpg Graphic file (type QTm)
-<use  "images/AllocDist.jpg" > [42]
-Package marginnote Info: Margin note 44.1 is on absolute page 44
+<use  "images/AllocDist.jpg" > [45]
+Package marginnote Info: Margin note 46.1 is on absolute page 46
 (marginnote)              on input line 258.
 Package marginnote Info: right page because not two side mode on input line 258
 .
@@ -1830,7 +1839,7 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 259--297
 [][] 
  []
 
-[43]
+[46]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 311.
@@ -1844,8 +1853,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/Eatup.jpg Graphic file (type QTm)
-<use  "images/Eatup.jpg" > [44]
-Package marginnote Info: Margin note 46.1 is on absolute page 46
+<use  "images/Eatup.jpg" > [47]
+Package marginnote Info: Margin note 48.1 is on absolute page 48
 (marginnote)              on input line 318.
 Package marginnote Info: right page because not two side mode on input line 318
 .
@@ -1862,22 +1871,22 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 319--357
 [][] 
  []
 
-[45]
+[48]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 368.
 See the caption package documentation for explanation.
 
 File: images/SmallestCritGetsNearestworkflow.jpg Graphic file (type QTm)
-<use  "images/SmallestCritGetsNearestworkflow.jpg" > [46]
+<use  "images/SmallestCritGetsNearestworkflow.jpg" > [49]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 371.
 See the caption package documentation for explanation.
 
 File: images/smallestcritgetsnearest.jpg Graphic file (type QTm)
-<use  "images/smallestcritgetsnearest.jpg" > [47]
-Package marginnote Info: Margin note 49.1 is on absolute page 49
+<use  "images/smallestcritgetsnearest.jpg" > [50]
+Package marginnote Info: Margin note 51.1 is on absolute page 51
 (marginnote)              on input line 376.
 Package marginnote Info: right page because not two side mode on input line 376
 .
@@ -1894,14 +1903,14 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 377--415
 [][] 
  []
 
-[48]
+[51]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 424.
 See the caption package documentation for explanation.
 
 File: images/SmallestCritGetsTrueNearestworkflow.jpg Graphic file (type QTm)
-<use  "images/SmallestCritGetsTrueNearestworkflow.jpg" > [49] [50]
+<use  "images/SmallestCritGetsTrueNearestworkflow.jpg" > [52] [53]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 427.
@@ -1909,7 +1918,7 @@ See the caption package documentation for explanation.
 
 File: images/smallestcritgetstruenearest.jpg Graphic file (type QTm)
 <use  "images/smallestcritgetstruenearest.jpg" >
-Package marginnote Info: Margin note 52.1 is on absolute page 52
+Package marginnote Info: Margin note 54.1 is on absolute page 54
 (marginnote)              on input line 432.
 Package marginnote Info: right page because not two side mode on input line 432
 .
@@ -1926,22 +1935,22 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 433--471
 [][] 
  []
 
-[51]
+[54]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 482.
 See the caption package documentation for explanation.
 
 File: images/critdistinoutininoutworkflow.jpg Graphic file (type QTm)
-<use  "images/critdistinoutininoutworkflow.jpg" > [52]
+<use  "images/critdistinoutininoutworkflow.jpg" > [55]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 485.
 See the caption package documentation for explanation.
 
 File: images/outsidesmallestcritgetsnearest.jpg Graphic file (type QTm)
-<use  "images/outsidesmallestcritgetsnearest.jpg" > [53]
-Package marginnote Info: Margin note 55.1 is on absolute page 55
+<use  "images/outsidesmallestcritgetsnearest.jpg" > [56]
+Package marginnote Info: Margin note 57.1 is on absolute page 57
 (marginnote)              on input line 490.
 Package marginnote Info: right page because not two side mode on input line 490
 .
@@ -1958,22 +1967,22 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 491--529
 [][] 
  []
 
-[54]
+[57]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 538.
 See the caption package documentation for explanation.
 
 File: images/EatupDistworkflow.jpg Graphic file (type QTm)
-<use  "images/EatupDistworkflow.jpg" > [55]
+<use  "images/EatupDistworkflow.jpg" > [58]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 541.
 See the caption package documentation for explanation.
 
 File: images/EatupDist.jpg Graphic file (type QTm)
-<use  "images/EatupDist.jpg" > [56]
-Package marginnote Info: Margin note 58.1 is on absolute page 58
+<use  "images/EatupDist.jpg" > [59]
+Package marginnote Info: Margin note 60.1 is on absolute page 60
 (marginnote)              on input line 546.
 Package marginnote Info: right page because not two side mode on input line 546
 .
@@ -1990,14 +1999,14 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 547--585
 [][] 
  []
 
-[57]
+[60]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 593.
 See the caption package documentation for explanation.
 
 File: images/AllocMinDistLocalSearchworkflow.jpg Graphic file (type QTm)
-<use  "images/AllocMinDistLocalSearchworkflow.jpg" > [58]
+<use  "images/AllocMinDistLocalSearchworkflow.jpg" > [61]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 596.
@@ -2005,7 +2014,7 @@ See the caption package documentation for explanation.
 
 File: images/AllocMinDistLocalSearch.jpg Graphic file (type QTm)
 <use  "images/AllocMinDistLocalSearch.jpg" >
-Package marginnote Info: Margin note 60.1 is on absolute page 61
+Package marginnote Info: Margin note 62.1 is on absolute page 63
 (marginnote)              on input line 601.
 Package marginnote Info: right page because not two side mode on input line 601
 .
@@ -2022,9 +2031,9 @@ Overfull \hbox (22.2061pt too wide) in paragraph at lines 602--640
 [][] 
  []
 
-[59]) [60] [61]
+[62]) [63] [64]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.tex
-[62
+[65
 
 
 ]
@@ -2032,7 +2041,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--24
 
  []
 
-[63]
+[66]
 Underfull \hbox (badness 10000) in paragraph at lines 34--34
 []|\OT1/cmr/m/n/10.95 zip-
  []
@@ -2417,17 +2426,17 @@ Underfull \hbox (badness 1521) in paragraph at lines 128--130
  []|\OT1/cmr/m/n/10.95 2|
  []
 
-[64
+[67
 
 ]
 Underfull \vbox (badness 10000) detected at line 135
  []
 
-[65] [66
+[68] [69
 
-] [67] [68]) [69]
+] [70] [71]) [72]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
-marketing.tex [70
+marketing.tex [73
 
 
 ]
@@ -2437,35 +2446,35 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/graphwhitepic.jpg Graphic file (type QTm)
-<use  "images/graphwhitepic.jpg" > [71] [72] [73]
+<use  "images/graphwhitepic.jpg" > [74] [75] [76]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 32.
 See the caption package documentation for explanation.
 
 File: images/areasegmentation.jpg Graphic file (type QTm)
-<use  "images/areasegmentation.jpg" > [74]
+<use  "images/areasegmentation.jpg" > [77]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 37.
 See the caption package documentation for explanation.
 
 File: images/areasegmentation_workflow.jpg Graphic file (type QTm)
-<use  "images/areasegmentation_workflow.jpg" > [75] [76]
+<use  "images/areasegmentation_workflow.jpg" > [78] [79]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 41.
 See the caption package documentation for explanation.
 
 File: images/init.jpg Graphic file (type QTm)
-<use  "images/init.jpg" > [77]
+<use  "images/init.jpg" > [80]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 47.
 See the caption package documentation for explanation.
 
 File: images/greenfieldfirst.jpg Graphic file (type QTm)
-<use  "images/greenfieldfirst.jpg" > [78]
+<use  "images/greenfieldfirst.jpg" > [81]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 53.
@@ -2479,14 +2488,14 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/greenfieldend.jpg Graphic file (type QTm)
-<use  "images/greenfieldend.jpg" > [79] [80]
+<use  "images/greenfieldend.jpg" > [82] [83]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 71.
 See the caption package documentation for explanation.
 
 File: images/1_allocationToGivenLocations.png Graphic file (type QTm)
-<use  "images/1_allocationToGivenLocations.png" > [81]
+<use  "images/1_allocationToGivenLocations.png" > [84]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 75.
@@ -2500,34 +2509,54 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 File: images/whitespot.jpg Graphic file (type QTm)
-<use  "images/whitespot.jpg" >) [82]
+<use  "images/whitespot.jpg" >) [85]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 6.
 See the caption package documentation for explanation.
 
-File: images/HH.png Graphic file (type QTm)
-<use  "images/HH.png" > [83
+File: images/HH10.jpg Graphic file (type QTm)
+<use  "images/HH10.jpg" > [86
 
-
-] [84]) [85]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex)
-[86
-
-
-] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.brf)
-\tf@brf=\write9
- [87
 
 ]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 12.
+See the caption package documentation for explanation.
+
+File: images/dtl.jpg Graphic file (type QTm)
+<use  "images/dtl.jpg" > [87]) [88]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex
+[89
+
+
+])
+Overfull \hbox (3.71193pt too wide) in paragraph at lines 7--58
+\OT1/cmr/m/n/10.95 The com-par-i-son of the im-ple-mented al-go-rithm to ex-ist
+-ing ge-o-mar-ket-ing tools showed
+ []
+
+[90] [91] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.lof
+[92
+
+] [93])
+\tf@lof=\write9
+ [94]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.lot)
+\tf@lot=\write10
+ [95]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.brf)
+\tf@brf=\write11
+ [96]
 Missing character: There is no – in font cmti10!
 Missing character: There is no – in font cmti10!
- [88])
-[89]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
+ [97])
+[98]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
  (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.aux
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/titelseite.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/declaration.aux)
@@ -2546,8 +2575,8 @@ marketing.aux)
 marketing.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.aux)
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 58.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 58.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 81.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 81.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
@@ -2555,15 +2584,15 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
  ) 
 Here is how much of TeX's memory you used:
- 32503 strings out of 429025
- 572356 string characters out of 3166797
- 652530 words of memory out of 3000000
- 35209 multiletter control sequences out of 15000+200000
+ 32516 strings out of 429025
+ 572610 string characters out of 3166797
+ 652674 words of memory out of 3000000
+ 35214 multiletter control sequences out of 15000+200000
  11851 words of font info for 43 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
- 70i,14n,79p,10428b,507s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,14n,79p,10428b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (90 pages).
+Output written on thesis.pdf (98 pages).

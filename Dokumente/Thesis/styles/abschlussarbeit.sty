@@ -167,13 +167,13 @@
 % ====================
 \newenvironment{figureOwn}[2]{
 \marginlabel
-{\captionof{figure}{#1}}
+{\captionof{figure}[#1]{#1}}
 \raisebox{-\height}{\includegraphics[width=1\textwidth]{#2}}
 \vspace*{0.5cm}
 }
 
 \newenvironment{figurevarSize}[3]{
-\begin{center}\marginlabel{\captionof{figure}{#1}}
+\begin{center}\marginlabel{\captionof{figure}[#1]{#1}}
 \raisebox{-\height}{\includegraphics[width=#3\textwidth]{#2}}\end{center}
 \vspace*{0.5cm}
 }
