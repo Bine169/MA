@@ -46,6 +46,8 @@
 % --- zur Erzeugung eines Stichwortverzeichnisses
 %\usepackage{makeidx}
 
+\usepackage{tabularx,calc}
+
 % --- Paket zur Erzeugung von Hypertext-Links aus LaTeX Querverweisen
 \usepackage[%
 	bookmarks,%						Erzeugung von Lesezeichen fuer den Reader
@@ -144,9 +146,10 @@
 
 %  define distances and style
 % ====================
-\titlecontents{section}[2.2em]{\addvspace{1pc}\bfseries}{\contentslabel{2.2em}}{}{\titlerule*[0.3pc]{.}\contentspage}
-\titlecontents{subsection}[5.2em]{}{\contentslabel{2.95em}}{}{\titlerule*[0.3pc]{.}\contentspage}
-\titlecontents{subsubsection}[7em]{}{\contentslabel{3em}}{}{\titlerule*[0.3pc]{.}\contentspage}
+\titlecontents{section}[2.2em]{\addvspace{1pc}\bfseries}{\contentslabel{1.8em}}{}{\titlerule*[0.3pc]{.}\contentspage}
+\titlecontents{subsection}[4.7em]{}{\contentslabel{2.5em}}{}{\titlerule*[0.3pc]{.}\contentspage}
+\titlecontents{subsubsection}[7.8em]{}{\contentslabel{3em}}{}{\titlerule*[0.3pc]{.}\contentspage}
+\titlecontents{paragraph}[11.2em]{}{\contentslabel{3.5em}}{}{\titlerule*[0.3pc]{.}\contentspage}
 
 % ===========================
 %  Margin Label
