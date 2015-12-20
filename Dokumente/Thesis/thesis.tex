@@ -41,7 +41,12 @@
 
 \tableofcontents
 %\listoftodos[Notes]
-
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\newpage 
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
 
 \titlecontents{section}[2.2em]{\addvspace{1pc}\bfseries}{\contentslabel{2.2em}}{}{\titlerule*[0.3pc]{.}\contentspage}
 \setcounter{secnumdepth}{4} 
@@ -61,18 +66,13 @@
 %\include{chapters/appendix}
 %\end{appendix}
 
-\newpage
-\listoffigures
-\addcontentsline{toc}{section}{List of Figures}
-\newpage 
-\listoftables
-\addcontentsline{toc}{section}{List of Tables}
+
 \newpage
 \addcontentsline{toc}{section}{References}
 
 \nocite{*}
 % legt die zu verwendete BibTeX Stildatei fest; einige Stildateien gehoeren zu Erweiterungspaketen, die ggf. zusaetzlich einzubinden sind
-\bibliographystyle{plainnat}
+\bibliographystyle{alpha}
 % Befehl ist an der Stelle zu verwenden, an der das Literaturverzeichnis gesetzt werden soll
 \bibliography{bib/verzeichnis}
 

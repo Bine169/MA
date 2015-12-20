@@ -1,17 +1,17 @@
 \section{Selecting approaches for implementation}\label{Selecting}
-\subsection{Requirements of approaches considering geomarketing \newline  analyses}
+\subsection{Requirements of approaches considering Geomarketing \newline  analyses}
 
-For the application of area segmentation approaches to Geomarketing strategies some dedicated requirements are need to be kept in mind to get an useful result. Possible planning criteria where already explained in detail in section \label{criterias} ''\hyperref[criterias]{Additonally Planning criterias}''. It was mentioned that contiguity, balance and compactness may play a huge role during the distriction. Considering Geomarketing aspects all three planning criteria need to be satisfied. Taking the example of sales territories owing a certain number of salesman shows that a not balanced alignment yield to an imbalance concerning work load of the employees. This could lead to disaffection. Additionally the territories need to be compact to making the sale process more effective by minimizing travelling time. \\
+For the application of area segmentation approaches to Geomarketing strategies some dedicated requirements are need to be kept in mind to get an useful result. Possible planning criteria where already explained in detail in section \label{criterias} ''\hyperref[criterias]{Additonally Planning criterias}''. It was mentioned that contiguity, balance and compactness may play a huge role during the distriction. Considering Geomarketing aspects all three planning criteria need to be satisfied. Taking the example of sales territories owing a certain number of salesman shows that a not balanced alignment yield to an imbalance concerning workload of the employees. This could lead to disaffection. Additionally the territories need to be compact to make the sale process more effective by minimizing travelling time. \\
 The area segmentation in this case study will be done to already existing territory centres consequently a determination of new centres in the beginning will be not necessary. \\
 All these requirements and conditions needs to be kept in mind during the comparison of model types and the selection of promising algorithms for the implementation.
 
 
 
 \subsection{Comparison of model types}\label{comparison}
-In section \ref{Fundamentals} ''\hyperref[Fundamentals]{Fundamentals of area segmentation}'' it was mentioned that there exist three different types of models which where applied in history for distriction processes. The first model type are location-allocation approaches and are the ones that are mostly used. Within the location-allocation process in the location phase territory centres are chosen. In the second step the basic areas are assigned to these centres. Both steps are done iteratively until a satisfying result of the area segmentation is achieved. For selecting approaches for the implementation within that master thesis that method will be analysed in more detail to determine whether it will be used for that thesis or not. The first model of the location-allocation approach was developed by \citeauthor{hess} \cite{hess} in 1965 to solve a political distriction problem. Due to application of the model to sales districting the model of \citeauthor{hess} was enhanced by \citeauthor{hessstuart} \cite{hessstuart} and has established known as ''GEOLINE'' model. After the implementation they admit that their ''GEOLINE'' approach ''does not provide optimal sales territories'' \cite{hessstuart}. Additionally the gained solution may be not well balanced and coherent.
-Consequently the practical use of this model is fairly limited. That is why \citeauthor{fleischmann} \cite{fleischmann} developed a modified solution of the ''GEOLINE'' model, but their approach demonstrates the same disadvantages like the one of \citeauthor{hessstuart}. The difficulty of the solution of the capacitative transportation problem is the assignment of portions of basic areas to more than one territory centre to satisfy the balancing constraint. Consequently these so called split areas require a more detailed consideration. \citeauthor{hessstuart} \cite{hessstuart} tried to achieve a well balanced solution using a so called AssignMAX approach. Within the alignment they had district the split areas to the territory centres which ''own'' the largest share of the split area \cite{hessstuart, kalcsics}. But \citeauthor{fleischmann} \cite{fleischmann} had proofed that this approach leads to very poor results for their application. Consequently they tried to implement an improved solution of the alignment of split areas but the solution could not resolve all splits automatically thus it was necessary to do some manual post processing \cite{fleischmann, kalcsics}. Due to these problem different improvements were developed to find a good split solution. \citeauthor{schroeder} \cite{schroeder} tried to find an optimal split resolution using tree decomposition. With the help of that approach the best area segmentation in the system of the equations can be determined. Contrary to solving a transportation and split problem \citeauthor{zoltner} \cite{zoltner} implemented an approach using sub gradients. The advantage of that method is the calculation of several possible area segmentation solutions. From this amount of solutions the best one can be chosen. But comparison to the approach implemented by \citeauthor{schroeder} show that the calculation time using the approach of \citeauthor{zoltner} is higher then the one using \citeauthor{schroeder}s algorithm \cite{schroeder}. Additionally \citeauthor{zoltner}s approach needs well distributed territory centres to achieve a good solution of the calculations. Consequently the algorithm indeed provides coherent areas, but the resulting territories may not be well balanced. Considering all mentioned approaches it can be recognized that no one yields to optimal results considering the area segmentation process. Either the created territories are not coherent or they are not well balanced. Additionally due to the complexity of the split resolution the calculation time is still to time consuming for solving large scale problems. \cite{kalcsics}. Furthermore the location-allocation approach is not owing to the linear terms of the equations that need to be answered. Consequently the application of measures of compactness will be constrained considerably. Considering all these problems location-allocation approaches seem to be inapplicable for the application to Geomarketing strategies. Consequently such approaches will not be considered in that thesis anymore. \\
-The second type of model is called set-partitioning approach and was implemented by \citeauthor{mehrotra}\cite{mehrotra} per example. During the set-partitioning method subdivision of all geographical units will be created. These ones will be used to get a balanced result. Compared to location-allocation methods a major advantage of set-partitioning is the higher flexibility concerning a satisfying result of the area segmentation. In contrary to only limited use of criteria in the location-allocation methods in this approach any criterion can be applied during the generation of candidate districts \cite{kalcsics}. Nevertheless at the same time this advantage is a disadvantage too because the huge flexibility causes a raising combinatoric complexity. That is why the set-partitioning approach can be only used for smaller problems. It have not been used with more than 100 basic areas \cite{kalcsics}. Compared to the location-allocation approaches this method is more ineffective, cumbersome and computationally unattractive \cite{zoltner}. Considering that statement it is obvious that the set-partitioning approach can not be applied to Geomarketing strategies to achieve satisfying results. Additionally Geomarketing analysis are mostly done to huge area segmentation problems containing a lot of basic areas. Consequently the set-partitioning method can be seen as unusable for that application. \\
-The third type of models are heuristic approaches. These ones do not need any solver for linear problems like set-partitioning and location-allocation approaches do. Instead, just some mathematical programming is necessary. The main advantage of heuristic methods is the huge flexibility concerning the integration and observance of one or more criteria. At the same time a forecast of the quality of the created territories may be difficulty previously. Normally the quality will be measured afterwards comparing different solutions. Consequently just a relative rating of the quality is possible \cite{schroeder}. Nevertheless compared to the disadvantages of location-allocation and set-partitioning methods heuristic approaches seems to be the most promising ones to apply for Geomarketing strategies. By comparing different heuristics it will be tried to find an algorithm with a high quality of alignment results. To making the algorithm more dependable different heuristics will be combined. Additionally some completely new heuristic approaches will be implemented. In the following table an overview of the advantages and disadvantages of all three types can be found.
+In section \ref{Fundamentals} ''\hyperref[Fundamentals]{Fundamentals of area segmentation}'' it was mentioned that there exist three different types of models which where applied in history for distriction processes. The first model type are location-allocation approaches and are the ones that are mostly used. Within the location-allocation process in the location phase territory centres are chosen. In the second step the basic areas are assigned to these centres. Both steps are done iteratively until a satisfying result of the area segmentation is achieved. For selecting approaches for the implementation within that master thesis that method will be analysed in more detail to determine whether it will be used for that thesis or not. The first model of the location-allocation approach was developed by Hess et al. \cite{hess} in 1965 to solve a political distriction problem. Due to application of the model to sales districting the model of Hess et al. \cite{hess} was enhanced by Hess and Samuels \cite{hessstuart} and has established known as ''GEOLINE'' model. After the implementation they admit that their ''GEOLINE'' approach ''does not provide optimal sales territories'' \cite{hessstuart}. Additionally the gained solution may be not well balanced and coherent.
+Consequently the practical use of this model is fairly limited. That is why Fleischmann and Paraschis \cite{fleischmann} developed a modified solution of the ''GEOLINE'' model, but their approach demonstrates the same disadvantages like the one of Hess and Stuart \cite{hessstuart}. The difficulty of the solution of the capacitative transportation problem is the assignment of portions of basic areas to more than one territory centre to satisfy the balancing constraint. Consequently these so called split areas require a more detailed consideration. Hess and Stuart \cite{hessstuart} tried to achieve a well balanced solution using a so called AssignMAX approach. Within the alignment they had district the split areas to the territory centres which ''own'' the largest share of the split area \cite{hessstuart, kalcsics}. But Fleischmann and Paraschis \cite{fleischmann} had proofed that this approach leads to very poor results for their application. Consequently they tried to implement an improved solution of the alignment of split areas but the solution could not resolve all splits automatically thus it was necessary to do some manual post processing \cite{fleischmann, kalcsics}. Due to these problem different improvements were developed to find a good split solution. Schröder \cite{schroeder} tried to find an optimal split resolution using tree decomposition. With the help of that approach the best area segmentation in the system of the equations can be determined. Contrary to solving a transportation and split problem Zoltners and Sinha \cite{zoltner} implemented an approach using sub-gradients. The advantage of that method is the calculation of several possible area segmentation solutions. From this amount of solutions the best one can be chosen. But comparison to the approach implemented by Schröder \cite{schroeder} show that the calculation time using the approach of Zoltners and Sinha \cite{zoltner} is higher then the one using Schröders algorithm \cite{schroeder}. Additionally Zoltners and Sinha \cite{zoltner} approach needs well distributed territory centres to achieve a good solution of the calculations. Consequently the algorithm indeed provides coherent areas, but the resulting territories may not be well balanced. Considering all mentioned approaches it can be recognized that no one yields to optimal results considering the area segmentation process. Either the created territories are not coherent or they are not well balanced. Additionally due to the complexity of the split resolution the calculation time is still to time consuming for solving large scale problems. \cite{kalcsics}. Furthermore the location-allocation approach is not owing to the linear terms of the equations that need to be answered. Consequently the application of measures of compactness will be constrained considerably. Considering all these problems location-allocation approaches seem to be inapplicable for the application to Geomarketing strategies. Consequently such approaches will not be considered in that thesis anymore. \\
+The second type of model is called set-partitioning approach and was implemented by Mehrotra et al. \cite{mehrotra} for example. During the set-partitioning method subdivision of all geographical units will be created. These ones will be used to get a balanced result. Compared to location-allocation methods a major advantage of set-partitioning is the higher flexibility concerning a satisfying result of the area segmentation. In contrary to only limited use of criteria in the location-allocation methods in this approach any criterion can be applied during the generation of candidate districts \cite{kalcsics}. Nevertheless at the same time this advantage is a disadvantage too because the huge flexibility causes a raising combinatoric complexity. That is why the set-partitioning approach can be only used for smaller problems. It have not been used with more than 100 basic areas \cite{kalcsics}. Compared to the location-allocation approaches this method is more ineffective, cumbersome and computationally unattractive \cite{zoltner}. Considering that statement it is obvious that the set-partitioning approach can not be applied to Geomarketing strategies to achieve satisfying results. Additionally Geomarketing analysis are mostly done to huge area segmentation problems containing a lot of basic areas. Consequently the set-partitioning method can be seen as unusable for that application. \\
+The third type of models are heuristic approaches. These ones do not need any solver for linear problems like set-partitioning and location-allocation approaches do. Instead, just some mathematical programming is necessary. The main advantage of heuristic methods is the huge flexibility concerning the integration and observance of one or more criteria. At the same time a forecast of the quality of the created territories may be difficulty previously. Normally the quality will be measured afterwards comparing different solutions. Consequently just a relative rating of the quality is possible \cite{schroeder}. Nevertheless compared to the disadvantages of location-allocation and set-partitioning methods heuristic approaches seems to be the most promising ones to apply for Geomarketing strategies. By comparing different heuristics it will be tried to find an algorithm with a high quality of alignment results. To make the algorithm more dependable different heuristics will be combined. Additionally some completely new heuristic approaches will be implemented. In Table 2 an overview of the advantages and disadvantages of all three types can be found.
 
 \newpage
 
@@ -79,21 +79,20 @@ The third type of models are heuristic approaches. These ones do not need any so
  \tabularnewline
 				\hline
 	\end{tabular}
+	\caption{Comparison of different types of models applied for solving area segmentation problems}
 \end{table}
  
 \subsection{Heuristic approaches}
 During the last decades several heuristic algorithms were implemented to solve area segmentation problems. The common ones will be considered in that section to choose the approaches that will be used within this thesis. \\
-\citeauthor{mehrotra} \cite{mehrotra} per example developed an algorithm called \textbf{Eat-up}. During the Eat-up approach one territory after the other is extended at its boundary by adding yet unassigned basic areas to the territory successively. This will be done until the territory satisfying the criteria that need to be balanced. The algorithm was implemented for political distriction with the goal ''to develop a districting method that provides population equality and contiguous and compact districts while retaining jurisdictional boundaries of counties or other political subunits insofar as possible'' \cite{mehrotra}. Within their case study of political distriction in South Carolina they conclude that their implemented algorithm is ''an effective way of generating high quality districting plans'' \cite{mehrotra}. Consequently the Eat-up approach may be one of the potential methods used in that master thesis.\\
-\citeauthor{deckro} \cite{deckro} implemented an algorithm called \textbf{Clustering}. That approach treats each basic area initially as a single district. After creating a ranking of neighboured basic areas pairs of districts are merged together iteratively so that a new bigger territory will be created. During the creation of the districts a particular criterion is considered and needs to be satisfied within a range of acceptable variation \cite{deckro}. The districts are merged together until the number of prescribed territories is reached. It was not possible to find further examinations of the usability of that approach. Although it seems to be promising it is not applicable for the area segmentation processes that needs to be done within this thesis. The reason for this is that the distinction will be done using existing territories centres. But the clustering algorithm do not use any centres. \\
-\textbf{The Multi-kernel growth} approach was used per example by \citeauthor{bodin}\cite{bodin} in 1977. This method is made up of two steps. In the first step a certain number of basic areas are determined as centres of the territories that should be created. After this step to each centre neighbouring areas are successively added. The neighboured areas are added in order of decreasing distance to the centre. The alignment of basic areas is done until the desired territory size is reached. The second step of this approach is similar to the \textbf{AllocMinDist} method which was implemented by \citeauthor{kalcsics2} \cite{kalcsics2} where the basic areas are allocated to the closest territory centre like it is done in the Multi-kernel growth approach. They conclude that the AllocMinDist algorithm leads to ''disjoint, compact and often connected, however, usually
-not well balanced territories as the balance criterion is completely neglected when deciding about the allocation'' \cite{kalcsics2}. Nevertheless they have mentioned that ''the attractiveness of this method [...] lies in its simplicity and computational speed'' \cite{kalcsics2}. Consequently these results are also adaptable to the second step of the multi-kernel growth algorithm. The first step can be ignored because in the application of that thesis territory centres are already given. Owing to the mentioned advantages of the AllocMinDist algorithm this one may be useful during combining different heuristic approaches. That is why it will be tested by implementation. Additionally it will be proofed whether the same results of the AllocMinDist algorithm are achieved like in the application of \citeauthor{kalcsics2}. \\
+Mehrotra et al. \cite{mehrotra} for example developed an algorithm called \textbf{Eat-up}. During the Eat-up approach one territory after the other is extended at its boundary by adding yet unassigned basic areas to the territory successively. This will be done until the territory satisfies the criteria that need to be balanced. The algorithm was implemented for political distriction with the goal ''to develop a districting method that provides population equality and contiguous and compact districts while retaining jurisdictional boundaries of counties or other political subunits insofar as possible'' \cite{mehrotra}. Within their case study of political distriction in South Carolina they conclude that their implemented algorithm is ''an effective way of generating high quality districting plans'' \cite{mehrotra}. Consequently the Eat-up approach may be one of the potential methods used in that master thesis.\\
+Deckro \cite{deckro} implemented an algorithm called \textbf{Clustering}. That approach treats each basic area initially as a single district. After creating a ranking of neighboured basic areas pairs of districts are merged together iteratively so that a new bigger territory will be created. During the creation of the districts a particular criterion is considered and needs to be satisfied within a range of acceptable variation \cite{deckro}. The districts are merged together until the number of prescribed territories is reached. It was not possible to find further examinations of the usability of that approach. Although it seems to be promising it is not applicable for the area segmentation processes that needs to be done within this thesis. The reason for this is that the distinction will be done using existing territories centres. But the clustering algorithm do not use any centres. \\
+\textbf{The Multi-kernel growth} approach was used for example by Bodin \cite{bodin} in 1977. This method is made up of two steps. In the first step a certain number of basic areas are determined as centres of the territories that should be created. After this step to each centre neighbouring areas are successively added. The neighboured areas are added in order of decreasing distance to the centre. The alignment of basic areas is done until the desired territory size is reached. The second step of this approach is similar to the \textbf{AllocMinDist} method which was implemented by Kalcsics et al. \cite{kalcsics2} where the basic areas are allocated to the closest territory centre like it is done in the Multi-kernel growth approach. They conclude that the AllocMinDist algorithm leads to ''disjoint, compact and often connected, however, usually
+not well balanced territories as the balance criterion is completely neglected when deciding about the allocation'' \cite{kalcsics2}. Nevertheless they have mentioned that ''the attractiveness of this method [...] lies in its simplicity and computational speed'' \cite{kalcsics2}. Consequently these results are also adaptable to the second step of the multi-kernel growth algorithm. The first step can be ignored because in the application of that thesis territory centres are already given. Owing to the mentioned advantages of the AllocMinDist algorithm this one may be useful during combining different heuristic approaches. That is why it will be tested by implementation. Additionally it will be proofed whether the same results of the AllocMinDist algorithm are achieved like in the application of Kalcsics et al. \cite{kalcsics2}. \\
 Another developed approach for optimization is the so called \textbf{local search}. Within that method the basic areas of neighbouring territories are shifted to minimizing a weighted additive function of different planning criteria \cite{kalcsics}. Consequently an area segmentation needs to be done at first so that the local search can be applied to the solution. With the focus on this local search may be a promising method for combining different heuristics. Per example at first the allocMinDist algorithm may be applied, accordingly the local search approach. \\
-Another approach that needs to be mentioned is the algorithm which is implemented within the Lizard Library of KIT (see section \ref{KIT} ''\hyperref[KIT]{KIT - Institute of Operations Research: discrete optimization and logistic}'' for more information). The \textbf{Recursive Partitioning Algorithm} divides a problem into smaller sub problems until each sub problem satisfies the considered criteria. A similar approach was implemented by \citeauthor{forrest} \cite{forrest}. Problems of the Recursive Partitioning Algorithm were already mentioned in section \ref{KIT} so that this approach will not be used within this thesis. Although the created territories seem to be well balanced, they not need to be coherent after the calculation. Additionally the algorithm is based on no territory centres, but the Geomarketing application which will be considered first provides existing centres. \\
+Another approach that needs to be mentioned is the algorithm which is implemented within the Lizard Library of KIT (see section \ref{KIT} ''\hyperref[KIT]{KIT - Institute of Operations Research: discrete optimization and logistic}'' for more information). The \textbf{Recursive Partitioning Algorithm} divides a problem into smaller sub problems until each sub problem satisfies the considered criteria. A similar approach was implemented by Forrest \cite{forrest}. Problems of the Recursive Partitioning Algorithm were already mentioned in section \ref{KIT} so that this approach will not be used within this thesis. Although the created territories seem to be well balanced, they not need to be coherent after the calculation. Additionally the algorithm is based on no territory centres, but the Geomarketing application which will be considered first provides existing centres. \\
 Considering all mentioned approaches it is recognizable that just some methods seem to be promising while other do not. In conclusion three approaches will be used during the comparison. These approaches are Eat-up,
 AllocMinDist / Multi-kernel growth and local search. Additionally some further algorithms are developed. Related to the AllocMinDist approach the same will be done considering only the given criteria that should be balanced. This approach is called AllocCrit in the following. In addition to this several approaches are implemented combining different methods. The first one is appropriated to the AllocMinDist algorithm which will be combined with the consideration of the activity measure of the basic areas. Therefore the basic areas are assigned to every territory centre iteratively considering the activity measure of the centres. That means that the centre with the smallest activity measure gets the nearest basic area that is not assigned yet. These steps will be done for each territory centre until all basic areas are allocated. This approach will be called SmallestCritGetsNearest. An improvement of that approach is called SmallestCritGetsTrueNearest which considers neighbouring relationships in more detail. The procedure of the algorithm is similar to SmallestCritGetsNearest but the nearest neighboured basic area is just allocated if it is really the nearest one to this territory centre. If it is not the case another basic area will be taken. \\ Researches during the last decades show that algorithms that raise the size of the territories from centre may yield to bad results concerning the coherence of the territories. That is why algorithms were implemented which are using a starting point. The starting point of alignment lies at the boundary of the observation area. Consequently such a heuristic is implemented within that master thesis too. But this one is combined with the SmallestCritGetsNearest algorithm to yield to better results. Because of the combination of two heuristics the algorithm contains two steps. In the first one all outer territories which lie on the border are allocated to territory centres if they are nearest to one centre. To consider also territories which may be allocated to different territory centres, similar to split areas, a coefficient is used, which should be satisfied for allocation. If the assignment of outer territory centres is done the second step will be initialized which is the SmallestCritGetsNearest approach. The whole algorithm will be called OutsideSmallestCritGetsNearest. The next chosen algorithm is a combination of the Eat-up and the AllocMinDist approaches. Within the Eat-up algorithm each territory centre gets basic areas until the termination criterion build up from the planning criteria is reached. This allocation determines no relationship which basic area will be chosen for the assignment. Within the improved algorithm just the basic areas are allocated which are nearest to the territory centre. The algorithm will be called EatUpMinDist. Furthermore to the mentioned algorithms a combination of AllocMinDist and local search will be implemented too. The algorithm contains two steps similar to the OutsideSmallestCritGetsNearest approach. At first the AllocMinDist processes will be applied. Afterwards the assigned basic areas are rearranged again using local search to create a balanced resolution. Consequently this algorithm is called AllocMinDistLocalSearch\\
-All algorithms are implemented with the aim to find an usable calculation procedure for area segmentation processes for the implementation to Geomarketing strategies. All approaches will be compared to find the most promising one. For summarizing the used algorithm they will be shown in the following table.
-
-\newpage
+All algorithms are implemented with the aim to find an usable calculation procedure for area segmentation processes for the implementation to Geomarketing strategies. All approaches will be compared to find the most promising one. For summarizing the used algorithm they will be shown in Table 3.
 
 \setvalue{tableTitle=Overview about selected heuristic approaches for implementation}
 
@@ -127,6 +126,7 @@ All algorithms are implemented with the aim to find an usable calculation proced
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Overview about selected heuristic approaches for implementation}
 \end{table}
 
 \newpage
@@ -136,26 +136,30 @@ The comparison of different optimization models in the section before shows that
 Section \ref{notions} ''\hyperref[notions]{Notions and criteria}'' shows the fundamentals and necessary notions to apply to area segmentation. They will be discussed in the following chapter for  visualizing the used data of the application. \\
 Basic areas are geographical objects in plane which represent the areas that should be assigned to territory centres. In the case study basic areas are zip-code areas. There exist two different types that will be used:
 \begin{enumerate}
-	\item common zip-code areas with 5 numbers, per example: 01159, 48143. In the following these areas are mentioned as zip-code5. The used investigation area contains 37 zip-code5 areas.
-	\item subdivision of zip-code5 areas which is done by the microm to make more detailed analyses possible. These areas contain 8 numbers, per example the zip-code5 area of 01159 consists of 25 zip-code8 areas e.g. 0115903, 0115904, 0115912. In the following these areas are mentioned as zip-code8. The used investigation area contains 564 zip-code8 areas.
+	\item common zip-code areas with 5 numbers, for instance: 01159, 48143. In the following these areas are mentioned as zip-code5. The used investigation area contains 37 zip-code5 areas.
+	\item subdivision of zip-code5 areas which is done by the microm to make more detailed analyses possible. These areas contain 8 numbers, for example the zip-code5 area of 01159 consists of 25 zip-code8 areas e.g. 0115903, 0115904, 0115912. In the following these areas are mentioned as zip-code8. The used investigation area contains 564 zip-code8 areas.
 \end{enumerate}
 
 Each zip-code area is defined by coordinates to represent the shape and orientation in space. Additionally each area is linked with the activity measure. The activity measure will be household numbers. During the calculation just one measurement will be balanced. The calculations are applied to zip-code areas of the city of Dresden, Saxony and surrounding regions.
 
-\begin{figureOwn}{Zip-code areas from Dresden and surrounding regions as basic areas which are used during the area segmentation. a): zip-code5 areas, b): zip-code8 areas}{images/basicAreasboth.jpg}\end{figureOwn}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/basicAreasboth.jpg}
+	\caption[Zip-code areas from Dresden and surrounding regions as basic areas which are used within the area segmentation.]{Zip-code areas from Dresden and surrounding regions as basic areas which are used within the area segmentation. a): zip-code5 areas, b): zip-code8 areas}
+\end{figure} 
 
-The territory centres are given in that case study. The centres are a point data set provided by microm. Each centre represents a branch of the bank "Sparkasse". Consequently the number of territories is predefined. The locations of Sparkasse are used to make the area segmentation process more realistic so that a better analysis of the results may be possible. For the calculations 10 locations of Sparkasse are used, that are well destributed on the investigation area.. Caused by the distribution it is recognizable that the comparison of the approaches is first done to an optimal starting situation. This is done to rate the quality of the algorithm first under optimal situations. Later on further researches are necessary to determine the real quality of the chosen algorithm in the end. \\
-The area segmentation should achieve a well balanced result with coherent and compact territories. To check the compactness of each territory the compactness measure of Cox will be used. The decision to take this measure is based on a research by \citeauthor{koehler} \cite{koehler}. This ones shows that the Cox compactness measure is the best choice to get an satisfying ratio of calculation duration and quality of the calculated compactness. That result was confirmed by \citeauthor{kit_com} \cite{kit_com}, too. The compactness measure of Cox is the ratio of the area of a territory compared to the area of a circle which has the same circumference. The resulting value is
+The territory centres are given in that case study. The centres are a point data set provided by microm. Each centre represents a branch of the bank ''Sparkasse''. Consequently the number of territories is predefined. The locations of Sparkasse are used to make the area segmentation process more realistic so that a better analysis of the results may be possible. For the calculations 10 locations of Sparkasse are used, that are well destributed on the investigation area. Caused by the distribution it is recognizable that the comparison of the approaches is first done to an optimal starting situation. This is done to rate the quality of the algorithm first under optimal situations. Later on further researches are necessary to determine the real quality of the chosen algorithm in the end. \\
+The area segmentation should achieve a well balanced result with coherent and compact territories. To check the compactness of each territory the compactness measure of Cox will be used. The decision to take this measure is based on a research by Köhler \cite{koehler}. This ones shows that the Cox compactness measure is the best choice to get an satisfying ratio of calculation duration and quality of the calculated compactness. That result was confirmed by Butsch and Ludwig \cite{kit_com}, too. The compactness measure of Cox is the ratio of the area of a territory compared to the area of a circle which has the same circumference. The resulting value is
 
 \[ \mathit{cp(D_{j})  \leq   1}\]
 
 
 The nearer the value of $c_{p}$ to 1, the better the compactness of the territory is.
 
-\begin{figurevarSize}{Used locations of Sparkasse showing on zip-code5 areas from Dresden}{images/basicAreasLocations.jpg}{0.7}\end{figurevarSize}
+\begin{figurevarSize}{Used territory centres of Sparkasse showed on zip-code5 areas from Dresden}{images/basicAreasLocations.jpg}{0.6}\end{figurevarSize}
 
 For doing the calculations some software package are necessary. The implementation is done in JAVA using Eclipse. The basic areas and appropriate planning criteria are stored within a PostgreSQL/PostGIS database. The visualization of the areas is done using Quantum GIS. \\
-The following table summarizes the used data.
+Table 4 summarizes the used data.
 
 
 \setvalue{tableTitle=Summary of used data within the case study}
@@ -181,6 +185,7 @@ The following table summarizes the used data.
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Summary of used data within the implementation}
 \end{table}
 
 
@@ -189,13 +194,16 @@ The AllocCrit algorithm assigns basic areas to each territory centre dependent o
 
 \[ \mathit{w(T_{i}) = \sum\nolimits  _{B \in T_{i}} w_{B}}\]
 
-to achieve a balance of the territories for each one the activity measure of the contained basic areas in that territory are summed. Consequently the main focus of AllocCrit lies on a balanced resolution. Doing so the positions of the basic areas are not considered. The calculation is applied on zip-code5 and zip-code8. The procedure and the results of the AllocCrit area segmentation are shown in the following figures.
+to achieve a balance of the territories for each one the activity measure of the contained basic areas in that territory are summed. Consequently the main focus of AllocCrit lies on a balanced resolution. Doing so the positions of the basic areas are not considered. The calculation is applied on zip-code5 and zip-code8. The procedure and the results of the AllocCrit area segmentation are shown in the following figures and in Table 5.
 
 \begin{figurevarSize}{Workflow of AllocCrit algorithm}{images/AllocCritworkflow.jpg}{0.3}\end{figurevarSize}
 
-\begin{figureOwn}{Result of area segmentation process using AllocCrit. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/AllocCrit.jpg}\end{figureOwn}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/AllocCrit.jpg}
+	\caption[Result of area segmentation process using AllocCrit.]{Result of area segmentation process using AllocCrit. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 area.}
+\end{figure}  
 
-\newpage
 \setvalue{tableTitle=Results of area segmentation using AllocCrit}
 
 \begin{table}[H]
@@ -237,6 +245,7 @@ to achieve a balance of the territories for each one the activity measure of the
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using AllocCrit}
 \end{table}
 
 
@@ -244,15 +253,17 @@ The results of the AllocCrit algorithm shows a patchwork rug of territories. Alt
 
 \subsection{AllocMinDist}
 
-The AllocMinDist algorithm is based on the distances between the territory centres and the basic areas. Dependent on the distance each basic area will be assigned to that territory centre which is closest to it. Within previous researches different approaches are determined how the calculation of distances can be done. One possibility is to use euclidean distances, which is the linear distance between territory centre and basic areas. On the other hand quadratic euclidean distances are often used in researches per example considering \citeauthor{fleischmann} \cite{fleischmann}, \citeauthor{george} \cite{george} and \citeauthor{hess} \cite{hess}. Although quadratic euclidean distances are used more often than euclidean distances in this case study the second one will be used for calculations. The reason is provided by \citeauthor{marlin}. He concludes that the ''success of squared Euclidean distances depends on the ability to redefine territory centres''\cite{marlin}. But in this case study the centres are fixed, so that an application of quadratic euclidean distances is not possible. That is why quadratic euclidean distances are used mostly for political districting problems whereas euclidean distances are used for sales territory design problems. The case study of that master thesis is similar to sales territory design problems, consequently euclidean distance can be used here, too. \\
-The workflow diagram and the results of the AllocMinDist algorithm are shown in the following figures.
+The AllocMinDist algorithm is based on the distances between the territory centres and the basic areas. Dependent on the distance each basic area will be assigned to that territory centre which is closest to it. Within previous researches different approaches are determined how the calculation of distances can be done. One possibility is to use euclidean distances, which is the linear distance between territory centre and basic areas. On the other hand quadratic euclidean distances are often used in researches for example considering Fleischmann and Paraschis \cite{fleischmann}, George et al. \cite{george} and Hess et al. \cite{hess}. Although quadratic euclidean distances are used more often than euclidean distances in this case study the second one will be used for calculations. The reason is provided by Marlin \cite{marlin}. He concludes that the ''success of squared Euclidean distances depends on the ability to redefine territory centres''\cite{marlin}. But in this case study the centres are fixed, so that an application of quadratic euclidean distances is not possible. That is why quadratic euclidean distances are used mostly for political districting problems whereas euclidean distances are used for sales territory design problems. The case study of that master thesis is similar to sales territory design problems, consequently euclidean distance can be used here, too. \\
+The workflow diagram and the results of the AllocMinDist algorithm are shown in the following figures and in Table 6.
 
 \begin{figurevarSize}{Workflow of AllocMinDist algorithm}{images/AllocDistworkflow.jpg}{0.3}\end{figurevarSize}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/AllocDist.jpg}
+	\caption[Result of area segmentation process using AllocMinDist.]{Result of area segmentation process using AllocMinDist. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}  
 
-\begin{figureOwn}{Result of area segmentation process using AllocMinDist. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/AllocDist.jpg}\end{figureOwn}
-
-\newpage
 \setvalue{tableTitle=Results of area segmentation using AllocMinDist}
 
 \begin{table}[H]
@@ -294,10 +305,11 @@ The workflow diagram and the results of the AllocMinDist algorithm are shown in 
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using AllocMinDist}
 \end{table}
 
 
-The accomplishment of the AllocMinDist algorithm yields to contiguous and at first sight compactness territories, but they are not well balanced. By considering just the distance the probability of creating contiguous territories raises up a lot. But nevertheless the coherency is not compulsive. In some case, especially if a basic area has a unusual shape, incoherent territories may be created. The compactness for that case study is quite well although no ''round'' territories are formed. The reason for this is shape and adjustment of the basic areas. Consequently the calculated compactness value is not quite good. However, showing these results to persons how planned sale territories in the past, they confirmed a good assignment of the territories. But the sum of activity measure is not balanced because the activities were not considered during the calculation. The range of the different sums is too huge. Consequently the difference of the number of basic areas containing each territory is quite high, too. Caused by these two reasons an application of that algorithm to geomarketing analyses is not promising if no adaptation will be done.
+The accomplishment of the AllocMinDist algorithm yields to contiguous and at first sight compactness territories, but they are not well balanced. By considering just the distance the probability of creating contiguous territories raises up a lot. But nevertheless the coherency is not compulsive. In some case, especially if a basic area has a unusual shape, incoherent territories may be created. The compactness for that case study is quite well although no ''round'' territories are formed. The reason for this is shape and adjustment of the basic areas. Consequently the calculated compactness value is not quite good. However, showing these results to persons how planned sale territories in the past, they confirmed a good assignment of the territories. But the sum of activity measure is not balanced because the activities were not considered during the calculation. The range of the different sums is too huge. Consequently the difference of the number of basic areas containing each territory is quite high, too. Caused by these two reasons an application of that algorithm to Geomarketing analyses is not promising if no adaptation will be done.
 
 \subsection{Eat-up}
 
@@ -306,11 +318,15 @@ The Eat-up algorithm extends territory centre one after another by adding yet un
 \[ \mathit{t  = \frac{\sum\nolimits  _{B \in V} w_{B}}{N}}\]
 
 As soon as the threshold is reached, the next territory centre is taken, if not all centres were already used. \\
-The workflow of the Eat-up algorithm and the results will be shown in the following figures.
+The workflow of the Eat-up algorithm and the results will be shown in the following figures and in Table 7.
 
 \begin{figurevarSize}{Workflow of Eat-up algorithm}{images/Eatupworkflow.jpg}{0.3}\end{figurevarSize}
 
-\begin{figureOwn}{Result of area segmentation process using Eat-up. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/Eatup.jpg}\end{figureOwn}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/Eatup.jpg}
+	\caption[Result of area segmentation process using Eat-up.]{Result of area segmentation process using Eat-up. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}
 
 
 \setvalue{tableTitle=Results of area segmentation using Eat-up}
@@ -354,6 +370,7 @@ The workflow of the Eat-up algorithm and the results will be shown in the follow
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using Eat-up}
 \end{table}
 
 The outcome of Eat-up shows two different results. Looking at the resolution of zip-code5 areas it is obvious that the algorithm leads to a bad result concerning balance, compactness and contiguity. While using zip-code8 areas the resolution seems to be betters concerning the distribution of the basic areas. This causes the impression of using a promising approach. Looking in more detail to the results makes an exact evaluation possible. Concerning the coherence of the territories in both use cases (zip-code5 and zip-code8 areas) shows that it is not given always. Instead of this the territories may be disconnected. This is caused by ignoring any neighbouring relationships and distances. The basic areas are just allocated to a territory centre depending on their order within the database. If the order will change, also the resolution changes so that the result may not be comprehensible anymore. In worst case a patchwork rug of basic areas belonging to one territory centre may be created. In the case of the case study often basic areas are neighboured in database which are neighboured in reality, too. That is why the territories are coherent partly. Besides the problem of the contiguity and consequently the compactness also the balance may be not satisfying. One problem is shown in the calculation using zip-code5 areas. Territory 10 does not have any allocated basic areas. This phenomena is caused by assigning basic areas to the previous territory centres until the threshold is reached. Doing so the threshold value will be exceeded all the time so that the termination criterion is reached. Caused by the rough classification of zip-code areas all basic areas will be already assigned to a centre although not all territory centres are considered yet. In case of zip-code8 areas this phenomena does not occur because the basic areas are classified finer. Considering the two main problems of no coherence and the dangerous of no satisfying balance the conclusion of non-applicability is obvious if no adaptations are done to the existing algorithm.
@@ -362,15 +379,18 @@ The outcome of Eat-up shows two different results. Looking at the resolution of 
 \subsection{SmallestCritGetsNearest}
 
 The SmallestCritGetsNearest algorithm combines the approaches of AllocCrit and AllocMinDist. Consequently it allocates the closest basic area to the territory centre that owns the smallest sum of activity measures. To do so at first all sums are compared to determine the centre with the smallest value. After this step the comparison of distances to yet not assigned basic areas can be done. The basic area which is closest will be allocated afterwards. The segmentation is done until all basic areas are allotted. By combing two heuristics an approach that considers balance as well as compactness and coherence is requested to find.\\
-The workflow of the algorithm and the results are shown in the following figures.
+The workflow of the algorithm and the results are shown in the following figures and in Table 8.
 
 
 \begin{figurevarSize}{Workflow of SmallestCritGetsNearest algorithm}{images/SmallestCritGetsNearestworkflow.jpg}{0.3}\end{figurevarSize}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/smallestcritgetsnearest.jpg}
+	\caption[Result of area segmentation process using SmallestCritGetsNearest.]{Result of area segmentation process using SmallestCritGetsNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}
 
-\begin{figureOwn}{Result of area segmentation process using SmallestCritGetsNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/smallestcritgetsnearest.jpg}\end{figureOwn}
 
-\newpage
 \setvalue{tableTitle=Results of area segmentation using SmallestCritGets-Nearest}
 
 \begin{table}[H]
@@ -412,6 +432,7 @@ The workflow of the algorithm and the results are shown in the following figures
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using SmallestCritGets-Nearest}
 \end{table}
 
 The results of SmallestCritGetsNearest algorithm shows that the territories may be not compulsively contiguity. In both cases incoherence exists. Although the closest basic area will be allocated to a territory centre the assignments that are already done are not considered. If there are basic areas of another territory in between the closest basic areas which is not assigned yet will be chosen, also if it is far away from the territory which will get it. Consequently an examination of contiguity is necessary if coherent territories need to be achieved. Thus the compactness of the territories can be neglected, too. Nevertheless the balance is quite good. But there exist restrictions, too. A huge discrepancy may occur during the last allocations because the activity measure is not considered previously. After the last assignments the sum of activity may be too huge of the territories which got the last basic areas. This danger existing as not as much in case of zip-code8 areas caused by the finer partitioning of the basic areas.
@@ -419,12 +440,16 @@ The results of SmallestCritGetsNearest algorithm shows that the territories may 
 \subsection{SmallestCritGetsTrueNearest}
 
 The SmallestCritGetsTrueNearest algorithm is an improvement of SmallestCritGetsNearest. The main part of the algorithm is similar to SmallestCritGetsNearest. Consequently the first procedures are the same. After initializing basic areas and territory centres the basic areas will be assigned to the centres. Therefore in each step the territory centre with the smallest sum of activity measure is determined. Afterwards the not yet allocated basic area which is closest to the centre will be detected. Contrary to SmallestCritGetsNearest this one is not allocated immediately. Instead it is checked whether the basic area is located closer to another territory centre. If so, a basic area will chosen which is already allocated but closer to the territory centre than the not assigned one that was taken first. Consequently the basic area is removed from the territory it was allocated previous and it is added to the territory with smallest sum of activity measure. According to this the territory with smallest sum will be determined again and the processes is starting afresh. These steps are done until all basic areas are allocated.\\
-The workflow of the algorithm and the results are shown in the following figures.
+The workflow of the algorithm and the results are shown in the following figures and in Table 9.
 
 \begin{figurevarSize}{Workflow of SmallestCritGets-TrueNearest algorithm}{images/SmallestCritGetsTrueNearestworkflow.jpg}{0.6}\end{figurevarSize}
 
 \newpage
-\begin{figureOwn}{Result of area segmentation process using SmallestCritGets-TrueNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/smallestcritgetstruenearest.jpg}\end{figureOwn}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/smallestcritgetstruenearest.jpg}
+	\caption[Result of area segmentation process using SmallestCritGets-TrueNearest.]{Result of area segmentation process using SmallestCritGets-TrueNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}
 
 
 \setvalue{tableTitle=Results of area segmentation using SmallestCritGets-TrueNearest}
@@ -468,6 +493,7 @@ The workflow of the algorithm and the results are shown in the following figures
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using SmallestCritGets-TrueNearest}
 \end{table}
 
 \newpage
@@ -477,15 +503,18 @@ The results of SmallestCritGetsTrueNearest shows that the hoped-for success of t
 \subsection{OutsideSmallestCritGetsNearest}
 
 The OutsideSmallestCritGetsNearest algorithm is as well as SmallestCritGetsTrueNearest an extension of SmallestCritGetsNearest. The developed algorithm consists of two different steps. First all basic areas are checked whether they are allocated within a specific distance to one territory. This means it is checked whether the distance of one territory centre and the basic area is small enough so that it will be allocated clearly to that territory. During the comparison of the distances of basic area to all territory centre a threshold value is used which can be adapted individually. Per example if 30\% is used as threshold value all basic areas are allocated to territory centres which are 30\% closer to one centre compared to the others. After doing the pre-allocation of some basic areas the second step starts which is similar to the approach of SmallestCritGetsNearest. Consequently all basic areas that are not allocated yet will be assigned iteratively to the territory centres dependent on the sum of activity measures of the centres. This will be done until all basic areas are distributed.\\
-The workflow of the algorithm and the results are shown in the following figures.
+The workflow of the algorithm and the results are shown in the following figures and in Table 10.
 
-\begin{figurevarSize}{Workflow of OutsideSmal-lestCritGetsNearest algorithm}{images/critdistinoutininoutworkflow.jpg}{0.6}\end{figurevarSize}
+\begin{figurevarSize}{Workflow of OutsideSmal-lestCritGetsNearest algorithm}{images/critdistinoutininoutworkflow.jpg}{0.5}\end{figurevarSize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/outsidesmallestcritgetsnearest.jpg}
+	\caption[Result of area segmentation process using OutsideSmallestCritGetsNearest.]{Result of area segmentation process using OutsideSmallestCritGetsNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}
 
 
-\begin{figureOwn}{Result of area segmentation process using OutsideSmal-lestCritGetsNearest. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/outsidesmallestcritgetsnearest.jpg}\end{figureOwn}
-
-
-\setvalue{tableTitle=Results of area segmentation using OutsideSmal-lestCritGetsNearest}
+\setvalue{tableTitle=Results of area segmentation using OutsideSmallestCritGetsNearest}
 
 \begin{table}[H]
 	\begin{tabular}{|C{1.7cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
@@ -526,21 +555,24 @@ The workflow of the algorithm and the results are shown in the following figures
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using OutsideSmallestCritGetsNearest}
 \end{table}
 
 The results of OutsideSmallestCritGetsNearest shows that the created territories are not persuasive concerning balance, contiguity and compactness. It is obvious that the territories are not coherent in all cases. Depending on the threshold value used during the allocation of the basic areas which are within a determined range of distance to one territory centre the contiguity may be better or worse. But if the threshold value is changed, this affects the balance too. The smaller the threshold value, the worse the balance will be. The calculations were done to a threshold value of 30\%. During the assignment of basic areas in first step the sum of activity measure of each territory will be not considered. Only the second step does not ignore the activity measures. Consequently the balance is not quite well. Although the result is not completely persuasive in this case, the algorithm may have potential to be an useful heuristic. But therefore several adaptations need to be done.
 
 \subsection{EatUpMinDist}
 The EatupMinDist algorithm is an improvement of Eat-up. It combines the approaches of Eat-up and AllocMinDist. The main processes are similar to Eat-up: The algorithm extends one territory centre after another by adding yet unassigned basic areas to the territory successively. But contrary to Eat-up the next basic area in database will not be chosen. Instead of this the distance of basic areas to territory centres will be considered. Consequently the order of allocated basic area depends not on the sequence in database anymore. Similar to Eat-up a termination criterion is used to stop the allocation of basic areas to one territory centre. That threshold is calculated by creating the sum of activity measures of all basic areas and dividing that sum by the number of territories that should be created.\\
-The workflow of the algorithm and the results are shown in the following figures.
+The workflow of the algorithm and the results are shown in the following figures as well as in Table 11.
 
 
 \begin{figurevarSize}{Workflow of EatUpMinDist algorithm}{images/EatupDistworkflow}{0.3}\end{figurevarSize}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/EatupDist.jpg}
+	\caption[Result of area segmentation process using EatUpMinDist.]{Result of area segmentation process using EatUpMinDist. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}
 
-\begin{figureOwn}{Result of area segmentation process using EatUpMinDist. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/EatupDist.jpg}\end{figureOwn}
-
-\newpage
 \setvalue{tableTitle=Results of area segmentation using EatUpMinDist}
 
 \begin{table}[H]
@@ -582,18 +614,22 @@ The workflow of the algorithm and the results are shown in the following figures
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using EatUpMinDis}
 \end{table}
 
 The results of EatupMinDist shows similar problems that occur during the application of Eat-up algorithm. The created territories are not well balanced and not coherent in all cases. By considering the distances from a territory centre to basic areas the allocated areas are more closely to the centre. At the same time some territory centres lying outside of their territories because the basic areas which are closest to them were already allocated to other territories. Additionally some territories are not coherent because at the end just basic areas may exist which are located far away of the centre. Besides these problems the balance is not given all the time. The algorithm just stops the allocation as soon as the threshold is exceeded, consequently too much basic areas are allocated so that some territories may get no basic areas assigned, see case study of zip-code5 areas. Territory 10 does not own any basic areas because already all areas are allocated previously. Caused by a finer subdivision of areas using zip-code8 the problem does not occur in this case. Concluding it is recognizable that this approach is not usable for Geomarketing strategies using fixed centres.
 
 \subsection{AllocMinDistLocalSearch}
 The AllocMinDistLocalSearch algorithm is a combination using AllocMinDist and LocalSearch approaches. Consequently the process consists of two steps. In first step basic areas are allocated by their distances to the closest territory centres. That approach is similar to AllocMinDist. Afterwards the allocated basic areas are rearranged again in order to get a balanced distribution. Therefore it will be checked whether the balance is satisfied. During the balance check a threshold value is used. It determines the range of allowed aberrancy comparing all territory activity measures. If the examination concludes that the territories are not well balanced the rearrangement starts. Doing so at first the territory with the highest sum of activity measure will be determined. Afterwards one of the containing basic areas is given to the neighboured territory that owns the smallest sum of activity measure. As soon as these steps are done the examination of the balance starts again.\\
-The workflow of the algorithm and the results are shown in the following figures.
+The workflow of the algorithm and the results are shown in the following figures and in Table 12.
 
 \begin{figurevarSize}{Workflow of AllocMinDistLocalSearch algorithm}{images/AllocMinDistLocalSearchworkflow.jpg}{0.8}\end{figurevarSize}
 
-
-\begin{figureOwn}{Result of area segmentation process using AllocMinDistLocalSearch. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas}{images/AllocMinDistLocalSearch.jpg}\end{figureOwn}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{images/AllocMinDistLocalSearch.jpg}
+	\caption[Result of area segmentation process using AllocMinDistLocalSearch.]{Result of area segmentation process using AllocMinDistLocalSearch. The territory centres are visualized as circles. a) zip-code5 areas. b) zip-code8 areas.}
+\end{figure}
 
 
 \setvalue{tableTitle=Results of area segmentation using AllocMinDistLocalSearch}
@@ -637,6 +673,7 @@ The workflow of the algorithm and the results are shown in the following figures
 		\tabularnewline
 		\hline
 	\end{tabular}
+	\caption{Results of area segmentation using AllocMinDistLocalSearch}
 \end{table}
 
 The results of AllocMinDistLocalSearch show well balanced territories, which are sometimes not full coherent. The not given contiguity is caused by the local search. Using AllocMinDist in first step creates mostly coherent territories, consequently at the beginning well formed areas were created. During the rearrangement to get balanced territories the coherence will not be considered thus basic areas may change in such a way that they are not linked anymore to their territory. Consequently an improvement will be necessary to satisfy the contiguity constraint. Just the balance is considered during the local search. The admissible range of differences between the sum of activity measure of each threshold is defined by a threshold value. In this case study the threshold value was set to 30\%. The admissible range is just a guiding value to represent the maximal difference. Anyhow the resulting differences of sums of activity measures may be smaller than the threshold value. Although the implemented algorithm contains some problems concerning contiguity and compactness at the moment, it offers a great potential to be an promising approach. Nevertheless some improvements are necessary to use it for Geomarketing strategies effectively.

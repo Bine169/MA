@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  13 DEC 2015 21:20
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.20)  20 DEC 2015 12:32
 entering extended mode
 **thesis.tex
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.tex
@@ -150,30 +150,37 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: xetex.def on input line 130.
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip46
+\bibsep=\skip47
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count89
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count89
+\lst@mode=\count90
 \lst@gtempboxa=\box26
 \lst@token=\toks18
-\lst@length=\count90
+\lst@length=\count91
 \lst@currlwidth=\dimen112
-\lst@column=\count91
-\lst@pos=\count92
+\lst@column=\count92
+\lst@pos=\count93
 \lst@lostspace=\dimen113
 \lst@width=\dimen114
-\lst@newlines=\count93
-\lst@lineno=\count94
+\lst@newlines=\count94
+\lst@lineno=\count95
 \lst@maxwidth=\dimen115
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count95
-\lst@skipnumbers=\count96
+\c@lstnumber=\count96
+\lst@skipnumbers=\count97
 \lst@framebox=\box27
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
-Package scrhack Info: loading listings hack on input line 30.
+Package scrhack Info: loading listings hack on input line 32.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\listings.hak"
 File: listings.hak 2015/10/03 v3.19a KOMA-Script package (hacking package listi
@@ -194,7 +201,7 @@ nment
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count97
+\c@float@type=\count98
 \float@exts=\toks19
 \float@box=\box28
 \@float@everytoks=\toks20
@@ -213,7 +220,7 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
 Package tocbasic Info: setting babel extension for `loa' on input line 95.
 \@float@every@algorithm=\toks21
-\c@algorithm=\count98
+\c@algorithm=\count99
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty"
 Package: algpseudocode 
@@ -222,38 +229,31 @@ Package: algpseudocode
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count99
-\c@ALG@rem=\count100
-\c@ALG@nested=\count101
-\ALG@tlm=\skip46
-\ALG@thistlm=\skip47
-\c@ALG@Lnr=\count102
-\c@ALG@blocknr=\count103
-\c@ALG@storecount=\count104
-\c@ALG@tmpcounter=\count105
-\ALG@tmplength=\skip48
+\c@ALG@line=\count100
+\c@ALG@rem=\count101
+\c@ALG@nested=\count102
+\ALG@tlm=\skip48
+\ALG@thistlm=\skip49
+\c@ALG@Lnr=\count103
+\c@ALG@blocknr=\count104
+\c@ALG@storecount=\count105
+\c@ALG@tmpcounter=\count106
+\ALG@tmplength=\skip50
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty"
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
-\fancy@headwidth=\skip49
-\f@ncyO@elh=\skip50
-\f@ncyO@erh=\skip51
-\f@ncyO@olh=\skip52
-\f@ncyO@orh=\skip53
-\f@ncyO@elf=\skip54
-\f@ncyO@erf=\skip55
-\f@ncyO@olf=\skip56
-\f@ncyO@orf=\skip57
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip58
-\bibsep=\skip59
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count106
+\fancy@headwidth=\skip51
+\f@ncyO@elh=\skip52
+\f@ncyO@erh=\skip53
+\f@ncyO@olh=\skip54
+\f@ncyO@orh=\skip55
+\f@ncyO@elf=\skip56
+\f@ncyO@erf=\skip57
+\f@ncyO@olf=\skip58
+\f@ncyO@orf=\skip59
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
 Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
@@ -356,22 +356,9 @@ Package hyperref Info: Hyper figures OFF on input line 4443.
 Package hyperref Info: Link nesting OFF on input line 4448.
 Package hyperref Info: Hyper index ON on input line 4451.
 Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing ON on input line 4461.
+Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\backref.sty"
-Package: backref 2012/07/25 v1.38 Bibliographical back referencing
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-Package rerunfilecheck Info: Feature \pdfmdfivesum is not available
-(rerunfilecheck)             (e.g. pdfTeX or LuaTeX with package `pdftexcmds').
-
-(rerunfilecheck)             Therefore file contents cannot be checked efficien
-tly
-(rerunfilecheck)             and the loading of the package is aborted.
-))
 \c@Hy@tempcnt=\count114
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
@@ -387,7 +374,7 @@ Requested font "pzdr" at 0.00002pt
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing ON on input line 6308.
+Package hyperref Info: backreferencing OFF on input line 6310.
 Package hyperref Info: Link coloring ON on input line 6313.
 Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
@@ -399,7 +386,7 @@ LaTeX Info: Redefining \pageref on input line 6369.
 )
 Package scrhack Info: hyperref hack deactivated because of
 (scrhack)             detection of hyperref version, that doesn't
-(scrhack)             need that hack, on input line 66.
+(scrhack)             need that hack, on input line 65.
 
 
 Package hyperref Message: Driver (autodetected): hxetex.
@@ -419,6 +406,16 @@ Package: stringenc 2011/12/02 v1.10 Convert strings between diff. encodings (HO
 \HyField@AnnotCount=\count120
 \Fld@listcount=\count121
 \c@bookmark@seq@number=\count122
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package rerunfilecheck Info: Feature \pdfmdfivesum is not available
+(rerunfilecheck)             (e.g. pdfTeX or LuaTeX with package `pdftexcmds').
+
+(rerunfilecheck)             Therefore file contents cannot be checked efficien
+tly
+(rerunfilecheck)             and the loading of the package is aborted.
+)
 \Hy@SectionHShift=\skip63
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
@@ -1289,7 +1286,6 @@ LaTeX Font Info:    ... okay on input line 17.
 \c@lstlisting=\count188
 Package scrhack Info: undefining \float@addtolists on input line 17.
 \AtBeginShipoutBox=\box71
-Package backref Info: ** backref set up for natbib ** on input line 17.
 Package hyperref Info: Link coloring ON on input line 17.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1318,16 +1314,16 @@ LaTeX Info: Redefining \nameref on input line 17.
 * v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=392.64815pt
+* \textwidth=441.01773pt
 * \textheight=662.94934pt
-* \oddsidemargin=48.36958pt
-* \evensidemargin=85.35826pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
 * \topmargin=-29.59087pt
 * \headheight=19.91692pt
 * \headsep=34.14322pt
 * \topskip=11.0pt
 * \footskip=42.67912pt
-* \marginparwidth=85.35826pt
+* \marginparwidth=126.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.0pt plus 4.0pt minus 2.0pt
@@ -1354,7 +1350,7 @@ File: images/WWU_Logo1_1c.jpg Graphic file (type QTm)
 <use  "images/WWU_Logo1_1c.jpg" >
 File: images/microm.jpg Graphic file (type QTm)
  <use  "images/microm.jpg" >
-Overfull \hbox (24.46814pt too wide) in paragraph at lines 17--18
+Overfull \hbox (9.95712pt too wide) in paragraph at lines 17--18
 [][] 
  []
 
@@ -1413,13 +1409,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [5
 
-]
-Overfull \hbox (12.14528pt too wide) in paragraph at lines 47--47
- []|| [][][]\OT1/cmr/bx/n/10.95 Application of Al-loc-MinDis-t-Lo-calSearch to 
-Ge-o-mar-ket-ing strate- 
- []
-
-)
+])
 \tf@toc=\write8
 
 
@@ -1428,49 +1418,52 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/introduction.tex
+[6] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.lof
+Requested font "cmr8" at 8.0pt
+Requested font "cmr6" at 6.0pt
+Requested font "cmmi10" at 10.95pt
+Requested font "cmmi8" at 8.0pt
+Requested font "cmmi6" at 6.0pt
+Requested font "cmsy10" at 10.95pt
+Requested font "cmsy8" at 8.0pt
+Requested font "cmsy6" at 6.0pt
+Requested font "cmex10" at 10.95pt
+Requested font "cmex8" at 8.0pt
+Requested font "cmex7" at 6.0pt
+LaTeX Font Info:    Try loading font information for U+msa on input line 1.
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15> not available
-(Font)              size <14.4> substituted on input line 3.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+Requested font "msam10" at 10.95pt
+Requested font "msam10" at 8.0pt
+Requested font "msam7" at 6.0pt
+LaTeX Font Info:    Try loading font information for U+msb on input line 1.
 
-Requested font "cmr12" at 14.4pt
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Requested font "msbm10" at 10.95pt
+Requested font "msbm10" at 8.0pt
+Requested font "msbm7" at 6.0pt
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 7.
-See the caption package documentation for explanation.
-
-Requested font "cmti10" at 10.0pt
-File: images/geomarketing.jpg Graphic file (type QTm)
-<use  "images/geomarketing.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7
+[7])
+\tf@lof=\write9
 
-
-]
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 12.
-See the caption package documentation for explanation.
-
-File: images/stacks.jpg Graphic file (type QTm)
-<use  "images/stacks.jpg" >
-Overfull \hbox (2.34317pt too wide) in paragraph at lines 14--15
-\OT1/cmr/m/n/10.95 demographic, psy-choso-cial, eco-nomic and con-sump-tion pro
-p-er-ties like in-come, prod-
- []
+[8] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.lot)
+\tf@lot=\write10
 
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
@@ -1479,20 +1472,28 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [9]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/introduction.tex
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 19.
-See the caption package documentation for explanation.
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15> not available
+(Font)              size <14.4> substituted on input line 3.
 
-File: images/mapchart.png Graphic file (type QTm)
-<use  "images/mapchart.png" >
+Requested font "cmr12" at 14.4pt
+File: images/geomarketing2.jpg Graphic file (type QTm)
+<use  "images/geomarketing2.jpg" >
+Requested font "cmti10" at 10.0pt
+
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10])
+[10
+
+
+]
+File: images/stacks.jpg Graphic file (type QTm)
+ <use  "images/stacks.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1507,32 +1508,15 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/relatedWork.tex
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 7.
-See the caption package documentation for explanation.
-
-File: images/kit_alg.jpg Graphic file (type QTm)
-<use  "images/kit_alg.jpg" >
+File: images/mapchart.png Graphic file (type QTm)
+ <use  "images/mapchart.png" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13
-
-
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 11.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
-Requested font "cmsy10" at 10.95pt
-
+[13])
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1540,51 +1524,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [14]
-Package marginnote Info: Margin note 15.1 is on absolute page 15
-(marginnote)              on input line 24.
-Package marginnote Info: right page because not two side mode on input line 24.
-
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 24.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 24.
-Requested font "cmr8" at 8.0pt
-Requested font "cmr6" at 6.0pt
-Requested font "cmmi10" at 10.95pt
-Requested font "cmmi8" at 8.0pt
-Requested font "cmmi6" at 6.0pt
-Requested font "cmsy8" at 8.0pt
-Requested font "cmsy6" at 6.0pt
-Requested font "cmex10" at 10.95pt
-Requested font "cmex8" at 8.0pt
-Requested font "cmex7" at 6.0pt
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-Requested font "msam10" at 10.95pt
-Requested font "msam10" at 8.0pt
-Requested font "msam7" at 6.0pt
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Requested font "msbm10" at 10.95pt
-Requested font "msbm10" at 8.0pt
-Requested font "msbm7" at 6.0pt
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 36.
-See the caption package documentation for explanation.
-
-File: images/kit_liz.jpg Graphic file (type QTm)
-<use  "images/kit_liz.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1592,27 +1531,27 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [15]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/relatedWork.tex
+File: images/kit_alg.jpg Graphic file (type QTm)
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 40.
-See the caption package documentation for explanation.
-
-File: images/kit_lizard_opt.jpg Graphic file (type QTm)
-<use  "images/kit_lizard_opt.jpg" >
+<use  "images/kit_alg.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16]
+[16
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 46.
-See the caption package documentation for explanation.
 
-File: images/easymap.jpg Graphic file (type QTm)
-<use  "images/easymap.jpg" >
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 17.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
+
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1620,20 +1559,17 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [17]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 56.
-See the caption package documentation for explanation.
-
-File: images/simtool.jpg Graphic file (type QTm)
-<use  "images/simtool.jpg" >
+File: images/kit_liz.jpg Graphic file (type QTm)
+ <use  "images/kit_liz.jpg" >
+File: images/kit_lizard_opt.jpg Graphic file (type QTm)
+ <use  "images/kit_lizard_opt.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18])
+[18]
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1641,6 +1577,24 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [19]
+File: images/easymap.jpg Graphic file (type QTm)
+ <use  "images/easymap.jpg" >
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[20]
+File: images/simtool.jpg Graphic file (type QTm)
+ <use  "images/simtool.jpg" >)
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[21]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/ApplicationInGeo
 marketing.tex
 
@@ -1649,7 +1603,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20
+[22
 
 
 ]
@@ -1660,18 +1614,6 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
 Requested font "cmti10" at 10.95pt
 Requested font "cmti8" at 8.0pt
 Requested font "cmti7" at 6.0pt
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[21]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 20.
-See the caption package documentation for explanation.
-
 File: images/basicAreas.jpg Graphic file (type QTm)
 <use  "images/basicAreas.jpg" >
 
@@ -1680,36 +1622,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
-
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
 [23]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 53.
-See the caption package documentation for explanation.
-
-File: images/balanced_notbalanced.jpg Graphic file (type QTm)
-<use  "images/balanced_notbalanced.jpg" >
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
-
- []
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 60.
-See the caption package documentation for explanation.
-
-File: images/coherent_notcoherent.jpg Graphic file (type QTm)
-<use  "images/coherent_notcoherent.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1717,17 +1630,10 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [24]
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 66.
-See the caption package documentation for explanation.
-
-File: images/compact_notcompact.jpg Graphic file (type QTm)
-<use  "images/compact_notcompact.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1735,6 +1641,18 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [25]
+File: images/balanced_notbalanced.jpg Graphic file (type QTm)
+ <use  "images/balanced_notbalanced.jpg" >
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+
+ []
+
+File: images/coherent_notcoherent.jpg Graphic file (type QTm)
+<use  "images/coherent_notcoherent.jpg" >
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1742,13 +1660,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [26]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 83.
-See the caption package documentation for explanation.
-
-File: images/wahlkreise.jpg Graphic file (type QTm)
-<use  "images/wahlkreise.jpg" >
+File: images/compact_notcompact.jpg Graphic file (type QTm)
+ <use  "images/compact_notcompact.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1756,20 +1669,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [27]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 89.
-See the caption package documentation for explanation.
-
-File: images/map_historic.jpg Graphic file (type QTm)
-<use  "images/map_historic.jpg" >
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 93.
-See the caption package documentation for explanation.
-
-File: images/salesdistriction1.jpg Graphic file (type QTm)
-<use  "images/salesdistriction1.jpg" >
+File: images/wahlkreise.jpg Graphic file (type QTm)
+ <use  "images/wahlkreise.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1777,13 +1678,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [28]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 97.
-See the caption package documentation for explanation.
-
-File: images/salesdistriction2.jpg Graphic file (type QTm)
-<use  "images/salesdistriction2.jpg" >
+File: images/map_historic.jpg Graphic file (type QTm)
+ <use  "images/map_historic.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1791,13 +1687,11 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [29]
+File: images/salesdistriction1.jpg Graphic file (type QTm)
+ <use  "images/salesdistriction1.jpg" >
+File: images/salesdistriction2.jpg Graphic file (type QTm)
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 102.
-See the caption package documentation for explanation.
-
-File: images/whitespot_usecase.jpg Graphic file (type QTm)
-<use  "images/whitespot_usecase.jpg" >)
+<use  "images/salesdistriction2.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1805,6 +1699,22 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [30]
+File: images/whitespot_usecase.jpg Graphic file (type QTm)
+ <use  "images/whitespot_usecase.jpg" >)
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[31]
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[32]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/approaches.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1816,7 +1726,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[31
+[33
 
 
 ]
@@ -1826,27 +1736,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[32]
+[34]
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[33]
-Package marginnote Info: Margin note 34.1 is on absolute page 34
-(marginnote)              on input line 20.
-Package marginnote Info: right page because not two side mode on input line 20.
-
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 20.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 20.
-
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 25--25
 []|\OT1/cmr/m/n/10.95 short
  []
@@ -1947,20 +1844,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34]
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[35]
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
 [36]
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
@@ -1969,23 +1852,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [37]
-Package marginnote Info: Margin note 38.1 is on absolute page 38
-(marginnote)              on input line 100.
-Package marginnote Info: right page because not two side mode on input line 100
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 100.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 100.
-
-Overfull \hbox (2.43764pt too wide) in paragraph at lines 101--130
-[][] 
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -1993,25 +1859,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [38]
-Overfull \hbox (34.0864pt too wide) in paragraph at lines 134--134
- |[]\OT1/cmr/m/n/20.74 Implementation of area seg-men-ta-tion ap-proaches| 
- []
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 145.
-See the caption package documentation for explanation.
-
-File: images/basicAreasboth.jpg Graphic file (type QTm)
-<use  "images/basicAreasboth.jpg" >
-! german: The command ". is undefined.
-\grmn@dq@error ...and \dq \string #1 is undefined}
-                                                  
-l.147 ...resents a branch of the bank "Sparkasse".
-                                                   Consequently the number o...
-
-Use `` for a simple double quote character.
-
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2020,43 +1867,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [39]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 155.
-See the caption package documentation for explanation.
-
-File: images/basicAreasLocations.jpg Graphic file (type QTm)
-<use  "images/basicAreasLocations.jpg" >
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
 [40]
-Package marginnote Info: Margin note 41.1 is on absolute page 41
-(marginnote)              on input line 163.
-Package marginnote Info: right page because not two side mode on input line 163
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 163.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 163.
-
-Overfull \hbox (2.43765pt too wide) in paragraph at lines 164--184
-[][] 
- []
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 194.
-See the caption package documentation for explanation.
-
-File: images/AllocCritworkflow.jpg Graphic file (type QTm)
-<use  "images/AllocCritworkflow.jpg" >
+File: images/basicAreasboth.jpg Graphic file (type QTm)
+ <use  "images/basicAreasboth.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2064,13 +1882,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [41]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 196.
-See the caption package documentation for explanation.
-
-File: images/AllocCrit.jpg Graphic file (type QTm)
-<use  "images/AllocCrit.jpg" >
+File: images/basicAreasLocations.jpg Graphic file (type QTm)
+ <use  "images/basicAreasLocations.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2078,23 +1891,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [42]
-Package marginnote Info: Margin note 43.1 is on absolute page 43
-(marginnote)              on input line 201.
-Package marginnote Info: right page because not two side mode on input line 201
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 201.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 201.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 202--240
-[][] 
- []
-
+File: images/AllocCritworkflow.jpg Graphic file (type QTm)
+ <use  "images/AllocCritworkflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2102,13 +1900,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [43]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 250.
-See the caption package documentation for explanation.
-
-File: images/AllocDistworkflow.jpg Graphic file (type QTm)
-<use  "images/AllocDistworkflow.jpg" >
+File: images/AllocCrit.jpg Graphic file (type QTm)
+ <use  "images/AllocCrit.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2117,36 +1910,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [44]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 253.
-See the caption package documentation for explanation.
-
-File: images/AllocDist.jpg Graphic file (type QTm)
-<use  "images/AllocDist.jpg" >
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
 [45]
-Package marginnote Info: Margin note 46.1 is on absolute page 46
-(marginnote)              on input line 258.
-Package marginnote Info: right page because not two side mode on input line 258
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 258.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 258.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 259--297
-[][] 
- []
-
+File: images/AllocDistworkflow.jpg Graphic file (type QTm)
+ <use  "images/AllocDistworkflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2154,20 +1925,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [46]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 311.
-See the caption package documentation for explanation.
-
-File: images/Eatupworkflow.jpg Graphic file (type QTm)
-<use  "images/Eatupworkflow.jpg" >
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 313.
-See the caption package documentation for explanation.
-
-File: images/Eatup.jpg Graphic file (type QTm)
-<use  "images/Eatup.jpg" >
+File: images/AllocDist.jpg Graphic file (type QTm)
+ <use  "images/AllocDist.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2175,23 +1934,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [47]
-Package marginnote Info: Margin note 48.1 is on absolute page 48
-(marginnote)              on input line 318.
-Package marginnote Info: right page because not two side mode on input line 318
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 318.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 318.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 319--357
-[][] 
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2199,13 +1941,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [48]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 368.
-See the caption package documentation for explanation.
-
-File: images/SmallestCritGetsNearestworkflow.jpg Graphic file (type QTm)
-<use  "images/SmallestCritGetsNearestworkflow.jpg" >
+File: images/Eatupworkflow.jpg Graphic file (type QTm)
+ <use  "images/Eatupworkflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2213,13 +1950,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [49]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 371.
-See the caption package documentation for explanation.
-
-File: images/smallestcritgetsnearest.jpg Graphic file (type QTm)
-<use  "images/smallestcritgetsnearest.jpg" >
+File: images/Eatup.jpg Graphic file (type QTm)
+ <use  "images/Eatup.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2227,23 +1959,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [50]
-Package marginnote Info: Margin note 51.1 is on absolute page 51
-(marginnote)              on input line 376.
-Package marginnote Info: right page because not two side mode on input line 376
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 376.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 376.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 377--415
-[][] 
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2251,13 +1966,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [51]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 424.
-See the caption package documentation for explanation.
-
-File: images/SmallestCritGetsTrueNearestworkflow.jpg Graphic file (type QTm)
-<use  "images/SmallestCritGetsTrueNearestworkflow.jpg" >
+File: images/SmallestCritGetsNearestworkflow.jpg Graphic file (type QTm)
+ <use  "images/SmallestCritGetsNearestworkflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2265,6 +1975,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [52]
+File: images/smallestcritgetsnearest.jpg Graphic file (type QTm)
+ <use  "images/smallestcritgetsnearest.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2273,43 +1985,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [53]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 427.
-See the caption package documentation for explanation.
-
-File: images/smallestcritgetstruenearest.jpg Graphic file (type QTm)
-<use  "images/smallestcritgetstruenearest.jpg" >
-Package marginnote Info: Margin note 54.1 is on absolute page 54
-(marginnote)              on input line 432.
-Package marginnote Info: right page because not two side mode on input line 432
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 432.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 432.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 433--471
-[][] 
- []
-
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
 [54]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 482.
-See the caption package documentation for explanation.
-
-File: images/critdistinoutininoutworkflow.jpg Graphic file (type QTm)
-<use  "images/critdistinoutininoutworkflow.jpg" >
+File: images/SmallestCritGetsTrueNearestworkflow.jpg Graphic file (type QTm)
+ <use  "images/SmallestCritGetsTrueNearestworkflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2318,41 +2001,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [55]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 485.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (2.13274pt too wide) in paragraph at lines 485--485
- \OT1/cmr/m/it/10 lestCritGetsNearest.
- []
-
-File: images/outsidesmallestcritgetsnearest.jpg Graphic file (type QTm)
-<use  "images/outsidesmallestcritgetsnearest.jpg" >
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
 [56]
-Package marginnote Info: Margin note 57.1 is on absolute page 57
-(marginnote)              on input line 490.
-Package marginnote Info: right page because not two side mode on input line 490
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 490.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 490.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 491--529
-[][] 
- []
-
+File: images/smallestcritgetstruenearest.jpg Graphic file (type QTm)
+ <use  "images/smallestcritgetstruenearest.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2360,13 +2016,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [57]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 538.
-See the caption package documentation for explanation.
-
-File: images/EatupDistworkflow.jpg Graphic file (type QTm)
-<use  "images/EatupDistworkflow.jpg" >
+File: images/critdistinoutininoutworkflow.jpg Graphic file (type QTm)
+ <use  "images/critdistinoutininoutworkflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2374,13 +2025,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [58]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 541.
-See the caption package documentation for explanation.
-
-File: images/EatupDist.jpg Graphic file (type QTm)
-<use  "images/EatupDist.jpg" >
+File: images/outsidesmallestcritgetsnearest.jpg Graphic file (type QTm)
+ <use  "images/outsidesmallestcritgetsnearest.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2388,23 +2034,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [59]
-Package marginnote Info: Margin note 60.1 is on absolute page 60
-(marginnote)              on input line 546.
-Package marginnote Info: right page because not two side mode on input line 546
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 546.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 546.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 547--585
-[][] 
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2412,10 +2041,35 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [60]
+File: images/EatupDistworkflow.jpg Graphic file (type QTm)
+ <use  "images/EatupDistworkflow.jpg" >
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 593.
-See the caption package documentation for explanation.
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[61]
+File: images/EatupDist.jpg Graphic file (type QTm)
+ <use  "images/EatupDist.jpg" >
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[62]
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[63]
+Overfull \hbox (3.09657pt too wide) in paragraph at lines 623--625
+\OT1/cmr/m/n/10.95 The Al-loc-MinDis-t-Lo-calSearch al-go-rithm is a com-bi-na-
+tion us-ing Al-loc-MinDist and Lo-calSearch
+ []
 
 File: images/AllocMinDistLocalSearchworkflow.jpg Graphic file (type QTm)
 <use  "images/AllocMinDistLocalSearchworkflow.jpg" >
@@ -2425,52 +2079,30 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[61]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 596.
-See the caption package documentation for explanation.
-
-File: images/AllocMinDistLocalSearch.jpg Graphic file (type QTm)
-<use  "images/AllocMinDistLocalSearch.jpg" >
-Package marginnote Info: Margin note 62.1 is on absolute page 63
-(marginnote)              on input line 601.
-Package marginnote Info: right page because not two side mode on input line 601
-.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 601.
-See the caption package documentation for explanation.
-
-Package marginnote Info: xpos seems to be 124.28957pt,
-(marginnote)             \marginnoteleftadjust ignored on input line 601.
-
-Overfull \hbox (6.94235pt too wide) in paragraph at lines 602--640
-[][] 
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[62])
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[63]
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
 [64]
+File: images/AllocMinDistLocalSearch.jpg Graphic file (type QTm)
+ <use  "images/AllocMinDistLocalSearch.jpg" >
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[65])
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[66]
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[67]
 (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/comparison.tex
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
@@ -2478,7 +2110,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[65
+[68
 
 
 ]
@@ -2492,56 +2124,56 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[66]
+[69]
 Underfull \hbox (badness 10000) in paragraph at lines 34--34
 []|\OT1/cmr/m/n/10.95 zip-
  []
 
 File: images/AllocCritplz5.jpg Graphic file (type QTm)
 <use  "images/AllocCritplz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 35--37
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 35--37
  []| 
  []
 
 File: images/AllocDistPlz5.jpg Graphic file (type QTm)
 <use  "images/AllocDistPlz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 38--40
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 38--40
  []| 
  []
 
 File: images/eatupplz5.jpg Graphic file (type QTm)
 <use  "images/eatupplz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 41--43
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 41--43
  []| 
  []
 
 File: images/smallestcritgetsnearestplz8.jpg Graphic file (type QTm)
 <use  "images/smallestcritgetsnearestplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 44--46
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 44--46
  []| 
  []
 
 File: images/smallestcritgetstruenearestplz5.jpg Graphic file (type QTm)
 <use  "images/smallestcritgetstruenearestplz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 47--49
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 47--49
  []| 
  []
 
 File: images/Outsidesmallestcritgetsnearestplz5.jpg Graphic file (type QTm)
 <use  "images/Outsidesmallestcritgetsnearestplz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 50--52
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 50--52
  []| 
  []
 
 File: images/eatupDistplz5.jpg Graphic file (type QTm)
 <use  "images/eatupDistplz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 53--55
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 53--55
  []| 
  []
 
 File: images/AllocMinDistLocalSearchplz5.jpg Graphic file (type QTm)
 <use  "images/AllocMinDistLocalSearchplz5.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 56--59
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 56--59
  []| 
  []
 
@@ -2552,49 +2184,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--60
 
 File: images/AllocCritplz8.jpg Graphic file (type QTm)
 <use  "images/AllocCritplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 61--63
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 61--63
  []| 
  []
 
 File: images/AllocDistplz8.jpg Graphic file (type QTm)
 <use  "images/AllocDistplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 64--66
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 64--66
  []| 
  []
 
 File: images/eatupplz8.jpg Graphic file (type QTm)
 <use  "images/eatupplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 66--68
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 66--68
  []| 
  []
 
 File: images/smallestcritgetsnearestplz8.jpg Graphic file (type QTm)
 <use  "images/smallestcritgetsnearestplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 68--70
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 68--70
  []| 
  []
 
 File: images/smallestcritgetstruenearestplz8.jpg Graphic file (type QTm)
 <use  "images/smallestcritgetstruenearestplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 70--72
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 70--72
  []| 
  []
 
 File: images/Outsidesmallestcritgetsnearestplz8.jpg Graphic file (type QTm)
 <use  "images/Outsidesmallestcritgetsnearestplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 72--74
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 72--74
  []| 
  []
 
 File: images/eatupDistplz8.jpg Graphic file (type QTm)
 <use  "images/eatupDistplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 74--76
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 74--76
  []| 
  []
 
 File: images/AllocMinDistLocalSearchplz8.jpg Graphic file (type QTm)
 <use  "images/AllocMinDistLocalSearchplz8.jpg" >
-Overfull \hbox (5.23236pt too wide) in paragraph at lines 76--79
+Overfull \hbox (13.93854pt too wide) in paragraph at lines 76--79
  []| 
  []
 
@@ -2628,6 +2260,14 @@ Underfull \vbox (badness 10000) detected at line 105
  []
 
 
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[70
+
+]
 Overfull \hbox (4.33707pt too wide) in paragraph at lines 111--111
  []|\OT1/cmr/m/n/10.95 AllocMinDist| 
  []
@@ -2878,14 +2518,6 @@ Underfull \hbox (badness 1521) in paragraph at lines 128--130
  []
 
 
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[67
-
-]
 Underfull \vbox (badness 10000) detected at line 135
  []
 
@@ -2895,14 +2527,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[68]
+[71]
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[69
+[72
 
 ]
 
@@ -2911,40 +2543,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[70]
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[71])
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[72]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
-marketing.tex
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[73
-
-
-]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 9.
-See the caption package documentation for explanation.
-
-File: images/graphwhitepic.jpg Graphic file (type QTm)
-<use  "images/graphwhitepic.jpg" >
+[73])
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2959,20 +2558,20 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [75]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/applicationToGeo
+marketing.tex
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[76]
+[76
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 32.
-See the caption package documentation for explanation.
 
-File: images/areasegmentation.jpg Graphic file (type QTm)
-<use  "images/areasegmentation.jpg" >
+]
+File: images/graphwhitepic.jpg Graphic file (type QTm)
+ <use  "images/graphwhitepic.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -2981,13 +2580,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [77]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 37.
-See the caption package documentation for explanation.
-
-File: images/areasegmentation_workflow.jpg Graphic file (type QTm)
-<use  "images/areasegmentation_workflow.jpg" >
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
@@ -2995,19 +2587,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [78]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 41.
-See the caption package documentation for explanation.
-
-File: images/init.jpg Graphic file (type QTm)
-<use  "images/init.jpg" >
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
 [79]
+File: images/areasegmentation.jpg Graphic file (type QTm)
+ <use  "images/areasegmentation.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3015,13 +2602,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [80]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 47.
-See the caption package documentation for explanation.
-
-File: images/greenfieldfirst.jpg Graphic file (type QTm)
-<use  "images/greenfieldfirst.jpg" >
+File: images/areasegmentation_workflow.jpg Graphic file (type QTm)
+ <use  "images/areasegmentation_workflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3029,20 +2611,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [81]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 53.
-See the caption package documentation for explanation.
-
-File: images/greenfield_workflow.jpg Graphic file (type QTm)
-<use  "images/greenfield_workflow.jpg" >
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 55.
-See the caption package documentation for explanation.
-
-File: images/greenfieldend.jpg Graphic file (type QTm)
-<use  "images/greenfieldend.jpg" >
+File: images/init.jpg Graphic file (type QTm)
+ <use  "images/init.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3057,13 +2627,8 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [83]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 71.
-See the caption package documentation for explanation.
-
-File: images/1_allocationToGivenLocations.png Graphic file (type QTm)
-<use  "images/1_allocationToGivenLocations.png" >
+File: images/greenfieldfirst.jpg Graphic file (type QTm)
+ <use  "images/greenfieldfirst.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3071,20 +2636,11 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [84]
+File: images/greenfield_workflow.jpg Graphic file (type QTm)
+ <use  "images/greenfield_workflow.jpg" >
+File: images/greenfieldend.jpg Graphic file (type QTm)
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 75.
-See the caption package documentation for explanation.
-
-File: images/2_allocationToGivenAndNewWithoutCheck.png Graphic file (type QTm)
-<use  "images/2_allocationToGivenAndNewWithoutCheck.png" >
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 80.
-See the caption package documentation for explanation.
-
-File: images/whitespot_workflow.jpg Graphic file (type QTm)
-<use  "images/whitespot_workflow.jpg" >
+<use  "images/greenfieldend.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3093,19 +2649,14 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [85]
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 82.
-See the caption package documentation for explanation.
-
-File: images/whitespot.jpg Graphic file (type QTm)
-<use  "images/whitespot.jpg" >
-
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[86])
+[86]
+File: images/1_allocationToGivenLocations.png Graphic file (type QTm)
+ <use  "images/1_allocationToGivenLocations.png" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3113,31 +2664,20 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [87]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex
+File: images/2_allocationToGivenAndNewWithoutCheck.png Graphic file (type QTm)
+ <use  "images/2_allocationToGivenAndNewWithoutCheck.png" >
+File: images/whitespot_workflow.jpg Graphic file (type QTm)
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 6.
-See the caption package documentation for explanation.
-
-File: images/HH10.jpg Graphic file (type QTm)
-<use  "images/HH10.jpg" >
+<use  "images/whitespot_workflow.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[88
-
-
-]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 12.
-See the caption package documentation for explanation.
-
-File: images/dtl.jpg Graphic file (type QTm)
-<use  "images/dtl.jpg" >
+[88]
+File: images/whitespot.jpg Graphic file (type QTm)
+ <use  "images/whitespot.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3152,7 +2692,10 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [90]
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/evaluation.tex
+File: images/HH10.jpg Graphic file (type QTm)
+
+<use  "images/HH10.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3162,21 +2705,24 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 [91
 
 
-])
+]
+File: images/dtl.jpg Graphic file (type QTm)
+ <use  "images/dtl.jpg" >
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[92]
+[92])
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[93] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.lof
+[93]
+(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\chapters/discussion.tex
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3185,17 +2731,31 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
 
 [94
 
+
+])
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[95] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 17--21
+\OT1/cmr/m/n/10.95 URL: http://www.bundeswahlleiter.de/de/bundestagswahlen/BTW[
+]-BUND[]-
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
+ Make it at least 23.11996pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[96
+
 ]
-Overfull \hbox (20.54767pt too wide) in paragraph at lines 29--29
- [][] [][][]\OT1/cmr/m/n/10.95 Result of area seg-men-ta-tion pro-cess us-ing S
-mallestCritGets-TrueNearest. 
- []
-
-
-Overfull \hbox (35.48232pt too wide) in paragraph at lines 31--31
- [][] [][][]\OT1/cmr/m/n/10.95 Result of area seg-men-ta-tion pro-cess us-ing O
-utsideSmal-lestCritGetsNearest. 
- []
+Missing character: There is no – in font cmti10!
+Missing character: There is no – in font cmti10!
 
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
@@ -3203,28 +2763,7 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[95])
-\tf@lof=\write9
-
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[96] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.lot)
-\tf@lot=\write10
-
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[97] (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.bbl
-(C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.brf)
-\tf@brf=\write11
-
+[97])
 
 Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
  Make it at least 23.11996pt.
@@ -3232,23 +2771,6 @@ Package Fancyhdr Warning: \headheight is too small (19.91692pt):
  This may cause the page layout to be inconsistent, however.
 
 [98]
-Missing character: There is no – in font cmti10!
-Missing character: There is no – in font cmti10!
-
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[99])
-
-Package Fancyhdr Warning: \headheight is too small (19.91692pt): 
- Make it at least 23.11996pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[100]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
  (C:\Users\sumsum\Documents\GitHub\MA\Dokumente\Thesis\thesis.aux
@@ -3281,12 +2803,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
  ) 
 Here is how much of TeX's memory you used:
- 32644 strings out of 429025
- 574362 string characters out of 3166797
- 654736 words of memory out of 3000000
- 35334 multiletter control sequences out of 15000+200000
+ 32367 strings out of 429025
+ 570251 string characters out of 3166797
+ 650453 words of memory out of 3000000
+ 35063 multiletter control sequences out of 15000+200000
  11851 words of font info for 43 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
- 70i,14n,79p,10428b,505s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,13n,79p,10428b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (100 pages).
+Output written on thesis.pdf (98 pages).

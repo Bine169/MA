@@ -2,7 +2,7 @@
 % Einbindung von Erweiterungspaketen
 % ===================================
 
-\usepackage[latin1]{inputenc}%		Kodierung des Eingabezeichensatzes fuer das Dokument - 'latin1' (ISO-8859-1)
+\usepackage[latin1]{inputenc}
 \usepackage[ngerman, english]{babel}%			Verwendung der neuen deutschen Rechtschreibung mit 'ngerman'
 												 %			'babel' kann Optionen fuer mehrere Sprachen zugleich enthalten
 													 %			\selectlanguage{sprache} wechselt zw. verschiedenen Sprachen										Paket legt das Aussehen der Anfuehrungszeichen fest; Kommando \enquote{} setzt den Text zw. Klammern in 
@@ -24,6 +24,8 @@
 % --- Paket erweitert deutlich die Verwendung von Farben aus dem Paket 'graphicx'
 \usepackage{color}
 
+\usepackage{natbib}
+
 % --- Paket um Quellcode sauber zu formatieren
 % --- Alternative Pakete sind 'verbatim', 'moreverb' oder 'fancyvrb'
 \usepackage{listings}
@@ -37,8 +39,6 @@
 
 % --- Eigene flexible Gestaltung der Kopf- und Fusszeile moeglich
 \usepackage{fancyhdr}
-
-\usepackage[numbers]{natbib}
 
 % --- Programmiersprachentypische Kontrollstrukturen (logische Verzweigungen und Schleifen)
 \usepackage{ifthen}
@@ -61,7 +61,6 @@
 	urlcolor=magenta,%		Color for linked URLs					
 	filecolor=cyan,%			Color for URLs which open local files
 	menucolor=red,%				Color for Acrobat menu items
-	pagebackref%					Adds 'backlink' text to the end of each item in the bibliography, as a list of page numbers
 ]{hyperref}
 
 % --- Layout-Aenderung leicht moeglich (Erweiterung von dem Paket 'vmargin')
@@ -104,7 +103,8 @@
 \usepackage{float}
 
 % --- erlaubt eine Anpassung von Bild- und Tabellenbeschriftungen
-\usepackage[font=small,labelfont=it,textfont=it,labelsep=newline,singlelinecheck=false,justification=raggedleft,labelfont={color=black,bf}]{caption}
+%\usepackage[font=small,labelfont=it,textfont=it,labelsep=newline,singlelinecheck=false,justification=raggedleft,labelfont={color=black,bf}]{caption}
+\usepackage[font=small,labelfont=it,textfont=it,singlelinecheck=false,justification=centering,labelfont={color=black,bf}]{caption}
 
 \usepackage{lscape}
 
@@ -154,11 +154,11 @@
 % ===========================
 %  Margin Label
 % ===========================
-\setlength{\parindent}{0pt}
-\setlength{\oddsidemargin}{1.7cm}
-\setlength{\evensidemargin}{3cm}
-\addtolength{\textwidth}{-1.7cm}
-\setlength{\marginparwidth}{3cm}
+%\setlength{\parindent}{0pt}
+%\setlength{\oddsidemargin}{1.7cm}
+%\setlength{\evensidemargin}{3cm}
+%\addtolength{\textwidth}{-1.7cm}
+%\setlength{\marginparwidth}{3cm}
 
 
 % ===========================
@@ -168,18 +168,34 @@
 
 %  figures
 % ====================
+%\newenvironment{figureOwn}[2]{
+%\marginlabel
+%{\captionof{figure}[#1]{#1}}
+%\raisebox{-\height}{\includegraphics[width=1\textwidth]{#2}}
+%\vspace*{0.5cm}
+%}
+
 \newenvironment{figureOwn}[2]{
-\marginlabel
-{\captionof{figure}[#1]{#1}}
-\raisebox{-\height}{\includegraphics[width=1\textwidth]{#2}}
-\vspace*{0.5cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{#2}
+\caption{#1}
+\end{figure}
 }
 
 \newenvironment{figurevarSize}[3]{
-\begin{center}\marginlabel{\captionof{figure}[#1]{#1}}
-\raisebox{-\height}{\includegraphics[width=#3\textwidth]{#2}}\end{center}
-\vspace*{0.5cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=#3\textwidth]{#2}
+\caption{#1}
+\end{figure}
 }
+
+%\newenvironment{figurevarSize}[3]{
+%\begin{center}\marginlabel{\captionof{figure}[#1]{#1}}
+%\raisebox{-\height}{\includegraphics[width=#3\textwidth]{#2}}\end{center}
+%\vspace*{0.5cm}
+%}
 
 % table
 %=======================
@@ -214,7 +230,7 @@
 %\newenvironment{setTitle}[1]{#1}
 
 
-\renewenvironment{table}[1][]{\hspace{0pt} \marginnote{\captionof{table}{\getvalue{tableTitle}}}\@float{table}[#1]}{\end@float}
+%\renewenvironment{table}[1][]{\hspace{0pt} \marginnote{\captionof{table}{\getvalue{tableTitle}}}\@float{table}[#1]}{\end@float}
 
 %  notes
 % ====================

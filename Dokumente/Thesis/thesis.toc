@@ -2,57 +2,57 @@
 \ttl@change@v {section}{}{}{}\relax 
 \contentsline {section}{Abstract}{3}{section*.2}
 \contentsline {section}{Acknowledgement}{4}{section*.3}
+\contentsline {section}{List of Figures}{8}{section*.3}
+\contentsline {section}{List of Tables}{9}{section*.3}
 \ttl@change@i {\@ne }{section}{2.2em}{\addvspace {1pc}\bfseries }{\contentslabel {2.2em}}{}{\titlerule *[0.3pc]{.}\contentspage }\relax 
 \ttl@change@v {section}{}{}{}\relax 
-\contentsline {section}{\numberline {1}Introduction}{7}{section.1}
-\contentsline {subsection}{\numberline {1.1}Definition and aim of Geomarketing}{7}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}microm Micromarketing-Systems and Consult GmbH}{9}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Motivation and Research Question}{11}{subsection.1.3}
-\contentsline {subsection}{\numberline {1.4}Methods}{11}{subsection.1.4}
-\contentsline {subsection}{\numberline {1.5}Outline}{12}{subsection.1.5}
-\contentsline {section}{\numberline {2}Related Work}{13}{section.2}
-\contentsline {subsection}{\numberline {2.1}KIT - Institute of Operations Research: discrete optimization and logistic}{13}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Easy Map District Manager}{16}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}SIM Tool}{18}{subsection.2.3}
-\contentsline {section}{\numberline {3}Fundamentals of area segmentation}{20}{section.3}
-\contentsline {subsection}{\numberline {3.1}Notions and criteria}{21}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Basic areas}{21}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Number of territories}{22}{subsubsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.3}Territory centers}{22}{subsubsection.3.1.3}
-\contentsline {subsubsection}{\numberline {3.1.4}Unique assignment of basic areas}{23}{subsubsection.3.1.4}
-\contentsline {subsubsection}{\numberline {3.1.5}Additonal Planning criterias}{23}{subsubsection.3.1.5}
-\contentsline {paragraph}{\numberline {3.1.5.1}Balance}{23}{paragraph.3.1.5.1}
-\contentsline {paragraph}{\numberline {3.1.5.2}Contiguity}{24}{paragraph.3.1.5.2}
-\contentsline {paragraph}{\numberline {3.1.5.3}Compactness}{25}{paragraph.3.1.5.3}
-\contentsline {subsection}{\numberline {3.2}Use cases}{26}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Political Districting}{26}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Sales Districting and optimization}{27}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.3}Whitespot analysis}{30}{subsubsection.3.2.3}
-\contentsline {section}{\numberline {4}Selecting approaches for implementation}{31}{section.4}
-\contentsline {subsection}{\numberline {4.1}Requirements of approaches considering geomarketing \newline analyses}{31}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Comparison of model types}{31}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Heuristic approaches}{34}{subsection.4.3}
-\contentsline {section}{\numberline {5}Implementation of area segmentation approaches}{39}{section.5}
-\contentsline {subsection}{\numberline {5.1}AllocCrit}{41}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}AllocMinDist}{44}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Eat-up}{47}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}SmallestCritGetsNearest}{49}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}SmallestCritGetsTrueNearest}{52}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}OutsideSmallestCritGetsNearest}{55}{subsection.5.6}
-\contentsline {subsection}{\numberline {5.7}EatUpMinDist}{58}{subsection.5.7}
-\contentsline {subsection}{\numberline {5.8}AllocMinDistLocalSearch}{61}{subsection.5.8}
-\contentsline {section}{\numberline {6}Comparison of implemented approaches}{65}{section.6}
-\contentsline {subsection}{\numberline {6.1}Requirements from the field of Geomarketing}{70}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Conclusion}{72}{subsection.6.2}
-\contentsline {section}{\numberline {7}Application of AllocMinDistLocalSearch to Geomarketing strategies}{73}{section.7}
-\contentsline {subsection}{\numberline {7.1}Area segmentation and optimization}{73}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Greenfield analysis}{80}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Whitespot analysis}{83}{subsection.7.3}
-\contentsline {section}{\numberline {8}Evaluation}{88}{section.8}
-\contentsline {section}{\numberline {9}Discussion and Perspective}{91}{section.9}
-\contentsline {subsection}{\numberline {9.1}Summary}{91}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}Perspective}{92}{subsection.9.2}
-\contentsline {section}{List of Figures}{96}{subsection.9.2}
-\contentsline {section}{List of Tables}{97}{subsection.9.2}
-\contentsline {section}{References}{98}{subsection.9.2}
+\contentsline {section}{\numberline {1}Introduction}{10}{section.1}
+\contentsline {subsection}{\numberline {1.1}Definition and aim of Geomarketing}{10}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}microm Micromarketing-Systems and Consult GmbH}{12}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Motivation and Research Question}{14}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Methods}{14}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Outline}{14}{subsection.1.5}
+\contentsline {section}{\numberline {2}Related Work}{16}{section.2}
+\contentsline {subsection}{\numberline {2.1}KIT - Institute of Operations Research: discrete optimization and logistic}{16}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Easy Map District Manager}{19}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}SIM Tool}{21}{subsection.2.3}
+\contentsline {section}{\numberline {3}Fundamentals of area segmentation}{22}{section.3}
+\contentsline {subsection}{\numberline {3.1}Notions and criteria}{23}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Basic areas}{23}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Number of territories}{24}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Territory centers}{24}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Unique assignment of basic areas}{25}{subsubsection.3.1.4}
+\contentsline {subsubsection}{\numberline {3.1.5}Additonal Planning criterias}{25}{subsubsection.3.1.5}
+\contentsline {paragraph}{\numberline {3.1.5.1}Balance}{25}{paragraph.3.1.5.1}
+\contentsline {paragraph}{\numberline {3.1.5.2}Contiguity}{26}{paragraph.3.1.5.2}
+\contentsline {paragraph}{\numberline {3.1.5.3}Compactness}{27}{paragraph.3.1.5.3}
+\contentsline {subsection}{\numberline {3.2}Use cases}{27}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Political Districting}{27}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Sales Districting and optimization}{29}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Whitespot analysis}{31}{subsubsection.3.2.3}
+\contentsline {section}{\numberline {4}Selecting approaches for implementation}{33}{section.4}
+\contentsline {subsection}{\numberline {4.1}Requirements of approaches considering Geomarketing \newline analyses}{33}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Comparison of model types}{33}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Heuristic approaches}{36}{subsection.4.3}
+\contentsline {section}{\numberline {5}Implementation of area segmentation approaches}{41}{section.5}
+\contentsline {subsection}{\numberline {5.1}AllocCrit}{43}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}AllocMinDist}{46}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Eat-up}{49}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}SmallestCritGetsNearest}{52}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}SmallestCritGetsTrueNearest}{55}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}OutsideSmallestCritGetsNearest}{58}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}EatUpMinDist}{61}{subsection.5.7}
+\contentsline {subsection}{\numberline {5.8}AllocMinDistLocalSearch}{64}{subsection.5.8}
+\contentsline {section}{\numberline {6}Comparison of implemented approaches}{68}{section.6}
+\contentsline {subsection}{\numberline {6.1}Requirements from the field of Geomarketing}{73}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Conclusion}{74}{subsection.6.2}
+\contentsline {section}{\numberline {7}Application of AllocMinDistLocalSearch to Geomarketing strategies}{76}{section.7}
+\contentsline {subsection}{\numberline {7.1}Area segmentation and optimization}{76}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Greenfield analysis}{83}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Whitespot analysis}{86}{subsection.7.3}
+\contentsline {section}{\numberline {8}Evaluation}{91}{section.8}
+\contentsline {section}{\numberline {9}Discussion and Perspective}{94}{section.9}
+\contentsline {subsection}{\numberline {9.1}Summary}{94}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Perspective}{95}{subsection.9.2}
+\contentsline {section}{References}{96}{subsection.9.2}
 \contentsfinish 
