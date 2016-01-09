@@ -20,16 +20,15 @@ public class sumDivNumber {
 //	 * @throws SQLException
 //	 */
 	private static void addToCriteria(int polyID, int location, double[] criteria) throws SQLException{
-		//get criteria of the given polygon
+		//get criteria of the given basic area
 		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
 		
-		
-			criteria[location-1]=criteria[location-1]+critValue;
+		criteria[location-1]=criteria[location-1]+critValue;
 		
 	}
 //	
 //	/**
-//	 * Assign polygons which are near to the locations
+//	 * Assign basic areas to the territory centre until threshold is reached
 //	 * @param numberpolygons: number of all polygons of the region
 //	 * @param criteria: array of criteria sum for distribute polygons homogeneously
 //	 * @throws Exception
@@ -143,13 +142,14 @@ public class sumDivNumber {
 		}
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+		
 		output.flush();
 		output.close();
 	    
 	    System.out.println("successfully ended");
 }
 	
+	//calculate circumference for calculation of compactness
 	private static double calculateCircumference(int numberpolygons, int location, boolean plz5) throws SQLException{
 		double area=-1;
 		Statement stmt = functions.getConnection();
@@ -181,6 +181,7 @@ public class sumDivNumber {
 		return area;
 	}
 	
+	//calculate area for calculation of compactness
 	private static double calculateArea(int numberpolygons, int location, boolean plz5) throws SQLException{
 		double area=-1;
 		Statement stmt = functions.getConnection();
@@ -211,6 +212,7 @@ public class sumDivNumber {
 		return area;
 	}
 	
+	//calculate compactness
 	public static double calcCompactness(int numberpolygons, int i, boolean plz5) throws SQLException{
 		double compactness=-1;
 		

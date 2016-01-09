@@ -1,9 +1,6 @@
 package whitespotGreenfield;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,20 +34,26 @@ public class FunctionsGreenfield {
 		setLocationContainer();
 	}
 	
+	/**allocate basic areas during greenfield algorithm to create initial territory centres
+	 * @param numberpolygons: int, number of basic areas
+	 * @param numberlocations: int, number of territory centre
+	 * @param PLZ5: boolean, indicates database of basic areas
+	 * @throws SQLException, Exception
+	 */
 	public static void allocatePolygonsGreenfield(int numberpolygons,
 			int numberlocations, boolean PLZ5) throws SQLException, Exception {
 
 		Getters();
 		
-		// detect startPolys on Boundary
+		// detect starting basic area on Boundary
 		List<Integer> boundaryPolyIds = new ArrayList<Integer>();
 		boundaryPolyIds = FunctionsGreenfieldWhitespot.getBoundaryPolys(PLZ5);
 
 		List<Integer> allocatedPolyIds = new ArrayList<Integer>();
 		double critAverage = -1;
 
-		// get sum of Polygons to calculate a critAverage value to stop
-		// allocation of polys for one location
+		// get sum of basic areas to calculate the threshold value to stop
+		// allocation of basic areas to a territory centre
 		double sumCriteria=FunctionsGreenfieldWhitespot.getCritSum(numberpolygons);
 		
 		critAverage=FunctionsGreenfieldWhitespot.calculateCritaverage(PLZ5, sumCriteria, numberlocations);
@@ -58,7 +61,7 @@ public class FunctionsGreenfield {
 		int sumOfPolygons = 0;
 		double oldCrit = 0;
 
-		// create locations and allocate Polygons to it
+		// create territory centre and allocate basic areas to it
 		for (int i = 0; i < numberlocations; i++) {
 
 			Location old = null;
@@ -69,14 +72,14 @@ public class FunctionsGreenfield {
 
 			double actcrit = 0;
 
-			// getStartPoly
+			// get starting basic area
 			Polygon startPoly = null;
 			if (i == 0) {
 				startPoly = polygonContainer.getPolygonById(numberpolygons,
 						boundaryPolyIds.get(0));
 			} else {
-				// detect startPoly, startpoly is a boundary poly neighbourd to
-				// last location
+				// detect starting basic area, startpoly is a boundary basic area neighboured to
+				// last territory
 				int j = 0;
 				boolean found = false;
 
@@ -116,8 +119,8 @@ public class FunctionsGreenfield {
 				}
 			}
 
-			// if no boundaryPoly is available anymore; a polygon within the
-			// whole area will be taken
+			// if no boundaryPoly is available anymore; a basic area within the
+			// whole area will be taken that is neighboured to territory and not yet allocated
 			if (startPoly == null) {
 				int j = 0;
 				boolean found = false;
@@ -153,7 +156,7 @@ public class FunctionsGreenfield {
 				}
 			}
 
-			// if no neighbour polygone is possible
+			// if no neighboured basic area is possible
 			if (startPoly == null) {
 				if (boundaryPolyIds.size() > 0) {
 					for (int j = 0; j < boundaryPolyIds.size(); j++) {
@@ -188,7 +191,7 @@ public class FunctionsGreenfield {
 				}
 			}
 
-			// init Distances
+			// init Distances from startPoly to all other basic areas
 			FunctionsGreenfieldWhitespot.initDistancesToCentroids(numberpolygons, startPoly);
 
 			sumOfPolygons++;
@@ -201,11 +204,12 @@ public class FunctionsGreenfield {
 			boolean takeNextLoc = false;
 			int runs = 0;
 
+			//allocate basic areas until threshold is reached
 			while (actcrit < critThreshold
 					&& sumOfPolygons != (numberpolygons - (numberlocations - i))
 					&& !takeNextLoc && runs != numberpolygons) {
 
-				// detect Polygon with minimal distance
+				// detect basic area with minimal distance
 				Polygon minPoly = null;
 				boolean minPolyfound = false;
 				for (int k = 0; k < numberpolygons; k++) {
@@ -221,6 +225,7 @@ public class FunctionsGreenfield {
 					}
 				}
 
+				//allocate basic area, check coherence
 				if (minPolyfound) {
 					for (int k = 0; k < numberpolygons; k++) {
 						Polygon actPoly = polygonContainer.getPolygon(k);
@@ -237,13 +242,13 @@ public class FunctionsGreenfield {
 						}
 					}
 
-					// allocate polygon
+					// allocate basic area
 					loc.setAllocatedPolygon(minPoly);
 					minPoly.setAllocatedLocation(loc);
 					actcrit = actcrit + minPoly.getCriteria();
 					buffAllocatedPolyIds.add(minPoly.getId());
 					sumOfPolygons++;
-				} else { // if no neighbour polygon is possible anymore
+				} else { // if no neighboured basic area is possible anymore
 					takeNextLoc = true;
 				}
 			}
@@ -260,7 +265,12 @@ public class FunctionsGreenfield {
 	}
 
 	
-
+	/**calculates coordinates of terriory centres
+	 * @param numberpolygons: int, number of basic areas
+	 * @param numberlocations: int, number of territory centre
+	 * @param PLZ5: boolean, indicates database of basic areas
+	 * @throws SQLException
+	 */
 	public static void calculateGreenfieldLocations(int numberpolygons,
 			int numberlocations, boolean PLZ5) throws SQLException {
 

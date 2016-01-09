@@ -7,13 +7,13 @@ public class Polygon {
 
 	private Integer id;
 	private String geometry;
-	private Double criteria;
+	private Double criteria; //activity measure
 	private Double area;
 	private Double circumference;
 	private List<Polygon> neighbour;
 	private List<Double>sharedCircumferences = new ArrayList<Double>();
-	private Location allocatedLocation;
-	private Boolean haveAllocatedLocation;
+	private Location allocatedLocation; //territory centre that contains basic area
+	private Boolean haveAllocatedLocation; //flag, to show whether basic area is allocated
 	private Double[] centroidPoint= new Double[2];
 	private Double distance;
 	

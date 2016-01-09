@@ -17,37 +17,12 @@ public class DistCrit {
 		static ArrayList<Integer>[] neighbours;
 	}
 
-//	
-//	/**
-//	 * Add value of polygon to criteria
-//	 * @param polyID: ID of Polygon
-//	 * @param location
-//	 * @param jdbc: JDBCConnection
-//	 * @param criteria: Array of all criterias
-//	 * @throws SQLException
-//	 */
-//	public static void addToCriteria(int polyID, int location, int locationMaxCriteria, double[] criteria, boolean rearranged) throws SQLException{
-//		//get criteria of the given polygon
-//		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(String.valueOf(polyID))));
-//		
-//		if (!rearranged){
-//			criteria[location-1]=criteria[location-1]+critValue;
-//		}
-//		else{			
-//			System.out.println("criterias before: "+ criteria[locationMaxCriteria-1]+","+criteria[location-1]);
-//			criteria[locationMaxCriteria-1]=criteria[locationMaxCriteria-1]-critValue;
-//			criteria[location-1]=criteria[location-1]+critValue;
-//			System.out.println("criterias after: "+ criteria[locationMaxCriteria-1]+","+criteria[location-1]);
-//		}
-//		
-//	}
-//	
-//	/**
-//	 * Assign polygons which are near to the locations
-//	 * @param numberpolygons: number of all polygons of the region
-//	 * @param criteria: array of criteria sum for distribute polygons homogeneously
-//	 * @throws Exception
-//	 */
+	/*
+	 * Assign polygons which are nearest to territory centre, afterwards rearranging basic areas
+	 * @param numberpolygons: number of all polygons of the region
+	 * @param criteria: array of criteria sum for distribute polygons homogeneously
+	 * @throws Exception
+	 */
 	private static void allocatePolygons(int numberlocations, int numberpolygons, double[] criteria, boolean plz5) throws Exception{
 		Statement stmt = functions.getConnection();
 String columnIDs="_g7304";
@@ -56,7 +31,7 @@ String columnIDs="_g7304";
 			columnIDs="_g7305";
 		}
 			
-		//get all PolygonIDs and store it
+		//get all IDs of basic areas and store it
 		StringBuffer sb = new StringBuffer();
 		//SELECT t2.id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM _varea_1424340553765 AS t1 INNER JOIN _vcriteria_1424340553765 As t2 ON t2._g7304=t1.id
 		if (plz5){
@@ -69,6 +44,7 @@ String columnIDs="_g7304";
 		System.out.println(sb);
 		ResultSet t=stmt.executeQuery(sb.toString());
 			
+		//store information of basic areas
 		for (int i=0;i<numberpolygons;i++){
 			t.next();
 			polys[0].add(t.getDouble("id"));
@@ -79,6 +55,7 @@ String columnIDs="_g7304";
 			
 		System.out.println("length"+polys[0].size());
 			
+		//calculate distance of each absic area to each territory centre
 		double distances[] = new double[numberlocations];
 		for (int i=0; i<polys[0].size();i++){
 			int poscoords=0;
@@ -89,6 +66,7 @@ String columnIDs="_g7304";
 				poscoords=poscoords+2;
 			}
 				
+			//determine basic area with smallest distance
 			int locMinDist = 0;
 			double minDistance = distances[0];
 			for (int j=1;j<numberlocations;j++){
@@ -98,6 +76,7 @@ String columnIDs="_g7304";
 				}
 			}
 				
+			//store neighbour basic areas of each basic area
 			polyNeighbours.polyIds.add(polys[0].get(i).intValue());
 			for (int j=0; j<polys[0].size();j++){
 				if (j!=i){
@@ -109,6 +88,7 @@ String columnIDs="_g7304";
 				}
 			}
 			
+			//allocate basic area by distance
 			System.out.println("write "+polys[0].get(i).intValue()+" to "+(locMinDist+1));
 			allocPolys[locMinDist].add(polys[0].get(i).intValue());
 			geomAllocPolys[locMinDist].add(geometry);
@@ -130,7 +110,7 @@ String columnIDs="_g7304";
 
 		long time = System.currentTimeMillis();
 		
-		//setLocations
+		//set territory centres
 		int numberlocations =10;
 		boolean plz5 = true;
 		lonlats= new double[numberlocations*2];
@@ -158,19 +138,21 @@ String columnIDs="_g7304";
 		geomAllocPolys = (ArrayList<String>[])new ArrayList[numberlocations];
 		for(int i=0;i<geomAllocPolys.length;i++) geomAllocPolys[i] = new ArrayList<String>();
 	
-//		//calculate number of Polygons in that region
+//		//calculate number of basic areas in that region
 		int numberpolygons=functions.getNrOrSum(true,plz5);
 		polyNeighbours.polyIds = new ArrayList<Integer>();
 		polyNeighbours.neighbours = (ArrayList<Integer>[])new ArrayList[numberpolygons];
 		for (int i=0; i<polyNeighbours.neighbours.length;i++) polyNeighbours.neighbours[i]=new ArrayList<Integer>();
 		
-//		//alocate Polygons to locations
+//		//allocate basic areas to territory centres by distance
 		allocatePolygons(numberlocations, numberpolygons, criteria,plz5);
 		functions.setCriteria(criteria, numberlocations);
+		
+		//rearrange basic areas to get balanced territories
 		allocPolys=functions.checkthresholdBiggest(numberlocations, allocPolys, polys, polysGeometry, polyNeighbours.polyIds, polyNeighbours.neighbours);
 		criteria=functions.getCriteria();
 		
-//		//Create Shapefile with allocated poylgons
+//		//Create file with allocated basic areas
 		for (int i=0; i<numberlocations;i++){
 			functions.writePolygon(output, allocPolys[i], geomAllocPolys[i],i+1);
 		}
@@ -179,19 +161,21 @@ String columnIDs="_g7304";
 					+ criteria[i]);
 		}
 		
+		//calculate compactness
 		for (int i=0; i<numberlocations;i++){
 			double com = calcCompactness(numberpolygons, i, plz5);
 			System.out.println("compactness of territory "+ (i+1) + " :"
 					+ com);
 		}
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+	
 		output.flush();
 		output.close();
 	    
 	    System.out.println("successfully ended");
 }
 	
+	//calculate circumference for calculation of compactness
 	private static double calculateCircumference(int numberpolygons, int location, boolean plz5) throws SQLException{
 		Statement stmt = functions.getConnection();
 		StringBuffer sb = new StringBuffer();
@@ -217,6 +201,7 @@ String columnIDs="_g7304";
 		return area;
 	}
 	
+	//calculate area for calculation of compactness
 	private static double calculateArea(int numberpolygons, int location, boolean plz5) throws SQLException{
 
 		Statement stmt = functions.getConnection();
@@ -242,6 +227,7 @@ String columnIDs="_g7304";
 		return area;
 	}
 	
+	//calculate compactness
 	public static double calcCompactness(int numberpolygons, int i, boolean plz5) throws SQLException{
 		
 		double U_area = calculateCircumference(numberpolygons, i, plz5);

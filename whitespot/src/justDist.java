@@ -20,24 +20,16 @@ public class justDist {
 //	 * @param criteria: Array of all criterias
 //	 * @throws SQLException
 //	 */
-	private static void addToCriteria(int polyID, int location, int locationMaxCriteria, double[] criteria, boolean rearranged) throws SQLException{
-		//get criteria of the given polygon
+	private static void addToCriteria(int polyID, int location, int locationMaxCriteria, double[] criteria) throws SQLException{
+		//get criteria of the given basic area
 		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(String.valueOf(polyID))));
-		
-		if (!rearranged){
-			criteria[location-1]=criteria[location-1]+critValue;
-		}
-		else{			
-			System.out.println("criterias before: "+ criteria[locationMaxCriteria-1]+","+criteria[location-1]);
-			criteria[locationMaxCriteria-1]=criteria[locationMaxCriteria-1]-critValue;
-			criteria[location-1]=criteria[location-1]+critValue;
-			System.out.println("criterias after: "+ criteria[locationMaxCriteria-1]+","+criteria[location-1]);
-		}
+
+		criteria[location-1]=criteria[location-1]+critValue;
 		
 	}
 //	
 //	/**
-//	 * Assign polygons which are near to the locations
+//	 * Assign basic areas which are nearest to the territory centres
 //	 * @param numberpolygons: number of all polygons of the region
 //	 * @param criteria: array of criteria sum for distribute polygons homogeneously
 //	 * @throws Exception
@@ -63,6 +55,7 @@ public class justDist {
 		System.out.println(sb);
 		ResultSet t=stmt.executeQuery(sb.toString());
 			
+		//store information of basic areas
 		for (int i=0;i<numberpolygons;i++){
 			t.next();
 			polys[0].add(t.getDouble("id"));
@@ -73,16 +66,20 @@ public class justDist {
 			
 		System.out.println("length"+polys[0].size());
 			
+		//allocate basic areas by distance
 		double distances[] = new double[numberlocations];
 		for (int i=0; i<polys[0].size();i++){
 			int poscoords=0;
 			String geometry = polysGeometry[1].get(i);
+			
+			//calculate distance of basic area to each territory centre
 			for (int j=1; j<numberlocations+1;j++){
 				distances[j - 1] = functions.calculateDistance(poscoords, geometry, stmt, lonlats);
 				polys[j].add(distances[j-1]);
 				poscoords=poscoords+2;
 			}
 				
+			//determine territory centre which is closest
 			int locMinDist = 0;
 			double minDistance = distances[0];
 			for (int j=1;j<numberlocations;j++){
@@ -91,7 +88,8 @@ public class justDist {
 					minDistance=distances[j];
 				}
 			}
-				
+			
+			//alloc basic area				
 			System.out.println("write "+polys[0].get(i).intValue()+" to "+(locMinDist+1));
 			allocPolys[locMinDist].add(polys[0].get(i).intValue());
 			geomAllocPolys[locMinDist].add(geometry);
@@ -99,10 +97,10 @@ public class justDist {
 		}
 
 		
-		//sum value of criteria of all assigned polygons
+		//sum value of criteria of all assigned basic areas
 		for (int i=0;i<numberlocations;i++){
 				for (int j=0;j<allocPolys[i].size();j++){
-					addToCriteria(allocPolys[i].get(j), i+1, -1, criteria, false);
+					addToCriteria(allocPolys[i].get(j), i+1, -1, criteria);
 				}
 			}
 		
@@ -113,7 +111,7 @@ public class justDist {
 
 		long time = System.currentTimeMillis();
 		
-		//setLocations
+		//set territory centres
 		int numberlocations =10;
 		boolean plz5 = false;
 		lonlats= new double[numberlocations*2];
@@ -142,21 +140,24 @@ public class justDist {
 		for(int i=0;i<geomAllocPolys.length;i++) geomAllocPolys[i] = new ArrayList<String>();
 
 		
-//		//calculate number of Polygons in that region
+		//calculate number of basic areas in that region
 		int numberpolygons=functions.getNrOrSum(true, plz5);
 		
-//		//alocate Polygons to locations
+		//allocate basic areas to territory centres
 		allocatePolygons(numberlocations, numberpolygons, criteria, plz5);
 		
-//		//Create Shapefile with allocated poylgons
+		//Create file with allocated basic areas
 		for (int i=0; i<numberlocations;i++){
 			functions.writePolygon(output, allocPolys[i], geomAllocPolys[i],i+1);
 		}
+		
+		//print results
 		for (int i = 0; i < numberlocations; i++) {
 			System.out.println("Activity measure territory " + (i+1) + " :"
 					+ criteria[i]);
 		}
 		
+		//calculate compactness
 		for (int i=0; i<numberlocations;i++){
 			double com = calcCompactness(numberpolygons, i, plz5);
 			System.out.println("compactness of territory "+ (i+1) + " :"
@@ -164,12 +165,14 @@ public class justDist {
 		}
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+	
 		output.flush();
 		output.close();
 	    
 	    System.out.println("successfully ended");
 }
+	
+	//calculate circumference for calculation of compactness
 	private static double calculateCircumference(int numberpolygons, int location, boolean plz5) throws SQLException{
 		Statement stmt = functions.getConnection();
 		StringBuffer sb = new StringBuffer();
@@ -195,6 +198,7 @@ public class justDist {
 		return area;
 	}
 	
+	//calculate area for calculation of compactness
 	private static double calculateArea(int numberpolygons, int location, boolean plz5) throws SQLException{
 
 		Statement stmt = functions.getConnection();
@@ -220,6 +224,7 @@ public class justDist {
 		return area;
 	}
 	
+	//calculate compactness
 	public static double calcCompactness(int numberpolygons, int i, boolean plz5) throws SQLException{
 		
 		double U_area = calculateCircumference(numberpolygons, i, plz5);

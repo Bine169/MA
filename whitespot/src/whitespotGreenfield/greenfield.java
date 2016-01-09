@@ -26,18 +26,18 @@ public class greenfield {
 			criteria[i]=0;
 		}
 		
-		//set startLocations
+		//set starting territory centres
 		FunctionsCommon.initLocationContainer();
 		
 		int numberpolygons = FunctionsCommon.initialisation(numberlocations, true, PLZ5, microm);
 		
-		//allocated Polygons
+		//allocate basic areas
 		FunctionsGreenfield.allocatePolygonsGreenfield(numberpolygons, numberlocations, PLZ5);
 		
-		//check whether all polygons are allocated
+		//check whether all basic areas are allocated
 		FunctionsGreenfieldWhitespot.checkAllocation(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
 		
-		//set Locations
+		//set territory centres
 		FunctionsGreenfield.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
 		weightCom = 0;
@@ -49,10 +49,11 @@ public class greenfield {
 		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, 0);
 	
 		FunctionsCommon.checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, true, 0);
-		//set endLocations
+		
+		//set final territory centres
 		FunctionsGreenfield.calculateGreenfieldLocations(numberpolygons, numberlocations, PLZ5);
 		
-		//writeLocations
+		//write territory centres
 		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
 		FunctionsCommon.visualizeResults(numberpolygons, numberlocations, output);

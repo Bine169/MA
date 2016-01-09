@@ -37,6 +37,11 @@ public class FunctionsGreenfieldWhitespot {
 		setLocationContainer();
 	}
 	
+	/**calculates threshold for abording allocation
+	 * @param PLZ5: boolean, indicates table of used basic areas
+	 * @param sumCriteria: double, sum of activity measures of all basic areas
+	 * @param numberlocations: int, number of territory centres
+	 */
 	public static double calculateCritaverage(boolean PLZ5, double sumCriteria, int numberlocations){
 		double critAverage=0;
 		
@@ -49,6 +54,13 @@ public class FunctionsGreenfieldWhitespot {
 		return critAverage;
 	}
 	
+	/**calculates territory centre
+	 * @param numberpolygons: int, number of basic areas
+	 * @param PLZ5: boolean, indicates database of basic areas
+	 * @param loc: int, indicates territory centre
+	 * @throws SQLException
+	 * @return coordinates of territory centres 
+	 */
 	public static double[] calculateLocations(int numberpolygons, boolean PLZ5, int loc) throws SQLException {
 			Getters();
 			
@@ -104,6 +116,7 @@ public class FunctionsGreenfieldWhitespot {
 			
 			Setters();
 			
+			//save coordinates
 			double[] coordinates = new double[2];
 			coordinates[0]=Double.parseDouble(lon);
 			coordinates[1]=Double.parseDouble(lat);
@@ -112,6 +125,11 @@ public class FunctionsGreenfieldWhitespot {
 			
 	}
 	
+	/**determine basic areas at the boundary of the investigation area
+	 * @param PLZ5: boolean, indicates database of basic areas
+	 * @throws SQLException
+	 * @return list of IDs of basic areas
+	 */
 	public static List<Integer> getBoundaryPolys(boolean PLZ5)
 			throws SQLException {
 		
@@ -156,6 +174,10 @@ public class FunctionsGreenfieldWhitespot {
 		return polys;
 	}
 	
+	/**calculates sum of activity measure of all basic areas
+	 * @param numberpolygons: int, number of basic areas
+	 * @return double, sum of activity measure 
+	 */
 	public static double getCritSum(int numberpolygons){
 		Getters();
 		
@@ -167,6 +189,10 @@ public class FunctionsGreenfieldWhitespot {
 		return sumCrit;
 	}
 	
+	/**calculates distance of starting basic area to each other basic area
+	 * @param numberpolygons: int, number of basic areas
+	 * @param startPoly: basic area that is used as starting geometry
+	 */
 	public static void initDistancesToCentroids(int numberpolygons,
 			Polygon startPoly) {
 		
@@ -189,30 +215,42 @@ public class FunctionsGreenfieldWhitespot {
 		Setters();
 	}
 	
+	/**check whether all basic areas are allocated to one territory
+	 * @param numberpolygons: int, number of basic areas
+	 * @param numberlocations: int, number of territory centre
+	 * @param PLZ5: boolean, indicates database of basic areas
+	 * @param weightCom: int, weighting value of compactness
+	 * @param weightCrit: int, weighting value of activity measure
+	 * @throws SQLException, Exception
+	 */
 	public static void checkAllocation(int numberpolygons,
 			int numberlocations, boolean PLZ5, int weightCom, int weightCrit)
 			throws SQLException, Exception {
 		
 		Getters();
 		
+		//calculate sum of activity measures of all basic areas
 		double sumCriteria=0;
 		for (int i=0;i<numberpolygons;i++){
 			sumCriteria=sumCriteria+polygonContainer.getPolygon(i).getCriteria();
 		}
 
+		//calculate threshold value
 		double critAverage = sumCriteria / (numberlocations + 1);
 		boolean allAllocated = false;
 		boolean next = false;
 		int i = 0;
 
+		//allocate basic areas that are not allocated yet
 		while (!allAllocated) {
+			//check allocation, do if not allocated
 			if (!polygonContainer.getPolygon(i).getFlagAllocatedLocation()) {
 				Polygon actPoly = polygonContainer.getPolygon(i);
 
 				List<Polygon> neighbours = actPoly.getNeighbours();
 				List<Location> neighbourLocs = new ArrayList<Location>();
 
-				// get neighbourlocations
+				// get neighbourled territories
 				for (int j = 0; j < neighbours.size(); j++) {
 					for (int k = 0; k < numberlocations; k++) {
 						if (locationContainer.getLocation(k)
@@ -227,7 +265,7 @@ public class FunctionsGreenfieldWhitespot {
 					}
 				}
 
-				// allocate polygon
+				// allocate basic area
 				double minWeight = -1;
 				Location bestLocation = null;
 
@@ -280,6 +318,10 @@ public class FunctionsGreenfieldWhitespot {
 		Setters();
 	}
 	
+	/**resetting allocations after initial creation of territoris centre to start area segmentation to all territory centres
+	 * @param numberpolygons: int, number of basic areas
+	 * @param numberlocations: int, number of territory centre
+	 */
 	public static void resetAllocations(int numberpolygons, int numberlocations){
 		for (int i=0;i<numberpolygons;i++){
 			polygonContainer.getPolygon(i).setAllocatedLocation(null);

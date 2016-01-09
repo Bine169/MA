@@ -14,10 +14,6 @@ public class FunctionsCommon {
 	static PolygonContainer polygonContainer;
 	static int counterIdUsed = 0;
 	static int lastPolyID;
-	static boolean nofoundBiggest = false;
-	static boolean nofoundSmallest = false;
-	static int nofoundlocbiggest = -1;
-	static int nofoundlocsmallest = -1;
 	static List<Integer> nofoundlocations = new ArrayList<Integer>();
 
 	private static class polyDistances {
@@ -45,7 +41,7 @@ public class FunctionsCommon {
 	//three main functions:initialisation, area segmentation and visulisation --> are used by all three algorithm
 	
 	/**calls functions for initialisation
-	 * @param numberlocations: number of used locations
+	 * @param numberlocations: number of territory centres
 	 * @param number: true or false, dependent on decision whether number (true) or sum (false) should be given back calling getNrOrSum
 	 * @param PLZ5: true or false to show which data
 	 */
@@ -71,10 +67,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	/** calls all functions that are necessary for area segmentation
-	 * @param numberpolygons: number of geometries in the calculation areas
-	 * @param numberlocations: number of used locations
-	 * @param PLZ5: true or false
-	 * @param threshold: int value of threshold for rearranging to get balanced criteria
+	 * @param numberpolygons: number of basic areas in the calculation areas
+	 * @param numberlocations: number of territory centres
+	 * @param PLZ5: true or false to indicate data
+	 * @param threshold: int value of threshold for rearranging to get balanced activity measure
 	 * @param weightCom: int value for weight of compactness: used during rearranging
 	 * @param weightCrit: int value for weight of criteria: used during rearranging
 	 * @param whitespot: true or false
@@ -91,17 +87,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		
 		initCriteria(numberpolygons, numberlocations);
 		System.out.println("init Criteria done");
-		
-		FileWriter output2 =FunctionsCommon.createFileWriter();
-		 FunctionsCommon.writePolygon(output2, numberpolygons);
-		 output2.close();
 		 
-//		checkUnityAfterAllocByDist(numberpolygons, numberlocations);
 		System.out.println("check done");
-		
-//		output2 =FunctionsCommon.createFileWriter("debug");
-//		 FunctionsCommon.writePolygon(output2, numberpolygons);
-//		 output2.close();
 		 
 		 System.out.println("starting rearrangement");
 		checkThreshold(numberpolygons, numberlocations, threshold, microm, PLZ5, weightCom, weightCrit, whitespot, numberGivenLocations);
@@ -110,8 +97,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	/**calls functions for visualisation of the results
-	 * @param numberpolygons: number of geometries in calculation area
-	 * @param numberlocations: number of used locations
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param numberlocations: number of territory centres
 	 * @param output: File for saving output
 	 */
 	public static void visualizeResults(int numberpolygons, int numberlocations, FileWriter output) throws Exception{
@@ -122,7 +109,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 	//----------------Initialisation------------------------
 	
-	/**calculates the number of given geometries Or the sum of the whole criterias
+	/**calculates the number of basic areas Or the sum of activity measures
 	 * @param number: boolean, true if number should be calculated, false for calculation of criteria sum
 	 * @param PLZ5: boolean, to indicate area
 	 * @return number or sum
@@ -178,10 +165,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return sum;
 	}
 	
-	/**initialisation of polygones getting id, geometrie, critvalue etc from databse and store it into local variables
-	 * @param numberpolygons: number of geometries in calculation area
-	 * @param numberlocations: number of used locations
-	 * @param PLZ5: boolean to indicate databse
+	/**initialisation of basic areas getting id, geometrie, activity measure etc from database and store it into local variables
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param numberlocations: number of territory centres
+	 * @param PLZ5: boolean to indicate database
 	 */
 	private static void initPolygones(int numberpolygons, int numberlocations,
 			boolean PLZ5, boolean microm) throws SQLException {
@@ -228,10 +215,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			t = stmt.executeQuery(sb.toString());
 		}
 
-		//init polygonContainer for saving polygones; contains instances of polygons
+		//init polygonContainer for saving basic areas; contains instances of polygons
 		polygonContainer = new PolygonContainer();
 
-		// get ids, geometry and criteria
+		// get ids, geometry and ativity measure
 		for (int i = 0; i < numberpolygons; i++) {
 			System.out.println(i);
 			t.next();
@@ -247,9 +234,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 	}
 	
-	/**initialise the neighbour polygones of every geometrie
-	 * @param numberpolygons: number of geometries in calculation area
+	/**initialise the neighboured basic areas of every basic area
+	 * @param numberpolygons: number of basic areas in calculation area
 	 * @param PLZ5: boolean, indicates table
+	 * @param microm: indictaes database conenction
 	 */
 	private static void initNeighbours(int numberpolygons, boolean PLZ5,
 			boolean microm) throws SQLException {
@@ -274,7 +262,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			tablegeom = "geometriesplz81";
 		}
 
-		//getting nearest neighbours for every geometrie and store them
+		//getting nearest neighbours for every basic areas and store them
 		for (int i = 0; i < numberpolygons; i++) {
 			System.out.println(i);
 			List<Integer> neighbours = new ArrayList<Integer>();
@@ -290,7 +278,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			boolean last = false;
 			while (!last) {
 				nN.next();
-				//store just real neighbours, not polygone itself
+				//store just real neighbours, not polygon itself
 				if (nN.getInt(1)!=poly.getId()){
 					neighbours.add(nN.getInt(1));
 				}
@@ -331,12 +319,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	/**creates the SQL statement for calculation of neighbours
-	 * @param polyID: id of geometrie for that neighbours should be calculated
+	 * @param polyID: id of basic areas for that neighbours should be calculated
 	 * @param tablegeom: name of table where geometries are stored
 	 * @param jdbc: connection to database
-	 * @return ResultSet which contains the neighbours of the polygon
+	 * @return ResultSet which contains the neighbours of the basic areas
 	 * @throws SQLException
-	 * attention: PostGIS function gives also polygon with polyID as neighbour back
+	 * attention: PostGIS function gives also basic areas with polyID as neighbour back
 	 */
 	private static ResultSet getNearestNeighbours(int polyID, String tablegeom,
 			Statement jdbc) throws SQLException {
@@ -356,12 +344,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return rNeighbours;
 	}
 	
-	/**initialise centroid points of given geometries and store them local
-	 * @param numberpolygons: number of geometries in calculation area
+	/**initialise centroid points of given basic areas and store them local
+	 * @param numberpolygons: number of basic areas in calculation area
 	 * @throws SQLException
 	 */
 	public static void initCentroids(int numberpolygons) throws SQLException {
-		//getting centroid for every polygone and store it
+		//getting centroid for every basic area and store it
 		for (int i = 0; i < numberpolygons; i++) {
 			String geom = polygonContainer.getPolygon(i).getGeometry();
 			
@@ -383,7 +371,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	/**calculates centroid and gives result back
-	 * @param geometry: geometry for which centroid should be caluclated
+	 * @param geometry: geometry for which centroid should be calculated
 	 * @return centroid point as string
 	 * @throws SQLException
 	 */
@@ -413,6 +401,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return centroid;
 	}
 	
+	/**calculates areas of each basic area and stores it
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param PLZ5: boolean, indicates table
+	 * @param microm: indictaes database conenction
+	 * @throws SQLException
+	 */
 	private static void initArea(int numberpolygons, boolean PLZ5, boolean microm) throws SQLException{
 		//init variables
 				Connection jdbc = null;
@@ -435,6 +429,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 					tablegeom = "geometriesplz81";
 				}
 
+				//calculate area for each basic area
 				for (int i=0;i<numberpolygons;i++){
 					Polygon actPoly = polygonContainer.getPolygon(i);
 					
@@ -469,6 +464,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				}
 	}
 	
+	/**calculates circumference of each basic area and stores it
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param PLZ5: boolean, indicates table
+	 * @param microm: indictaes database conenction
+	 * @throws SQLException
+	 */
 	private static void initCircumferences(int numberpolygons, boolean PLZ5, boolean microm) throws SQLException{
 		//init variables
 		Connection jdbc = null;
@@ -491,7 +492,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			tablegeom = "geometriesplz81";
 		}
 
-		//calculate circumference for each geometry
+		//calculate circumference for each basic area
 		for (int i=0;i<numberpolygons;i++){
 			Polygon actPoly = polygonContainer.getPolygon(i);
 			
@@ -523,7 +524,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			actPoly.setCircumference(result);
 		}
 		
-		//calculate shared edge with neighboured polygones
+		//calculate shared edge with neighboured basic areas
 		for (int i=0;i<numberpolygons;i++){
 			Polygon actPoly=polygonContainer.getPolygon(i);
 			
@@ -541,7 +542,6 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				idsBuffer.deleteCharAt(idsBuffer.length() - 1);
 
 				//create SQL statement
-//				sb = calculateCircumference(tablegeom, idsBuffer);
 				sb.append("SELECT ST_Length(ST_CollectionExtract(ST_Intersection(a_geom, b_geom), 2)) ");
 				sb.append("FROM (SELECT (SELECT the_geom from "+tablegeom+" where id="+geomIDs.get(0)+") AS a_geom,");
 				sb.append("(SELECT the_geom from "+tablegeom+" where id="+geomIDs.get(1)+") AS b_geom) f;");
@@ -554,15 +554,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 				d.next();
 
-//				double circumBoth = d.getDouble(1);
-				
-//				double sharedCircumference = actPoly.getCircumference() + neighbourPoly.getCircumference() - circumBoth;
-				double sharedCircumference=d.getDouble(1);
-				
-//				System.out.println("circumference actPoly: "+actPoly.getCircumference());
-//				System.out.println("circumference NeighPoly: "+neighbourPoly.getCircumference());
-//				System.out.println("circumference shared: "+sharedCircumference);
-				
+				double sharedCircumference=d.getDouble(1);		
 				actPoly.setCircumferenceshared(sharedCircumference);
 			}
 		}
@@ -575,9 +567,9 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	
 	//----------------Area Segmentation------------------------
 	
-	/**determines the ID of the geometry which contains the location
+	/**determines the ID of the basic area which contains the territory centre
 	 * @param PLZ5: boolean to indicate database
-	 * @param numberlocations: number of used locations
+	 * @param numberlocations: number of territory centres
 	 * @throws SQLException
 	 */
 	public static void determineHomePoly(boolean PLZ5, int numberlocations,
@@ -607,15 +599,11 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		int id;
 		StringBuffer sb = new StringBuffer();
 
-		//getting geoemtry id for every location
+		//getting basic area id for every territory center
 		for (int i = 0; i < numberlocations; i++) {
 			System.out.println(i+","+numberlocations);
 			Location loc = locationContainer.getLocation(i);
 			sb = new StringBuffer();
-			
-			// SELECT id FROM geometriesplz5 WHERE
-			// ST_Contains(the_geom,st_setsrid(st_makepoint(13.72047,51.09358),4326))
-			// LIMIT 1;
 			
 			//create SQL statement
 			sb.append("SELECT id FROM " + tablegeom
@@ -639,9 +627,9 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 	}
 	
-	/**initialise distances from every location to every geometry
-	 * @param numberpolygons: number of geometries in calculation area
-	 * @param numberlocations: number of used locations
+	/**initialise distances from every territory centre to each basic area
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param numberlocations: number of territory centres
 	 * @throws SQLException
 	 */
 	private static void initDistances(int numberpolygons, int numberlocations,
@@ -651,7 +639,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		for (int i = 0; i < polyDistances.distances.length; i++)
 			polyDistances.distances[i] = new ArrayList<Double>();
 
-		//calculate distance for every geometrie to every location
+		//calculate distance for every basic area to each territory centre
 		for (int i = 0; i < numberpolygons; i++) {
 			System.out.println(i);
 			Polygon poly = polygonContainer.getPolygon(i);
@@ -668,6 +656,11 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 	}
 	
+	/**initialise distances from territory centre to centroid of basic area
+	 * @param location: int, indicates territory centre
+	 * @param actPoly: actual basic area
+	 * @return double value of distance
+	 */
 	private static double initDistancesToCentroid(int location,
 			Polygon actPoly) {
 		
@@ -686,14 +679,14 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	
-	/**allocates geomteries by their distance to the locations; every locations gets the nearest geometries
+	/**allocates basic areas by their distance to the territory centres; every centre gets the nearest basic area
 	 * @param numberpolygons: number of geometries in calculation area
 	 * @param numberlocations: number of used locations
 	 */
 	private static void allocatePolygonsByDistance(int numberpolygons,
 			int numberlocations) {
 
-		//allocate every polygone to the location which is nearest
+		//allocate every basic area to the territory centre which is nearest
 		for (int i = 0; i < numberpolygons; i++) {
 			int locMinDist = 0;
 			double minDistance = polyDistances.distances[i].get(0);
@@ -714,18 +707,18 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 	}
 
-	/**initialise critvalues, necessary for rearranging
-	 * @param numberpolygons: number of geometries in calculation area
-	 * @param numberlocations: number of used locations
+	/**initialise activity measure, necessary for rearranging
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param numberlocations: number of territory centres
 	 */
 	private static void initCriteria(int numberpolygons, int numberlocations) {
 
-		//reset criteria to 0 (necessary for whitespot)
+		//reset activity measure to 0 (necessary for whitespot)
 		for (int i = 0; i < numberlocations; i++) {
 			locationContainer.setCriteria(i, 0);
 		}
 		
-		//sum critvalues
+		//sum activity measures
 		for (int i = 0; i < numberpolygons; i++) {
 			double crit = polygonContainer.getPolygon(i).getCriteria();
 			Location loc = polygonContainer.getAllocatedLocation(i);
@@ -734,19 +727,19 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			locationContainer.setCriteriaByLoc(loc, newcrit);
 		}
 
-		//print criteria values
+		//print values
 		for (int i = 0; i < numberlocations; i++) {
 			System.out.println(locationContainer.getCriteria(i));
 		}
 	}
 	
-	/**checks whether the created ares (created by allocatePolygonsByDistance) are coherent
-	 * @param numberpolygons: number of geometries in calculation area
-	 * @param numberlocations: number of used locations
+	/**checks whether the created territories (created by allocatePolygonsByDistance) are coherent
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param numberlocations: number of territory centres
 	 * @throws Exception
 	 */
 	private static void checkUnityAfterAllocByDist(int numberpolygons, int numberlocations) throws Exception{
-		//check unity of area for every location
+		//check unity of territory for centre
 		boolean areaNotCoherent =false;
 		
 		for (int j=0;j<numberlocations;j++){
@@ -759,19 +752,19 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			int pos = 0;
 			boolean graphEnds = false;
 			
-			//saving these neighbours, which can be reached from the actual poly AND are contained in buffAllocPolysLoc
+			//saving these neighbours, which can be reached from the actual basic area AND are contained in buffAllocPolysLoc
 			List<Integer> neighbours = new ArrayList<Integer>();
 			
-			//saving geometries which contain to graph
+			//saving basic areas which contain to graph
 			List<Polygon> polysTaken = new ArrayList<Polygon>();
 			
-			//saving geomtries which are not rearranged jet, necessary during rearrangement of other graphs
+			//saving basic areas which are not rearranged jet, necessary during rearrangement of other graphs
 			List<Polygon> polysNotTaken = new ArrayList<Polygon>();
 			
-			//saving all geometries which contain to that location
+			//saving all geometries which contain to that territory centre
 			List<Polygon> buffAllocPolysLoc = new ArrayList<Polygon>();
 			
-			//add all polygones which contain to the location
+			//add all basi areas which contain to the territory centre
 			for (int i = 0; i < numberpolygons; i++) {
 				Polygon poly = polygonContainer.getPolygon(i);
 				if (poly.getAllocatedLocation().getId() == loc.getId()) {
@@ -780,13 +773,13 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 
 			//check unity using graphs
-			//approach: if not all polygones can be reached using relationsship of neighbours, the area is not coherent--> several graphs exist
+			//approach: if not all basic areas can be reached using relationship of neighbours, the area is not coherent--> several graphs exist
 			while (!graphEnds) {
 				Polygon actPoly=null;
 				
-				//check whether it is first polygon: true, start with Homepoly to identify area that is nearest to location (if area is not coherent the other area will be rearranged)
+				//check whether it is first basic area: true, start with basic area that contain territory centre to identify subterritory that is nearest to centre (if territory is not coherent the other area will be rearranged)
 				if (first){
-					//identify homePoly and use it
+					//identify basic area which contains centre and use it
 					for (int i=0;i<buffAllocPolysLoc.size();i++){
 						if (buffAllocPolysLoc.get(i).getId()==loc.getHomePolyId()){
 							actPoly=buffAllocPolysLoc.get(i);
@@ -796,7 +789,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 					}
 				}
 				else{
-					//take next polygon in list
+					//take next basic area in list
 					actPoly = buffAllocPolysLoc.get(pos);
 				}
 
@@ -814,7 +807,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 					if (takeNextNeighbour) {
 						boolean allreadyTaken = false;
-						//check whether the actual polygon is allready checked to contain in graph
+						//check whether the actual basic area is already checked to contain in graph
 						for (int i = 0; i < polysTaken.size(); i++) {
 							if (actPoly.getId() == polysTaken.get(i).getId()) {
 								allreadyTaken = true;
@@ -825,7 +818,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 						if (!allreadyTaken) {
 							polysTaken.add(actPoly);
 
-							//add all neighbours of actual poly which are contained in buffAllocPolysLoc AND can be reached from actual poly
+							//add all neighbours of actual basic area which are contained in buffAllocPolysLoc AND can be reached from actual basic area
 							for (int l = 0; l < actPoly.getNeighbours().size(); l++) {
 								for (int k = 0; k < buffAllocPolysLoc.size(); k++) {
 									
@@ -833,7 +826,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 									if (buffAllocPolysLoc.get(k).getId() == actPoly
 											.getNeighbours().get(l).getId()) {
 
-										//check whether id is allready stored in neighbours List
+										//check whether id is already stored in neighbours List
 										if (!neighbours
 												.contains(buffAllocPolysLoc
 														.get(k).getId())) {
@@ -862,7 +855,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 			int countPolysTaken = 0;
 
-			//check whether all polygons of buffAllocPolysLoc were taken and found as neighbours; if not more than one graph exists
+			//check whether all basic areas of buffAllocPolysLoc were taken and found as neighbours; if not more than one graph exists
 			for (int l = 0; l < polysTaken.size(); l++) {
 				for (int k = 0; k < buffAllocPolysLoc.size(); k++) {
 					if (buffAllocPolysLoc.get(k).equals(polysTaken.get(l))) {
@@ -877,37 +870,37 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				unit = false;
 			}
 
-			//if area has more than one part, rearrange the other parts
+			//if territory has more than one part, rearrange the other parts
 			if (!unit){
 				
 				areaNotCoherent=true;
 				
-				//store all polygones which contain not to main graph but to other graph(s)
+				//store all basic areas which contain not to main graph but to other graph(s)
 				for (int i=0;i<buffAllocPolysLoc.size();i++){
 					if (!polysTaken.contains(buffAllocPolysLoc.get(i))){
 						polysNotTaken.add(buffAllocPolysLoc.get(i));
 					}
 				}
 				
-				//take every poly which is aside and rearrange it to another area
+				//take every basic area which is aside and rearrange it to another territory
 				int posPoly=0;
 				while(polysNotTaken.size()>0){
 					
-					//reset posPoly to 0 if necessary; reason: every polygon is taken and it is tried to rearrange it. Condition is, that it is need to
+					//reset posPoly to 0 if necessary; reason: every basic area is taken and it is tried to rearrange it. Condition is, that it is need to
 					//rearranged in that way that the resulting area is coherent. But if it is a geometry from the middle of the graph, this is not given
-					//in every case, so just the others arround need to be rearranged and after this also the polygone in the middle can be rearranged to another
-					//location. To achive this its necessary to go through the polysNotTaken once again
+					//in every case, so just the others around need to be rearranged and after this also the basic area in the middle can be rearranged to another
+					//territory. To achieve this its necessary to go through the polysNotTaken once again
 					if (posPoly>=polysNotTaken.size()){
 						posPoly=0;
 					}
 					
-					//take Polygon
+					//take basic area
 					Polygon actPoly=polysNotTaken.get(posPoly);
 					
 					//init variables
 					boolean rearranged=false;
 					
-					//store all ids from the locations where the geometry can not be rearranged because the resulting area would not be coherent
+					//store all ids from the territory where the basic area can not be rearranged because the resulting territory would not be coherent
 					List <Integer> notUseableLocs = new ArrayList<Integer>();
 					notUseableLocs.add(loc.getId());
 					
@@ -923,9 +916,9 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 						}
 						
 						boolean firstLoc=true;
-						//determine Location with next smallest Dist
+						//determine territory centre with next smallest Dist
 						for (int k=0;k<numberlocations;k++){
-							//take location
+							//take centre
 							Location actLoc = locationContainer.getLocation(k);
 							
 							//check whether its the first one (to init minDist) and whether its not contained in notUseableLocs
@@ -945,12 +938,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 						}
 						
 						
-						//simulate Change to the location which is nearest to geometry
+						//simulate Change to the territory centre which is nearest to basic area
 						locMinDist.getAllocatedPolygon().add(actPoly);
 						actPoly.setAllocatedLocation(locMinDist);
 						loc.removeAllocatedPolygon(actPoly);
 	
-						//check unity of area that gets the polygon
+						//check unity of territory that gets the basic area
 						boolean unity = checkUnitCalculationGets(actPoly.getId(), locMinDist.getId(), numberpolygons);
 						
 						
@@ -959,7 +952,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 							System.out.println("set "+actPoly.getId()+" from "+loc.getId()+" to "+locMinDist.getId());
 							System.out.println("old: "+loc.getCriteria()+","+locMinDist.getCriteria());
 							
-							//change crit values
+							//change activity measures
 							double critPoly = actPoly.getCriteria();
 							double critOld = loc.getCriteria();
 							double critNew = critOld-critPoly;
@@ -974,14 +967,14 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 							System.out.println("new: "+loc.getCriteria()+","+locMinDist.getCriteria());
 						}
 						else{
-							//abort if resulting area is not coherent--> reset change
+							//abort if resulting territory is not coherent--> reset change
 							locMinDist.removeAllocatedPolygon(actPoly);
 							actPoly.setAllocatedLocation(loc);
 							loc.getAllocatedPolygon().add(actPoly);
 							notUseableLocs.add(locMinDist.getId());
 						}
 						
-						//check whether actual geometry can not be rearranged to one location, in this case the if statement is true
+						//check whether actual basic area can not be rearranged to one location, in this case the if statement is true
 						if (notUseableLocs.size()==numberlocations){
 							posPoly++;
 							rearranged=true;
@@ -991,15 +984,15 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 		}
 		
-		//check whether at last one area was not coherent
+		//check whether at last one territory was not coherent
 		if (areaNotCoherent){
 			initCriteria(numberpolygons, numberlocations);
 		}
 	}
 
 	/**checks whether criteria is balanced (threshold is reached) or rearrangement is necessary
-	 * @param numberpolygons: number of geometries in calculation area
-	 * @param numberlocations: number of used locations
+	 * @param numberpolygons: number of basic areas in calculation area
+	 * @param numberlocations: number of territory centres
 	 * @param threshold: int value of threshold which variance between values is allowed
 	 * @param PLZ5: boolean, indicates table
 	 * @param weightCom: int, weighting value of compactness
@@ -1022,14 +1015,14 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 		double critSum = 0;
 
-		//calculate average of criteria value; every location should have this value in best case
+		//calculate average of activity measure; every terriotry should have this value in best case
 		for (int i = 0; i < numberlocations; i++) {
 			critSum = critSum + locationContainer.getCriteria(i);
 		}
 
 		critAverage = critSum / numberlocations;
 
-		//init compactness ratio for every area to make a comparison during rearranging possible
+		//init compactness ratio for every territory to make a comparison during rearranging possible
 		for (int i = 0; i < numberlocations; i++) {
 			initCompactnessRatio(locationContainer.getLocation(i), critAverage,
 					numberpolygons, microm, PLZ5, weightCom, weightCrit);
@@ -1037,7 +1030,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 		int location = 0;
 
-		//while variance given by threshold between the criteria values of the locations is not satisfied
+		//while variance given by threshold between the activity measures of territories is not satisfied
 		while (!satisfied) {
 			
 			//init variables
@@ -1061,24 +1054,19 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 					difference = 100 - value;
 				}
 
-				//check whether difference is good; count number of locations which are balanced
+				//check whether difference is good; count number of territories which are balanced
 				if (difference < (threshold)) {
 					compCrits++;
 				}
 			}
 
-//			int no = 0;
-//			boolean arranged = false;
-//
-//				List<Integer> compCriteriasFail = new ArrayList<Integer>();
-
-				//if not all locations are balanced, start rearranging
+				//if not all territories are balanced, start rearranging
 				if (compCrits != numberlocations) {
 
 					System.out.println("location" + location);
 
-					// check whether it is necessary to rearrange a polygon in
-					// that area
+					// check whether it is necessary to rearrange a basic area in
+					// that territory
 					// get difference to average value
 					
 					
@@ -1086,7 +1074,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 					System.out.println(difference + "," + critAverage);
 
-					//check whether variance of critvalue is to big --> rearrange
+					//check whether variance of activity measure is to big --> rearrange
 					if (!nofoundlocations.contains((location + 1))
 							&& difference > threshold) {
 
@@ -1104,13 +1092,13 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				}
 			run++;
 
-			//if all critvalues are balanced rearranging will be stopped
+			//if all activity measures are balanced rearranging will be stopped
 			if (compCrits == numberlocations) {
 				satisfied = true;
 			}
 
 			//break if too much runs for rearranging
-			if (nofoundlocations.size() >= numberlocations || run > 100000) {
+			if (nofoundlocations.size() >= numberlocations || run > 5000) {
 				satisfied = true;
 				System.out.println("Break");
 			}
@@ -1122,9 +1110,9 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	/**initialise the compactness ratio for comparison to change of compactness during rearranging
-	 * @param loc: Location, actuall Location for which compactness ratio should be calculated
-	 * @param critAverage: double, value of best criteria sum
-	 * @param numberpolygons: int, number of geometries in calculation area
+	 * @param loc: Location, actual territory centre for which compactness ratio should be calculated
+	 * @param critAverage: double, value of activity measure that should be reached
+	 * @param numberpolygons: int, number of basic areas in calculation area
 	 * @param PLZ5: boolean; indicates table
 	 * @param weightCom: int, weighting value for compactness
 	 * @param weightCrit: int, weighting value for criteria
@@ -1143,14 +1131,14 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	/**calculates weight value composite by compactness ratio and abberance to average criteria value 
-	 * @param actLoc: Location, actual Location
-	 * @param numberpolygons
-	 * @param microm
-	 * @param PLZ5
-	 * @param critAverage
-	 * @param weightCom
-	 * @param weightCrit
-	 * @return
+	 * @param actLoc: Location, actual territory centre
+	 * @param numberpolygons: int,number of geometries
+	 * @param microm: boolean, indicates database connection
+	 * @param PLZ5: boolean; indicates table
+	 * @param critAverage: double, value of activity measure that should be reached
+	 * @param weightComint, weighting value for compactness
+	 * @param weightCrit int, weighting value for criteria
+	 * @return double value of weight
 	 * @throws SQLException
 	 */
 	public static double calculateWeightValue(Location actLoc,
@@ -1160,14 +1148,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		
 		//calculate Area and circumference
 		double A_area = calculateAreaForWeight(numberpolygons, actLoc.getId());	
-//		System.out.println("Area function: "+A_area);
-//		double A_area = calculateAreaOrCircumference(actLoc.getId(), numberpolygons, microm, PLZ5, true);
-//		System.out.println("Area database: "+A_area);
 		
-		double U_area = calculateCircumferenceForWeight(numberpolygons, actLoc.getId());
-//		System.out.println("circumference function: "+U_area);
-//		double U_area = calculateAreaOrCircumference(actLoc.getId(), numberpolygons, microm, PLZ5, false);
-//		System.out.println("circumference function: "+U_area);
+		double U_area = calculateCircumferenceForWeight(numberpolygons, actLoc.getId());;
 
 		// circumference circle r=U/(2*pi) --> A = pi*r^2 = pi*(U/2*pi)^2
 		double A_circle = Math.PI * Math.pow((U_area / (2 * Math.PI)), 2);
@@ -1176,7 +1158,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 		double compactness = 1 - ratioCom;
 
-		// check criteria
+		// check activity measure
 		double ratioCrit = actLoc.getCriteria() / critAverage;
 		double criteria = Math.abs(1 - ratioCrit);
 
@@ -1185,9 +1167,16 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return weight;
 	}
 	
+	/**calculates area of territory used during calculation of weighting value 
+	 * @param numberpolygons: int,number of geometries
+	 * @param loc: int, actual territory centre
+	 * @return double value of area
+	 * @throws SQLException
+	 */
 	private static double calculateAreaForWeight(int numberpolygons, int loc){
 		double area=0;
 		
+		//sum areas of all basic areas that contain to territory
 		for (int i=0;i<numberpolygons;i++){
 			if (polygonContainer.getPolygon(i).getFlagAllocatedLocation()) {
 				if (polygonContainer.getPolygon(i).getAllocatedLocation()
@@ -1200,9 +1189,16 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return area;
 	}
 	
+	/**calculates circumference of territory used during calculation of weighting value 
+	 * @param numberpolygons: int,number of geometries
+	 * @param loc: int, actual territory centre
+	 * @return double value of area
+	 * @throws SQLException
+	 */
 	private static double calculateCircumferenceForWeight(int numberpolygons, int loc){
 		double circum=0;
 		
+		//calculates circumference using all basic areas that belong to the territory
 		for (int i=0;i<numberpolygons;i++){
 			Polygon actPoly = polygonContainer.getPolygon(i);
 			if (actPoly.getFlagAllocatedLocation()){
@@ -1223,80 +1219,6 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return circum;
 	}
 	
-	/**calculates area or circumference of whole area for the location
-	 * @param loc: int, location id for which the calculation should be done
-	 * @param numberpolygons: int, number of geometries in calculation area
-	 * @param PLZ5: boolean, indicates table
-	 * @param area: boolean, indicates whether area or circumference should be calcuated
-	 * @return area value or circumference
-	 * @throws SQLException
-	 */
-	private static double calculateAreaOrCircumference(int loc, int numberpolygons,
-			boolean microm, boolean PLZ5, boolean area) throws SQLException {
-
-		//init variables
-		Connection jdbc = null;
-		Statement stmt = null;
-
-		//init connection
-		if (!microm) {
-			jdbc = getConnection();
-			stmt = jdbc.createStatement();
-		}
-
-		//set table and columns
-		String tablegeom = null;
-
-		// PLZ5
-		if (PLZ5) {
-			tablegeom = "geometriesplz51";
-		} else {
-			// PLZ8
-			tablegeom = "geometriesplz81";
-		}
-
-		//store all polygons that belong to the location
-		StringBuffer sb = new StringBuffer();
-		List<Integer> geomIDs = new ArrayList<Integer>();
-		for (int i = 0; i < numberpolygons; i++) {
-			if (polygonContainer.getPolygon(i).getFlagAllocatedLocation()) {
-				if (polygonContainer.getPolygon(i).getAllocatedLocation()
-						.getId() == loc) {
-					geomIDs.add(polygonContainer.getPolygon(i).getId());
-				}
-			}
-		}
-
-		//formate String for SQL statement
-		StringBuilder idsBuffer = new StringBuilder(geomIDs.toString());
-		idsBuffer.deleteCharAt(0);
-		idsBuffer.deleteCharAt(idsBuffer.length() - 1);
-
-		//create SQL statement
-		if (area){
-			sb = calculateArea(tablegeom, idsBuffer);
-		}
-		else{
-			sb = calculateCircumference(tablegeom, idsBuffer);
-		}
-
-		//execute query and store result
-		ResultSet d = null;
-		if (!microm) {
-			d = stmt.executeQuery(sb.toString());
-		}
-
-		d.next();
-
-		double result = d.getDouble(1);
-
-		if (jdbc != null) {
-			jdbc.close();
-		}
-
-		return result;
-
-	}
 	
 	/**creates SQL statement for the calculation of the area
 	 * @param tablegeom: string, name of table
@@ -1320,19 +1242,18 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	private static StringBuffer calculateCircumference(String tablegeom,StringBuilder idsBuffer) throws SQLException {
 		StringBuffer sb = new StringBuffer();
 		
-		//SELECT ST_Length(ST_CollectionExtract(ST_Intersection(a_geom, b_geom), 2))
-//		FROM (
-//				  SELECT (SELECT the_geom from geometriesplz51 where id=8) AS a_geom,
-//				  (SELECT the_geom from geometriesplz51 where id=29) AS b_geom
-//				) f;
-		
 		sb.append("SELECT ST_PERIMETER(ST_UNION(the_geom)) FROM " + tablegeom
 				+ " WHERE id IN (" + idsBuffer.toString() + ");");
 		
 		return sb;
 	}
 	
-	private static double calculateDifference(int location, double critAverage){
+	/**calculates difference to optimal activity measure value that each territory should reach
+	 * @param location: int, indicates territory centre
+	 * @param critAverage: double, activity measure that should be reached
+	 * @return double value of difference
+	 */ 
+	static double calculateDifference(int location, double critAverage){
 		double value = locationContainer.getCriteria(location)
 				* 100 / critAverage;
 		double difference = -1;
@@ -1346,11 +1267,11 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return difference;
 	}
 	
-	/**rearrange polygons dependent on best proportion of change of compactness and criteria
-	 * @param numberpolygons: int, number of geometries in calculation area
-	 * @param numberlocations: int, number of used locations
-	 * @param location: int, id of location
-	 * @param critAverage: double, value to reach for criteria 
+	/**rearrange basic areas dependent on best proportion of change of compactness and criteria
+	 * @param numberpolygons: int, number of basic areas in calculation area
+	 * @param numberlocations: int, number of territory centres
+	 * @param location: int, id of territory centre
+	 * @param critAverage: double, activity measure that should by reached by each territory
 	 * @param PLZ5: boolean, to indicate databse
 	 * @param weightCom: int, weight value of compactness
 	 * @param weightCrit: int, weight value of criteria
@@ -1361,10 +1282,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			boolean microm, boolean PLZ5, int weightCom, int weightCrit, boolean whitespot)
 			throws Exception {
 
-		// check whether area gives or gets a geometry
+		// check whether area gives or gets a basic area
 		boolean givesPoly = false;
 
-		// locBasis = location that gets or gives a geometry
+		// locBasis = territory that gets or gives a basic area
 		Location locBasis = null;
 		for (int i = 0; i < numberlocations; i++) {
 			if (locationContainer.getLocation(i).getId() == location) {
@@ -1372,7 +1293,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 		}
 
-		// create List of all polygones that belong to the location
+		// create List of all basic areas that belong to the territory
 		List<Polygon> rearrangePoly = new ArrayList<Polygon>();
 		for (int i = 0; i < numberpolygons; i++) {
 			Polygon actPoly = polygonContainer.getPolygon(i);
@@ -1381,19 +1302,19 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 		}
 
-		// determine neighbour polygons
+		// determine neighboured territories
 				List<Polygon> neighbourPolys = new ArrayList<Polygon>();
 
-				// polygons of location
+				// basic area of territory
 				for (int i = 0; i < rearrangePoly.size(); i++) {
 					List<Polygon> neighbourIds = rearrangePoly.get(i).getNeighbours();
 
-					// neighbours of one polygon
+					// neighbours of one basic area
 					for (int j = 0; j < neighbourIds.size(); j++) {
 
 						boolean found = false;
-						// compare every neighbour to List of polygones (rearrange
-						// polys), whether it is containt in that list (found=true) or
+						// compare every neighbour to List of basic areas (rearrange
+						// basic areas), whether it is contained in that list (found=true) or
 						// not (found=false)
 						for (int k = 0; k < rearrangePoly.size(); k++) {
 							if (neighbourIds.get(j).getId() == rearrangePoly.get(k)
@@ -1409,8 +1330,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 						}
 					}
 				}
-				// remove all neighbours which belong to an area that can't get new
-				// polygones
+				// remove all neighbours which belong to an territory that can't get new
+				// basic areas
 				for (int i = 0; i < neighbourPolys.size(); i++) {
 					boolean removed = false;
 
@@ -1427,7 +1348,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 					}
 				}
 
-		//shrink the neighbours to neighbour areas which arent the homePolys
+		//shrink the neighbours to neighboured basic area which arent the basic areas that contain the territoy centres
 		List<Polygon> neighPolygonsNotHome = new ArrayList<Polygon>();
 		for (int i = 0; i < neighbourPolys.size(); i++) {
 			neighPolygonsNotHome.add(neighbourPolys.get(i));
@@ -1450,7 +1371,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 		}
 		else{
-			// check neighbourPolys whether they are hompolys, just for locations that are given
+			// check neighbourPolys whether they are "homepolys", just for territory centres that are given
 			for (int i = 0; i < numberlocations; i++) {
 				for (int j = 0; j < neighbourPolys.size(); j++) {
 					if (i<numberGivenLocations){
@@ -1469,7 +1390,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 		}
 
-		// create List of all neighbour Locations
+		// create List of all neighboured territories
 				List<Location> neighbourLocations = new ArrayList<Location>();
 
 				for (int i = 0; i < neighPolygonsNotHome.size(); i++) {
@@ -1494,91 +1415,11 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 		System.out.println(sb);
 
-		// check unity of polygons
+		// check unity of territories
 		List<Polygon> neighPolygonsUnit = new ArrayList<Polygon>();
 		for (int i = 0; i < neighPolygonsNotHome.size(); i++) {
 			neighPolygonsUnit.add(neighPolygonsNotHome.get(i));
 		}
-
-//		for (int i = 0; i < neighbourLocations.size(); i++) {
-//			givesPoly = false;
-//
-//			// determine whether area gives or gets an geometry
-//			if (locBasis.getCriteria() > neighbourLocations.get(i)
-//					.getCriteria()) {
-//				givesPoly = true;
-//			}
-//
-//			if (!givesPoly) {
-//				for (int j = 0; j < neighPolygonsNotHome.size(); j++) {
-//					boolean unit = false;
-//
-//					if (neighPolygonsNotHome.get(j).getAllocatedLocation()
-//							.getId() == neighbourLocations.get(i).getId()) {
-//						unit = FunctionsCommon.checkUnit(neighPolygonsNotHome.get(j).getId(),
-//								neighPolygonsNotHome.get(j)
-//										.getAllocatedLocation().getId(),
-//								location, numberpolygons);
-//
-//						if (!unit) {
-//							for (int k = 0; k < neighPolygonsUnit.size(); k++) {
-//								if (neighPolygonsNotHome.get(j).getId() == neighPolygonsUnit
-//										.get(k).getId()) {
-//									neighPolygonsUnit.remove(k);
-//								}
-//							}
-//
-//						}
-//					}
-//
-//				}
-//			} else {
-//				// remove all neighbours which belong to the location that gets
-//				// a new geometry
-//				for (int k = 0; k < neighPolygonsUnit.size(); k++) {
-//					if (neighPolygonsUnit.get(k).getAllocatedLocation().getId() == neighbourLocations
-//							.get(i).getId()) {
-//						neighPolygonsUnit.remove(k);
-//						k--;
-//					}
-//				}
-//
-//				// check all geometries of locBasis to determine all that can be
-//				// given
-//				for (int j = 0; j < rearrangePoly.size(); j++) {
-//					boolean unit = false;
-//
-//					unit = FunctionsCommon.checkUnit(rearrangePoly.get(j).getId(), location,
-//							neighbourLocations.get(i).getId(), numberpolygons);
-//
-//					// add all geometries that can be given
-//					if (unit) {
-//						if (!whitespot){
-//							if (!neighPolygonsUnit.contains(rearrangePoly.get(j))
-//									&& rearrangePoly.get(j).getId() != locBasis
-//											.getHomePolyId()) {
-//								neighPolygonsUnit.add(rearrangePoly.get(j));
-//							}
-//						}
-//						else{
-//							if (locBasis.getId()<numberGivenLocations){
-//								if (!neighPolygonsUnit.contains(rearrangePoly.get(j))
-//										&& rearrangePoly.get(j).getId() != locBasis
-//												.getHomePolyId()) {
-//									neighPolygonsUnit.add(rearrangePoly.get(j));
-//								}
-//							}
-//							else{
-//								if (!neighPolygonsUnit.contains(rearrangePoly.get(j))) {
-//									neighPolygonsUnit.add(rearrangePoly.get(j));
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//
-//		}
 
 		System.out.println("unitsize after:" + neighPolygonsUnit.size());
 		sb = new StringBuffer();
@@ -1587,6 +1428,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 		System.out.println(sb);
 
+		//if basic areas exist that create coherent territories
 		if (neighPolygonsUnit.size() > 0) {
 
 			double smallestChange = -1;
@@ -1594,16 +1436,16 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			givesPoly = false;
 			Location locSmallestChange = null;
 
-			// calculate compactness & detect polygon with best change (= best
+			// calculate compactness & detect basic area with best change (= best
 			// ratio of change of criteria and compactness)
 			for (int i = 0; i < neighPolygonsUnit.size(); i++) {
 				Polygon actPoly = neighPolygonsUnit.get(i);
 
-				// determine location of actPoly
+				// determine territory of actPoly
 				Location actLoc = neighPolygonsUnit.get(i)
 						.getAllocatedLocation();
 
-				// determine whether area gives or gets an geometry
+				// determine whether territory gives or gets an basic area
 				if (actLoc.getId() == locBasis.getId()) {
 					givesPoly = true;
 				}
@@ -1658,15 +1500,15 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				}
 			}
 
-			//get Polygon with best change of compactness
+			//get basic area with best change of compactness
 			Polygon polyToChange = neighPolygonsUnit.get(posSmallestChange);
 
-			// determine location of polyToChange
+			// determine territory of polyToChange
 			Location locChange = null;
 			locChange = polyToChange.getAllocatedLocation();
 			givesPoly = false;
 
-			// determine whether area gives or gets an geometry
+			// determine whether territory gives or gets an basic area
 			if (locChange.getId() == locBasis.getId()) {
 				givesPoly = true;
 			}
@@ -1675,7 +1517,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 				locChange = locSmallestChange;
 			}
 
-			// rearrange Poly
+			// rearrange basic area
 			if (!givesPoly) {
 				locBasis.getAllocatedPolygon().add(polyToChange);
 				polyToChange.setAllocatedLocation(locBasis);
@@ -1704,28 +1546,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 						locChange.getId(), locBasis.getId(), numberpolygons);
 			}
 
-			if (location == 10 || location == 8) {
-				StringBuffer debugging = new StringBuffer();
-				for (int i = 0; i < numberpolygons; i++) {
-					Polygon actPoly = polygonContainer.getPolygon(i);
-					if (actPoly.getAllocatedLocation().getId() == location) {
-						debugging.append(actPoly.getId() + ",");
-					}
-				}
-
-				System.out.println("locBasis after:" + debugging);
-
-				debugging = new StringBuffer();
-				for (int i = 0; i < numberpolygons; i++) {
-					Polygon actPoly = polygonContainer.getPolygon(i);
-					if (actPoly.getAllocatedLocation().getId() == locChange
-							.getId()) {
-						debugging.append(actPoly.getId() + ",");
-					}
-				}
-
-				System.out.println("locChange after" + debugging);
-			}
+			
 		} else {
 			if (!nofoundlocations.contains(locBasis.getId())) {
 				nofoundlocations.add(locBasis.getId());
@@ -1736,16 +1557,16 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 
 	/**calculates change of compactness and criteria using weighted function
-	 * @param actPoly: Polygon, geometrie for which th calculation should be done
-	 * @param actLoc: Location, location where the geometrie belongs to
-	 * @param location: int, location id
-	 * @param critAverage: double, value to reach for criteria  
-	 * @param numberpolygons: int, number of geometries in calculation area
-	 * @param numberlocations: int, number of used locations
+	 * @param actPoly: Polygon, basic area for which the calculation should be done
+	 * @param actLoc: Location, territory centre where the basic area belongs to
+	 * @param location: int, territory id
+	 * @param critAverage: double, value to reach for activity measure  
+	 * @param numberpolygons: int, number of basic areas in calculation area
+	 * @param numberlocations: int, number of territory centres
 	 * @param PLZ5: boolean, to indicate the database
 	 * @param weightCom: double, weight value for compactness
 	 * @param weightCrit: double, weighting value for criteria
-	 * @param givesPoly: boolean, indicates whether area of actLoc gives or gets a geometry
+	 * @param givesPoly: boolean, indicates whether territory of actLoc gives or gets a geometry
 	 * @return
 	 * @throws SQLException
 	 */
@@ -1762,7 +1583,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		locationIDS[0] = location;
 		locationIDS[1] = actLoc.getId();
 
-		// location Basis= location thats gives or gets a geometry
+		// location Basis= territory centre thats gives or gets a basic area
 		Location locBasis = null;
 
 		for (int i = 0; i < numberlocations; i++) {
@@ -1794,8 +1615,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 		}
 
-		// do calculation for location that gets the geometry and that gives the
-		// geometry
+		// do calculation for territory that gets the basic area and that gives the
+		// basic area
 		// taken compactness algorithm: Cox algorithm; ratio of an area of a
 		// geometry to the area of a circle with same circumference
 		// compactness value should be as closed as possible to 1
@@ -1846,12 +1667,12 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return (changeGive + changeGet);
 	}
 	
-	/**checks whether both areas are coherent if a geometry will be rearranged
-	 * @param polyID: int, id of geometry that should be rearranged
-	 * @param locGive: int, id of location that gives the geometry
-	 * @param locGet: int, id of location that gets the geometry
-	 * @param numberpolygons: int, number of geometries in calculation area
-	 * @return boolean, true if both areas are coherent after rearrangement
+	/**checks whether both territories are coherent if a basic area will be rearranged
+	 * @param polyID: int, id of basic area that should be rearranged
+	 * @param locGive: int, id of territory centre that gives the basic area
+	 * @param locGet: int, id of territory centre that gets the basic area
+	 * @param numberpolygons: int, number of basic area in calculation area
+	 * @return boolean, true if both territories are coherent after rearrangement
 	 * @throws InterruptedException
 	 */
 	public static boolean checkUnit(int polyID, int locGive, int locGet,
@@ -1860,8 +1681,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 		int numberpolysLocGive=0;
 		
-		//count number of polygons that belong to the location that gives geometry
-		//necessary because it is not allowed to give geometry away, if just 1 polygon exists
+		//count number of basic area that belong to the territory centre that gives basic area
+		//necessary because it is not allowed to give basic area away, if just 1 basic area exists
 		for (int i=0;i<numberpolygons;i++){
 			Polygon actPoly = polygonContainer.getPolygon(i);
 			if (actPoly.getAllocatedLocation().getId()==locGive){
@@ -1873,7 +1694,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		boolean unitGets=false;
 		
 		if (numberpolysLocGive>1){
-		//check unity of both areas
+		//check unity of both territories
 			unitGives = checkUnitCalculationGives(polyID, locGive,
 				numberpolygons);
 			unitGets = checkUnitCalculationGets(polyID, locGet,
@@ -1887,10 +1708,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return unit;
 	}
 	
-	/**checks coherence of that area that gives the geometry
-	 * @param polyID: int, id of geometry that should be rearranged
-	 * @param loc: int, id of location that gives the geometry
-	 * @param numberpolygons: int, number of geometries in calculation area
+	/**checks coherence of that territory that gives the basic area
+	 * @param polyID: int, id of basic area that should be rearranged
+	 * @param loc: int, id of territory centre that gives the basic area
+	 * @param numberpolygons: int, number of basic area in calculation area
 	 * @return: boolean, true if resulting area is coherent
 	 * @throws InterruptedException
 	 */
@@ -1898,10 +1719,10 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			int numberpolygons) throws InterruptedException {
 		boolean unit = false;
 
-		// check unit of location that gives geometry
+		// check unit of territory that gives basic area
 		// check unit by using graphs
 		//idea: if there exist at least two graphs the area is NOT coherent
-		//therefore checking whether all geometries can be reached
+		//therefore checking whether all basic areas can be reached
 		
 		//init variables
 			int pos = 0;
@@ -1924,7 +1745,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 			//while no end of graph is found
 			while (!graphEnds) {
-				//take polygon
+				//take basic area
 				Polygon actPoly = polygonContainer.getPolygon(pos);
 
 				if (actPoly.getAllocatedLocation().getId() == loc
@@ -2004,29 +1825,26 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return unit;
 	}
 	
-	/**checks coherence of that area that gets the geometry
-	 * @param polyID: int, geometry that will be rearranged
-	 * @param loc: int, id of location that gets the geometry
-	 * @param numberpolygons: int, number of geometries in calculation area
+	/**checks coherence of that territory that gets the basic area
+	 * @param polyID: int, basic area that will be rearranged
+	 * @param loc: int, id of territory centre that gets the basic area
+	 * @param numberpolygons: int, number of basic area in calculation area
 	 * @return boolean, true if resulting area is coherent
 	 */
 	public static boolean checkUnitCalculationGets(int polyID, int loc,
 			int numberpolygons) {
 		boolean unit = false;
 
-		// check unit of location that gets geometry
-
-		// get Position of poly
-
+		// get Position of basic area
 		Polygon poly = polygonContainer.getPolygonById(numberpolygons, polyID);
 		boolean foundNeighbour = false;
 		int counter = 0;
 
-		// check neighbours, if every geometry have a neighbour the area is coherent
+		// check neighbours, if every basic area have a neighbour the area is coherent
 		while (!foundNeighbour) {
-			// take all neighbours of poly
+			// take all neighbours of basic area
 			for (int j = 0; j < poly.getNeighbours().size(); j++) {
-				// take all polys of location
+				// take all basic area of territory
 				if (poly.getNeighbours().get(j).getId()!=poly.getId()){
 					for (int k = 0; k < numberpolygons; k++) {
 						Polygon actPoly = polygonContainer.getPolygon(k);
@@ -2052,16 +1870,16 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return unit;
 	}
 
-	/**changes the criteria values of the two location that rearranged a geometry
-	 * @param polyID: int, id of geometry that was rearranged
-	 * @param location: int, id of location that gets geometry
-	 * @param locationMaxCriteria: int, id of location that gives geometry
-	 * @param numberpolygons: int, number of geometries in calculation area
+	/**changes the activity measures of the two territory centres that rearranged a basic area
+	 * @param polyID: int, id of basic area that was rearranged
+	 * @param location: int, id of territory centre that gets basic area
+	 * @param locationMaxCriteria: int, id of territory centre that gives basic area
+	 * @param numberpolygons: int, number of basic areas in calculation area
 	 * @throws SQLException
 	 */
 	public static void changeCriteriaAfterRearrange(int polyID, int location,
 			int locationMaxCriteria, int numberpolygons) throws SQLException {
-		// get criteria of the given polygon
+		// get activity measure of the given basic area
 
 		Polygon poly = polygonContainer.getPolygonById(numberpolygons, polyID);
 		Location locMaxCrit = locationContainer
@@ -2073,11 +1891,11 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		System.out.println("criterias before:" + loc.getCriteria() + ","
 				+ locMaxCrit.getCriteria());
 		
-		//calculate new critValues
+		//calculate new activity measure
 		double locMaxCritValue = locMaxCrit.getCriteria() - critValue;
 		double locCritValue = loc.getCriteria() + critValue;
 
-		//store new critValues
+		//store new activity measure
 		locationContainer.setCriteriaByLoc(locMaxCrit, locMaxCritValue);
 		locationContainer.setCriteriaByLoc(loc, locCritValue);
 		
@@ -2092,18 +1910,14 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	
 	//----------------Visualisation------------------------
 
-	// * Write Polygons into shape, just necessary for testing purposes
-		// * @param buffershp: name of the ShapeBuffer
-		// * @param shpWriter: name of the ShapeWriter
-		// * @param bufferPoly: IDs of Polygons which belong/are allocated to the
-		// location
-		// * @param geomPoly: Geometries of Polygons which belong/are allocated to
-		// the location
-		// * @param location
+	// * Write basic areas into file, just necessary for testing purposes
+		// * @param FileWriter: outputfile
+		// * @param numberpolygons: int, numer of basic areas in calculation area
 		// * @throws Exception
 		// */
 		public static void writePolygon(FileWriter output, int numberpolygons)
 				throws Exception {
+			//write each basic area into the file
 			for (int i = 0; i < numberpolygons; i++) {
 				Polygon poly = polygonContainer.getPolygon(i);
 				Location loc = polygonContainer.getAllocatedLocation(i);
@@ -2118,8 +1932,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 			}
 		}
 		
-		/**visualize distribution of criteria for every location
-		 * @param numberlocations: int, number of used locations
+		/**visualize distribution of activity measure for every territory
+		 * @param numberlocations: int, number of territory centres
 		 */
 		public static void showCritResult(int numberlocations) {
 			for (int i = 0; i < numberlocations; i++) {
@@ -2129,11 +1943,16 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		}
 		
 	//----------------common functions------------------------
-		public static FileWriter createFileWriter() throws IOException{
-			FileWriter output = createFileWriter("polygones");
-			
-			return output;
-		}
+		
+		/**Creates FileWriter for saving the results
+		 * @return FileWriter
+		 * @throws IOException
+		 */
+	public static FileWriter createFileWriter() throws IOException { 
+		FileWriter output = createFileWriter("polygones");
+		
+		return output;
+	}
 		
 	/**Creates FileWriter for saving the results
 	 * @return FileWriter
@@ -2148,8 +1967,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		return output;
 	}
 
-	/**creates FileWriter for locations to visualize them
-	 * @param numberlocations: int, number of given locations
+	/**creates FileWriter for territory centres to visualize them
+	 * @param numberlocations: int, number of territory centres
 	 * @throws IOException
 	 */
 	public static void createFileWriterLocs(int numberlocations)
@@ -2193,7 +2012,7 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 
 
-	/**initialises the LocationContainer for storing the given locations
+	/**initialises the LocationContainer for storing the given territory centres
 	 * @return LocationContainer
 	 */
 	public static LocationContainer initLocationContainer() {
@@ -2202,8 +2021,8 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 	}
 	
 	
-	/**sets the given locations, parsing them from a example file
-	 * @param numberlocations: int, number of given lcoations
+	/**sets the given territory centres, parsing them from an example file
+	 * @param numberlocations: int, number of given territory centres
 	 * @param microm: boolean, indicates database
 	 * @throws IOException
 	 */
@@ -2228,36 +2047,17 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 		int i = 0;
 		List<Integer> ids = new ArrayList<Integer>();
 
-		// locations small area: 3, 5, 11, 12, 14, 21, 26, 33, 42, 53, 72
-		// locations huge area: 11, 41, 55, 68, 72, 79, 82, 90, 92, 96
 		ids.add(3); // DD Goldener Reiter
 		ids.add(5); // DD Weixdorf
-		// ids.add(10); //DD Elbcenter
 		ids.add(11); // DD Wilder Mann
 		ids.add(12); // DD Cossebaude
 		ids.add(14); // DD Löbtau
 		ids.add(21); // DD Leubnitz
 		ids.add(26); // DD Leuben
-		// ids.add(29); //DD Seidnitz
 		ids.add(33); // DD Johannstadt
-		// ids.add(34); //DD Sparkassenhaus
-		// ids.add(39); //DD Weißig
-		// ids.add(41); //Radeberg Hauptstra�e
 		ids.add(42); // Radeberg
-		// ids.add(51); //Kesselsdorf
 		ids.add(53); // Possendorf
-		// ids.add(54); //Kreischa
-		// ids.add(55); //Rabenau
-		// ids.add(56); //Tharandt
-		// ids.add(60); //Altenberg
-		// ids.add(68); //Struppen
 		ids.add(72); // DD Heidenau West
-		// ids.add(77); //Bergießhübel
-		// ids.add(79); //Liebstadt
-		// ids.add(82); //Neustadt
-		// ids.add(90); //Panschwitz Kuckau
-		// ids.add(92); //Schwepnitz
-		// ids.add(96); //Hoyerswerda Altstadt
 
 		String line = "";
 		// Create the file reader
@@ -2289,87 +2089,5 @@ public static void areaSegmentation(int numberpolygons, int numberlocations, boo
 
 		fileReader.close();
 	}
-	
-//	public static void AllocCrit(boolean plz5, int numberpolygons){
-//		//initialise variables
-//				Connection jdbc = null;
-//				Statement stmt = null;
-//
-//				//get Connection
-//					jdbc = getConnection();
-//					stmt = jdbc.createStatement();
-//
-//				//choose table
-//		String columnIDs="_g7304";
-//			
-//		//get all PolygonIDs and store it
-//		StringBuffer sb = new StringBuffer();
-//		//SELECT t2.id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM _varea_1424340553765 AS t1 INNER JOIN _vcriteria_1424340553765 As t2 ON t2._g7304=t1.id
-//		if (plz5){
-//			sb.append("SELECT t2.id AS id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM geometriesplz51 AS t1 INNER JOIN criteriasplz51 AS t2 ON t2."+columnIDs+"=t1.\"ID\"");
-//		}
-//		else{
-//			sb.append("SELECT t2.id AS id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM geometriesplz81 AS t1 INNER JOIN criteriasplz81 AS t2 ON t2."+columnIDs+"=t1.\"ID\"");
-//			
-//		}
-//		System.out.println(sb);
-//		ResultSet t=stmt.executeQuery(sb.toString());
-//			
-//		for (int i=0;i<numberpolygons;i++){
-//			t.next();
-//			
-//			polys[0].add(t.getDouble("id"));
-//			polysGeometry[0].add(t.getString("id"));
-//			polysGeometry[1].add(t.getString("the_geom"));
-//			polysGeometry[2].add(t.getString("criteria"));
-//		}
-//			
-//		System.out.println("length"+polys[0].size());
-//			
-//		
-//		while (polys[0].size()!=0){
-//			
-//			double minCriteria=criteria[0];
-//			int locationMinCriteria=1;
-//			
-//			for (int j=1;j<criteria.length;j++){
-//				if (criteria[j]<minCriteria){
-//					minCriteria=criteria[j];
-//					locationMinCriteria=j+1;
-//				}
-//			}
-//			
-//			int polyID = polys[0].get(0).intValue();
-//	
-//			double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
-//			
-////			for (int j=1;j<polys[0].size();j++){
-////				double critValueact = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polys[0].get(j).intValue()))));
-////				if (critValueact<critValue){
-////					polyID = polys[0].get(j).intValue();
-////					critValue=Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
-////				}
-////			}
-//			
-//			System.out.println("write "+polyID+" to "+(locationMinCriteria));
-//			allocPolys[locationMinCriteria-1].add(polyID);
-//			String geometry = polysGeometry[1].get(polysGeometry[0].indexOf(Integer.toString(polyID)));
-//			geomAllocPolys[locationMinCriteria-1].add(geometry);
-//			
-//			addToCriteria(polyID, locationMinCriteria, criteria);
-//			polys[0].remove(Double.valueOf(polyID));
-//		}
-//	}
-
-	// --------------------------------------------------------------------
-	// functions for Greenfield & Whitespot
-	// --------------------------------------------------------------------
-
-	
-	
-	// --------------------------------------------------------------------
-	// functions for Whitespot
-	// --------------------------------------------------------------------
-	
 	
 }

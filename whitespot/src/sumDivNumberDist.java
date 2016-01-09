@@ -10,39 +10,39 @@ public class sumDivNumberDist {
 	private static ArrayList<Integer>[] allocPolys; //stores allocated polys dependent on location 
 	private static ArrayList<String>[] geomAllocPolys; //stores geometries of allocated polygons
 
-//	
-//	/**
-//	 * Add value of polygon to criteria
-//	 * @param polyID: ID of Polygon
-//	 * @param location
-//	 * @param jdbc: JDBCConnection
-//	 * @param criteria: Array of all criterias
-//	 * @throws SQLException
-//	 */
+	
+	/**
+	 * Add value of polygon to criteria
+	 * @param polyID: ID of Polygon
+	 * @param location
+	 * @param jdbc: JDBCConnection
+	 * @param criteria: Array of all criterias
+	 * @throws SQLException
+	 */
 	private static void addToCriteria(int polyID, int location, double[] criteria) throws SQLException{
-		//get criteria of the given polygon
+		//get criteria of the given basic area
 		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
 		
 		
 			criteria[location-1]=criteria[location-1]+critValue;
 		
 	}
-//	
-//	/**
-//	 * Assign polygons which are near to the locations
-//	 * @param numberpolygons: number of all polygons of the region
-//	 * @param criteria: array of criteria sum for distribute polygons homogeneously
-//	 * @throws Exception
-//	 */
+	
+	/**
+	 * Assign polygons which are nearest to the locations until threshold is reached
+	 * @param numberpolygons: number of all polygons of the region
+	 * @param criteria: array of criteria sum for distribute polygons homogeneously
+	 * @throws Exception
+	 */
 	private static void allocatePolygons(int numberlocations, int numberpolygons, double[] criteria, int sumcriteria, boolean plz5) throws Exception{
 		Statement stmt = functions.getConnection();
-String columnIDs="_g7304";
+		String columnIDs="_g7304";
 		
 		if (!plz5){
 			columnIDs="_g7305";
 		}
 			
-		//get all PolygonIDs and store it
+		//get all IDs of basic areas and store it
 		StringBuffer sb = new StringBuffer();
 		//SELECT t2.id, ST_AsTEXT(the_geom) AS the_geom, _c1 AS criteria FROM _varea_1424340553765 AS t1 INNER JOIN _vcriteria_1424340553765 As t2 ON t2._g7304=t1.id
 		if (plz5){
@@ -54,6 +54,7 @@ String columnIDs="_g7304";
 		}System.out.println(sb);
 		ResultSet t=stmt.executeQuery(sb.toString());
 			
+		//store information of basic areas
 		for (int i=0;i<numberpolygons;i++){
 			t.next();
 			polys[0].add(t.getDouble("id"));
@@ -62,8 +63,11 @@ String columnIDs="_g7304";
 			polysGeometry[2].add(t.getString("criteria"));
 		}
 			
+		//determine threshold
 		System.out.println("length"+polys[0].size());
 		double totalsum=sumcriteria/numberlocations;
+		
+		//calculate distance of each basic area to each territory centre
 		double distances[] = new double[numberlocations];
 		
 		for (int i=0; i<polys[0].size();i++){
@@ -75,10 +79,12 @@ String columnIDs="_g7304";
 			}
 		}
 		
+		//allocate basic areas to each territory centre
 		for (int i=0;i<numberlocations;i++){
 			double sumloc=0;
 			while (sumloc<totalsum && polys[0].size()>0){
 				
+				//calculate distances of each basic area to territory centre
 				double minDistance = polys[i+1].get(0);
 				for (int j=1;j<polys[i].size();j++){
 					if (polys[i+1].get(j)<minDistance){
@@ -86,6 +92,7 @@ String columnIDs="_g7304";
 					}
 				}
 				
+				//allocate basic area
 				int polyID = polys[0].get(polys[i+1].indexOf(minDistance)).intValue();
 				double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
 				sumloc=sumloc+critValue;
@@ -109,7 +116,7 @@ String columnIDs="_g7304";
 
 		long time = System.currentTimeMillis();
 		
-		//setLocations
+		//set territory centres
 		int numberlocations =10;
 		boolean plz5 = false;
 		lonlats= new double[numberlocations*2];
@@ -138,23 +145,25 @@ String columnIDs="_g7304";
 		for(int i=0;i<geomAllocPolys.length;i++) geomAllocPolys[i] = new ArrayList<String>();
 
 		
-//		//calculate number of Polygons in that region
+		//calculate number of basic areas in that region
 		int numberpolygons=functions.getNrOrSum(true, plz5);
 		int sumcriteria=functions.getNrOrSum(false, plz5);
 		
-//		//alocate Polygons to locations
+		//allocate basic areas to territory centres
 		allocatePolygons(numberlocations, numberpolygons, criteria, sumcriteria, plz5);
 		
-//		//Create Shapefile with allocated poylgons
+		//Create file with allocated basic areas
 		for (int i=0; i<numberlocations;i++){
 			functions.writePolygon(output, allocPolys[i], geomAllocPolys[i],i+1);
 		}
-//		
+
+		//print results
 		for (int i = 0; i < numberlocations; i++) {
 			System.out.println("Activity measure territory " + (i+1) + " :"
 					+ criteria[i]);
 		}
 		
+		//calculate compactness
 		for (int i=0; i<numberlocations;i++){
 			double com = calcCompactness(numberpolygons, i, plz5);
 			System.out.println("compactness of territory "+ (i+1) + " :"
@@ -162,12 +171,14 @@ String columnIDs="_g7304";
 		}
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+		
 		output.flush();
 		output.close();
 	    
 	    System.out.println("successfully ended");
 }
+	
+	//calculate circumference for calculation of compactness
 	private static double calculateCircumference(int numberpolygons, int location, boolean plz5) throws SQLException{
 		double area=-1;
 		Statement stmt = functions.getConnection();
@@ -199,6 +210,7 @@ String columnIDs="_g7304";
 		return area;
 	}
 	
+	//calculate areas for calculation of compactness
 	private static double calculateArea(int numberpolygons, int location, boolean plz5) throws SQLException{
 		double area=-1;
 		Statement stmt = functions.getConnection();
@@ -229,6 +241,7 @@ String columnIDs="_g7304";
 		return area;
 	}
 	
+	//calculate compactness
 	public static double calcCompactness(int numberpolygons, int i, boolean plz5) throws SQLException{
 		double compactness=-1;
 		

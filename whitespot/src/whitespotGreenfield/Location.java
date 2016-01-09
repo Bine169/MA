@@ -7,10 +7,10 @@ public class Location {
 	private int id;
 	private Double lon;
 	private Double lat;
-	private Integer idHomePoly;
-	private List<Polygon> allocatedPolygon=new ArrayList<Polygon>();
-	private Double criteria;
-	private Double weightValue;
+	private Integer idHomePoly; //ID of basic area that contains territory centre
+	private List<Polygon> allocatedPolygon=new ArrayList<Polygon>(); //stores basic areas that are allocated to the territory centre 
+	private Double criteria; //sum of activity measure
+	private Double weightValue; //value used for defining quality of change during rearrangement
 	
 	public List<Polygon> getAllocatedPolygon(){
 		return this.allocatedPolygon;

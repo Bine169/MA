@@ -30,6 +30,7 @@ public class justCrit {
 		
 	}
 	
+	//calculate circumference for calculation of compactness
 	private static double calculateCircumference(int numberpolygons, int location, boolean plz5) throws SQLException{
 		Statement stmt = functions.getConnection();
 		StringBuffer sb = new StringBuffer();
@@ -55,6 +56,7 @@ public class justCrit {
 		return area;
 	}
 	
+	//calculate area for calculation of compactness
 	private static double calculateArea(int numberpolygons, int location, boolean plz5) throws SQLException{
 
 		Statement stmt = functions.getConnection();
@@ -80,6 +82,7 @@ public class justCrit {
 		return area;
 	}
 	
+	//calculate compactness
 	public static double calcCompactness(int numberpolygons, int i, boolean plz5) throws SQLException{
 		
 		double U_area = calculateCircumference(numberpolygons, i, plz5);
@@ -92,13 +95,13 @@ public class justCrit {
 		return compactness;
 	}
 	
-//	
-//	/**
-//	 * Assign polygons which are near to the locations
-//	 * @param numberpolygons: number of all polygons of the region
-//	 * @param criteria: array of criteria sum for distribute polygons homogeneously
-//	 * @throws Exception
-//	 */
+	
+	/**
+	 * Assign basic areas to territory centre with smallest activity measure
+	 * @param numberpolygons: number of all polygons of the region
+	 * @param criteria: array of criteria sum for distribute polygons homogeneously
+	 * @throws Exception
+	 */
 	private static void allocatePolygons(int numberlocations, int numberpolygons, double[] criteria, boolean plz5) throws Exception{
 		Statement stmt = functions.getConnection();
 		String columnIDs="_g7304";
@@ -119,6 +122,7 @@ public class justCrit {
 		System.out.println(sb);
 		ResultSet t=stmt.executeQuery(sb.toString());
 			
+		//store information of basic areas 
 		for (int i=0;i<numberpolygons;i++){
 			t.next();
 			polys[0].add(t.getDouble("id"));
@@ -129,12 +133,13 @@ public class justCrit {
 			
 		System.out.println("length"+polys[0].size());
 			
-		
+		//allocate basic areas
 		while (polys[0].size()!=0){
 			
 			double minCriteria=criteria[0];
 			int locationMinCriteria=1;
 			
+			//determine territory centre with smallest activity measure
 			for (int j=1;j<criteria.length;j++){
 				if (criteria[j]<minCriteria){
 					minCriteria=criteria[j];
@@ -142,17 +147,10 @@ public class justCrit {
 				}
 			}
 			
+			//allocate basic area in list
 			int polyID = polys[0].get(0).intValue();
 	
 			double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
-			
-//			for (int j=1;j<polys[0].size();j++){
-//				double critValueact = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polys[0].get(j).intValue()))));
-//				if (critValueact<critValue){
-//					polyID = polys[0].get(j).intValue();
-//					critValue=Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
-//				}
-//			}
 			
 			System.out.println("write "+polyID+" to "+(locationMinCriteria));
 			allocPolys[locationMinCriteria-1].add(polyID);
@@ -199,13 +197,13 @@ public class justCrit {
 		for(int i=0;i<geomAllocPolys.length;i++) geomAllocPolys[i] = new ArrayList<String>();
 
 		
-//		//calculate number of Polygons in that region
+//		//calculate number of basic areas in that region
 		int numberpolygons=functions.getNrOrSum(true, plz5);
 		
-//		//alocate Polygons to locations
+//		//allocate basic areas to territory centres
 		allocatePolygons(numberlocations, numberpolygons, criteria, plz5);
 		
-//		//Create Shapefile with allocated poylgons
+//		//Create file with allocated basic areas
 		for (int i=0; i<numberlocations;i++){
 			functions.writePolygon(output, allocPolys[i], geomAllocPolys[i],i+1);
 		}
@@ -213,20 +211,18 @@ public class justCrit {
 			System.out.println("Activity measure territory " + (i+1) + " :"
 					+ criteria[i]);
 		}
-		
-//		System.out.println("1:"+criteria[0]+",2:"+criteria[1]);
 
 		output.flush();
 		output.close();
 		
+		//calculate compactness
 		for (int i=0; i<numberlocations;i++){
 			double com = calcCompactness(numberpolygons, i, plz5);
 			System.out.println("compactness of territory "+ (i+1) + " :"
 					+ com);
 		}
-//	    
-		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+    
+		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");		
 		
 	    System.out.println("successfully ended");
 }

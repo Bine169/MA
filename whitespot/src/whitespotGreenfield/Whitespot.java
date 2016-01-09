@@ -29,31 +29,23 @@ public class Whitespot {
 		}
 
 		
-		//set startLocations
+		//set starting territory centres
 		FunctionsCommon.initLocationContainer();
 		FunctionsCommon.setLocations(numberGivenLocations, microm);
 		
-		//determine HomePoly of given Locations
+		//determine basic areas that contain territory centres
 		FunctionsCommon.determineHomePoly(PLZ5, numberGivenLocations, microm);
 		
 		int numberpolygons=FunctionsCommon.initialisation(numberlocations, true, PLZ5, microm);
 		
-		//allocated Polygons
+		//allocate basic areas
 		FunctionsWhitespot.allocatePolygonsWhitespot(numberpolygons, numberGivenLocations, numberNewLocations, PLZ5);
-		
-		FileWriter output2 =FunctionsCommon.createFileWriter();
-		 FunctionsCommon.writePolygon(output2, numberpolygons);
-		 output2.close();
 		 
-		//check whether all polygons are allocated
+		//check whether all basic areas are allocated
 		 FunctionsGreenfieldWhitespot.checkAllocation(numberpolygons, numberlocations, PLZ5, weightCom, weightCrit);
 		
-		//set Locations from new created ones
+		//set territory centre from new created territory
 		FunctionsWhitespot.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
-		
-		 output2 =FunctionsCommon.createFileWriter();
-		 FunctionsCommon.writePolygon(output2, numberpolygons);
-		 output2.close();
 		 
 		//init variables
 		criteria = new double[numberlocations];
@@ -61,7 +53,7 @@ public class Whitespot {
 			criteria[i]=0;
 		}
 		
-		//writeLocations
+		//write territory centres
 		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
 		//reset Allocation
@@ -72,10 +64,10 @@ public class Whitespot {
 		
 		FunctionsCommon.areaSegmentation(numberpolygons, numberlocations, PLZ5, microm, threshold, weightCom, weightCrit, true, numberGivenLocations);
 		
-		//set endLocations
+		//set final territory centres
 		FunctionsWhitespot.calculateWhitespotLocations(numberpolygons, numberGivenLocations,numberNewLocations, PLZ5);
 		
-		//writeLocations
+		//write territory centres
 		FunctionsCommon.createFileWriterLocs(numberlocations);
 		
 		FunctionsCommon.visualizeResults(numberpolygons, numberlocations, output);

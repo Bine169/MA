@@ -15,6 +15,8 @@ public class AreaSegmentation {
 		
 		long time = System.currentTimeMillis();
 		int numberlocations=10;
+		
+		//set territory centres
 		FunctionsCommon.setLocations(numberlocations, microm);
 		
 		//create FileWriter
@@ -27,7 +29,7 @@ public class AreaSegmentation {
 			criteria[i]=0;
 		}
 		
-		//calculate number of Polygons in that region
+		//calculate number of basic areas in that region
 		int numberpolygons=FunctionsCommon.initialisation(numberlocations, true, PLZ5, microm);
 		
 		
@@ -40,12 +42,10 @@ public class AreaSegmentation {
 		FunctionsCommon.visualizeResults(numberpolygons, numberlocations, output);
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+		
 		output.flush();
 		output.close();
 	    
-	    System.out.println("successfully ended");
-		//welche Funktionen in functionsnew überhaupt noch notwendig? welche variablen?
-		
+	    System.out.println("successfully ended");	
 	}
 }

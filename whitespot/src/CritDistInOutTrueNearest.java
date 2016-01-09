@@ -13,15 +13,16 @@ public class CritDistInOutTrueNearest {
 	private static ArrayList<Integer>[] allocPolys; //stores allocated polys dependent on location 
 	private static ArrayList<String>[] geomAllocPolys; //stores geometries of allocated polygons
 
+	
+	//adds activity measure of basic area to territory centre
 	private static void addToCriteria(int polyID, int location, double[] criteria) throws SQLException{
 		//get criteria of the given polygon
 		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
-		
-		
 			criteria[location-1]=criteria[location-1]+critValue;
 		
 	}
 	
+	//removes activity measure of basic area from terriory centre
 	private static void removeFromCriteria(int polyID, int location, double[] criteria) throws SQLException{
 		//get criteria of the given polygon
 		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(Integer.toString(polyID))));
@@ -31,37 +32,12 @@ public class CritDistInOutTrueNearest {
 		
 	}
 	
-//	
-//	/**
-//	 * Add value of polygon to criteria
-//	 * @param polyID: ID of Polygon
-//	 * @param location
-//	 * @param jdbc: JDBCConnection
-//	 * @param criteria: Array of all criterias
-//	 * @throws SQLException
-//	 */
-//	public static void addToCriteria(int polyID, int location, int locationMaxCriteria, double[] criteria, boolean rearranged) throws SQLException{
-//		//get criteria of the given polygon
-//		double critValue = Double.parseDouble(polysGeometry[2].get(polysGeometry[0].indexOf(String.valueOf(polyID))));
-//		
-//		if (!rearranged){
-//			criteria[location-1]=criteria[location-1]+critValue;
-//		}
-//		else{			
-//			System.out.println("criterias before: "+ criteria[locationMaxCriteria-1]+","+criteria[location-1]);
-//			criteria[locationMaxCriteria-1]=criteria[locationMaxCriteria-1]-critValue;
-//			criteria[location-1]=criteria[location-1]+critValue;
-//			System.out.println("criterias after: "+ criteria[locationMaxCriteria-1]+","+criteria[location-1]);
-//		}
-//		
-//	}
-//	
-//	/**
-//	 * Assign polygons which are near to the locations
-//	 * @param numberpolygons: number of all polygons of the region
-//	 * @param criteria: array of criteria sum for distribute polygons homogeneously
-//	 * @throws Exception
-//	 */
+	/**
+	 * Assign polygons which are truely nearest to the territory centre with smallest activity measure
+	 * @param numberpolygons: number of all polygons of the region
+	 * @param criteria: array of criteria sum for distribute polygons homogeneously
+	 * @throws Exception
+	 */
 	private static void allocatePolygons(int numberlocations, int numberpolygons, double[] criteria, boolean plz5) throws Exception{
 		Statement stmt = functions.getConnection();
 		String columnIDs="_g7304";
@@ -86,6 +62,7 @@ public class CritDistInOutTrueNearest {
 		ResultSet t=stmt.executeQuery(sb.toString());
 		double distances[] = new double[numberlocations];
 		
+		//store information of basic areas
 		for (int i=0;i<numberpolygons;i++){
 			t.next();
 			polys[0].add(t.getDouble("id"));
@@ -95,6 +72,7 @@ public class CritDistInOutTrueNearest {
 			polysGeometry[2].add(t.getString("criteria"));
 		}
 		
+		//calculates distance from each basic area to each territory centre
 		for (int i=0;i<polys[0].size();i++){
 			String geometry = polysGeometry[1].get(i);
 			int poscoords=0;
@@ -110,11 +88,13 @@ public class CritDistInOutTrueNearest {
 			
 		int lastID=-1;
 		
+		//allocate basic areas
 		while (polys[0].size()>0){
 //			System.out.println("poly "+i);
 			double minCriteria=criteria[0];
 			int locationMinCriteria=1;
 			
+			//determine territory centre with smallest activity measure
 			for (int j=1;j<criteria.length;j++){
 				if (criteria[j]<minCriteria){
 					minCriteria=criteria[j];
@@ -122,6 +102,7 @@ public class CritDistInOutTrueNearest {
 				}
 			}	
 			
+			//calculate nearest basic area to territory centre with smallest activity measure
 			int locMinDist = 0;
 			double minDistance = polys[locationMinCriteria].get(0);
 			for (int j=1;j<polys[locationMinCriteria].size();j++){
@@ -135,7 +116,7 @@ public class CritDistInOutTrueNearest {
 			int polyID = polys[0].get(locMinDist).intValue();
 			
 			boolean nearer=false;
-			//check whether Poly is nearer to another one
+			//check whether Poly is nearer to another territory centre
 			int locNearer=-1;
 			for (int j=1;j<numberlocations+1;j++){
 				if (polys[j].get(locMinDist)<polys[locationMinCriteria].get(locMinDist)){
@@ -143,11 +124,11 @@ public class CritDistInOutTrueNearest {
 				}
 			}
 			
+			
+			//if nearer, determine basic area that is nearer and already asigned
 			System.out.println("Poly before: "+polyID+","+minDistance);
 			boolean changeId=false;
 			if (nearer){
-				
-				
 				for (int j=0;j<numberlocations;j++){
 					if (j!=locationMinCriteria-1){
 						for (int k=0;k<allocPolys[j].size();k++){
@@ -170,15 +151,14 @@ public class CritDistInOutTrueNearest {
 				
 			}
 			
+			//allocate basic area
 			System.out.println("write "+polyID+" to "+(locationMinCriteria));
 			allocPolys[locationMinCriteria-1].add(polyID);
 			String geometry = polysGeometry[1].get(polysGeometry[0].indexOf(Integer.toString(polyID)));
 			geomAllocPolys[locationMinCriteria-1].add(geometry);
 			lastID=locationMinCriteria;
 			
-			if (polys[0].size()==5){
-				System.out.println();
-			}
+			//remove basic area if it was moved from one territory to another
 			if (nearer && changeId==true){
 				allocPolys[locNearer].remove(Integer.valueOf(polyID));
 				geomAllocPolys[locNearer].remove(geometry);
@@ -205,7 +185,7 @@ public class CritDistInOutTrueNearest {
 
 		long time = System.currentTimeMillis();
 		
-		//setLocations
+		//set territory centres
 		int numberlocations =10;
 		boolean plz5 = false;
 		lonlats= new double[numberlocations*2];
@@ -237,22 +217,18 @@ public class CritDistInOutTrueNearest {
 		for(int i=0;i<geomAllocPolys.length;i++) geomAllocPolys[i] = new ArrayList<String>();
 
 		
-//		//calculate number of Polygons in that region
+		//calculate number of basic areas in that region
 		int numberpolygons=functions.getNrOrSum(true, plz5);
 		
-//		//alocate Polygons to locations
+		//allocate basic areas to territory centres
 		allocatePolygons(numberlocations, numberpolygons, criteria, plz5);
 		
-//		functions.setCriteria(criteria, numberlocations);
-//		allocPolys=functions.checkthreshold(numberlocations, allocPolys, polys, polysGeometry);
-//		criteria=functions.getCriteria();
-		
-//		//Create Shapefile with allocated poylgons
+		//Create Shapefile with allocated basic areas
 		for (int i=0; i<numberlocations;i++){
 			functions.writePolygon(output, allocPolys[i], geomAllocPolys[i],i+1);
 		}
-//		
-
+		
+		//print results
 		for (int i = 0; i < numberlocations; i++) {
 			System.out.println("Activity measure territory " + (i+1) + " :"
 					+ criteria[i]);
@@ -265,13 +241,14 @@ public class CritDistInOutTrueNearest {
 		}
 		
 		System.out.println("Time for whole algorithm:"+(System.currentTimeMillis()-time)+" ms");
-//		
+		
 		output.flush();
 		output.close();
 	    
 	    System.out.println("successfully ended");
 }
 	
+	//calculate circumference for calculation of compactness
 	private static double calculateCircumference(int numberpolygons, int location, boolean plz5) throws SQLException{
 		Statement stmt = functions.getConnection();
 		StringBuffer sb = new StringBuffer();
@@ -297,6 +274,7 @@ public class CritDistInOutTrueNearest {
 		return area;
 	}
 	
+	//calculate area for calculation of compactness
 	private static double calculateArea(int numberpolygons, int location, boolean plz5) throws SQLException{
 
 		Statement stmt = functions.getConnection();
@@ -322,6 +300,7 @@ public class CritDistInOutTrueNearest {
 		return area;
 	}
 	
+	//calculate compactness
 	public static double calcCompactness(int numberpolygons, int i, boolean plz5) throws SQLException{
 		
 		double U_area = calculateCircumference(numberpolygons, i, plz5);
